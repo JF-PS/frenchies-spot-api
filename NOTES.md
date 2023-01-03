@@ -1,21 +1,39 @@
-yarn init -y
+tuto: https://www.youtube.com/watch?v=9qJKmesjTd8
 
-yarn add prisma @prisma/client
+npx create-next-app@latest --ts
+
+npm install -D prisma
+
+npm install @prisma/client
 
 npx prisma init
 
-yarn add fastify
-
-yarn add -D typescript @types/node
+> .env
 
 ```
-  "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "start": "node index.js"
-  },
+DATABASE_URL="postgres://user:password@host/dbname"
+SHADOW_DATABASE_URL="postgres://jfps.dev21:oh3l5OigAVDJ@ep-delicate-frost-675944.eu-central-1.aws.neon.tech/neondb"
 ```
 
-npx tsc --init
+> schema.prisma
+
+```
+model Log {
+  id String @id @default(uuid())
+  message String
+  level Level
+  meta Json
+}
+
+enum Level {
+  Warning
+  Info
+  Error
+}
+```
 
 npx prisma migrate dev --name init
-npx prisma generate
+
+npx prisma studio
+
+npx prisma migrate reset

@@ -1,0 +1,1571 @@
+type Log {
+    id: String
+    message: String!
+    level: Level!
+    meta: AWSJSON!
+}
+
+type Test {
+    id: String
+    text: String!
+}
+
+type User {
+    id: String
+    email: AWSEmail!
+    password: String!
+    token: String!
+    role: Role!
+    profile: Profile
+}
+
+type Profile {
+    id: String
+    pseudo: String!
+    photoUrl: String
+    gamePoint: Int!
+    userId: String!
+    user: User!
+    itinaries: [Itinary]
+}
+
+type Itinary {
+    id: String
+    name: String!
+    description: String!
+    gamePoint: Int
+    photoUrl: String
+    profiles: [Profile]
+}
+
+type BatchPayload {
+    count: Int
+}
+
+enum Level {
+    Warning
+    Info
+    Error
+}
+
+input LevelEnumFilter {
+    equals: Level
+    in: [Level!]
+    not: LevelEnumFilter
+    notIn: [Level!]
+}
+
+input LevelEnumListFilter {
+    equals: [Level!]
+    has: Level
+    hasEvery: [Level!]
+    hasSome: [Level!]
+    isEmpty: Boolean
+}
+
+enum Role {
+    SIMPLE_USER
+    USER_ADMIN
+}
+
+input RoleEnumFilter {
+    equals: Role
+    in: [Role!]
+    not: RoleEnumFilter
+    notIn: [Role!]
+}
+
+input RoleEnumListFilter {
+    equals: [Role!]
+    has: Role
+    hasEvery: [Role!]
+    hasSome: [Role!]
+    isEmpty: Boolean
+}
+
+enum OrderByArg {
+    ASC
+    DESC
+}
+
+input LogFilter {
+    some: LogScalarWhereInput
+    every: LogScalarWhereInput
+    none: LogScalarWhereInput
+}
+
+input LogRelationFilter {
+    id: StringFilter
+    message: StringFilter
+    level: LevelEnumFilter
+    meta: AWSJSONFilter
+}
+
+input LogScalarWhereInput {
+    id: StringFilter
+    message: StringFilter
+    level: LevelEnumFilter
+    meta: AWSJSONFilter
+}
+
+input LogWhereInput {
+    OR: [LogWhereInput]
+    NOT: [LogWhereInput]
+    AND: [LogWhereInput]
+    id: StringFilter
+    message: StringFilter
+    level: LevelEnumFilter
+    meta: AWSJSONFilter
+}
+
+input LogWhereUniqueInput {
+    id: String
+}
+
+input LogOrderByInput {
+    id: OrderByArg
+    message: OrderByArg
+    level: OrderByArg
+    meta: OrderByArg
+}
+
+input LogCreateInput {
+    id: String
+    message: String!
+    level: Level!
+    meta: AWSJSON!
+}
+
+input LogCreateManyInput {
+    id: String
+    message: String!
+    level: Level!
+    meta: AWSJSON!
+}
+
+input LogUpdateInput {
+    id: String
+    message: String
+    level: Level
+    meta: AWSJSON
+}
+
+input LogUpdateUniqueInput {
+    data: LogUpdateInput!
+    where: LogWhereUniqueInput!
+}
+
+input LogUpdateManyInput {
+    where: LogWhereInput!
+    data: LogUpdateInput!
+}
+
+input LogUpsertInput {
+    create: LogCreateInput!
+    update: LogUpdateInput!
+}
+
+input LogUpsertUniqueInput {
+    where: LogWhereUniqueInput!
+    create: LogCreateInput!
+    update: LogUpdateInput!
+}
+
+input LogConnectOrCreateInput {
+    where: LogWhereUniqueInput!
+    create: LogCreateInput!
+}
+
+input LogDeleteUniqueInput {
+    where: LogWhereUniqueInput!
+}
+
+input LogDeleteManyInput {
+    where: LogWhereInput!
+}
+
+input TestFilter {
+    some: TestScalarWhereInput
+    every: TestScalarWhereInput
+    none: TestScalarWhereInput
+}
+
+input TestRelationFilter {
+    id: StringFilter
+    text: StringFilter
+}
+
+input TestScalarWhereInput {
+    id: StringFilter
+    text: StringFilter
+}
+
+input TestWhereInput {
+    OR: [TestWhereInput]
+    NOT: [TestWhereInput]
+    AND: [TestWhereInput]
+    id: StringFilter
+    text: StringFilter
+}
+
+input TestWhereUniqueInput {
+    id: String
+    text: String
+}
+
+input TestOrderByInput {
+    id: OrderByArg
+    text: OrderByArg
+}
+
+input TestCreateInput {
+    id: String
+    text: String!
+}
+
+input TestCreateManyInput {
+    id: String
+    text: String!
+}
+
+input TestUpdateInput {
+    id: String
+    text: String
+}
+
+input TestUpdateUniqueInput {
+    data: TestUpdateInput!
+    where: TestWhereUniqueInput!
+}
+
+input TestUpdateManyInput {
+    where: TestWhereInput!
+    data: TestUpdateInput!
+}
+
+input TestUpsertInput {
+    create: TestCreateInput!
+    update: TestUpdateInput!
+}
+
+input TestUpsertUniqueInput {
+    where: TestWhereUniqueInput!
+    create: TestCreateInput!
+    update: TestUpdateInput!
+}
+
+input TestConnectOrCreateInput {
+    where: TestWhereUniqueInput!
+    create: TestCreateInput!
+}
+
+input TestDeleteUniqueInput {
+    where: TestWhereUniqueInput!
+}
+
+input TestDeleteManyInput {
+    where: TestWhereInput!
+}
+
+input UserFilter {
+    some: UserScalarWhereInput
+    every: UserScalarWhereInput
+    none: UserScalarWhereInput
+}
+
+input UserRelationFilter {
+    id: StringFilter
+    email: AWSEmailFilter
+    password: StringFilter
+    token: StringFilter
+    role: RoleEnumFilter
+}
+
+input UserScalarWhereInput {
+    id: StringFilter
+    email: AWSEmailFilter
+    password: StringFilter
+    token: StringFilter
+    role: RoleEnumFilter
+}
+
+input UserWhereInput {
+    OR: [UserWhereInput]
+    NOT: [UserWhereInput]
+    AND: [UserWhereInput]
+    id: StringFilter
+    email: AWSEmailFilter
+    password: StringFilter
+    token: StringFilter
+    role: RoleEnumFilter
+    profile: ProfileFilter
+}
+
+input UserWhereUniqueInput {
+    id: String
+    email: AWSEmail
+    token: String
+}
+
+input UserOrderByInput {
+    id: OrderByArg
+    email: OrderByArg
+    password: OrderByArg
+    token: OrderByArg
+    role: OrderByArg
+    profile: ProfileOrderByInput
+}
+
+input UserCreateInput {
+    id: String
+    email: AWSEmail!
+    password: String!
+    token: String!
+    role: Role!
+    profile: UserProfileCreateRelationInput
+}
+
+input UserCreateManyInput {
+    id: String
+    email: AWSEmail!
+    password: String!
+    token: String!
+    role: Role!
+}
+
+input UserUpdateInput {
+    id: String
+    email: AWSEmail
+    password: String
+    token: String
+    role: Role
+    profile: UserProfileUpdateRelationsInput
+}
+
+input UserUpdateUniqueInput {
+    data: UserUpdateInput!
+    where: UserWhereUniqueInput!
+}
+
+input UserUpdateManyInput {
+    where: UserWhereInput!
+    data: UserUpdateInput!
+}
+
+input UserUpsertInput {
+    create: UserCreateInput!
+    update: UserUpdateInput!
+}
+
+input UserUpsertUniqueInput {
+    where: UserWhereUniqueInput!
+    create: UserCreateInput!
+    update: UserUpdateInput!
+}
+
+input UserConnectOrCreateInput {
+    where: UserWhereUniqueInput!
+    create: UserCreateInput!
+}
+
+input UserDeleteUniqueInput {
+    where: UserWhereUniqueInput!
+}
+
+input UserDeleteManyInput {
+    where: UserWhereInput!
+}
+
+input UserProfileCreateRelationInput {
+    create: [ProfileCreateInput]
+    connect: [ProfileWhereUniqueInput]
+    connectOrCreate: [ProfileConnectOrCreateInput]
+}
+
+input UserProfileUpdateRelationsInput {
+    connect: [ProfileWhereUniqueInput]
+    create: [ProfileCreateInput]
+    connectOrCreate: [ProfileConnectOrCreateInput]
+    update: [ProfileUpdateUniqueInput]
+    upsert: [ProfileUpsertUniqueInput]
+    delete: [ProfileDeleteUniqueInput]
+    disconnect: [ProfileWhereUniqueInput]
+    set: [ProfileWhereUniqueInput]
+    updateMany: [ProfileUpdateManyInput]
+    deleteMany: [ProfileDeleteManyInput]
+}
+
+input ProfileFilter {
+    some: ProfileScalarWhereInput
+    every: ProfileScalarWhereInput
+    none: ProfileScalarWhereInput
+}
+
+input ProfileRelationFilter {
+    id: StringFilter
+    pseudo: StringFilter
+    photoUrl: StringFilter
+    gamePoint: IntFilter
+    userId: StringFilter
+}
+
+input ProfileScalarWhereInput {
+    id: StringFilter
+    pseudo: StringFilter
+    photoUrl: StringFilter
+    gamePoint: IntFilter
+    userId: StringFilter
+}
+
+input ProfileWhereInput {
+    OR: [ProfileWhereInput]
+    NOT: [ProfileWhereInput]
+    AND: [ProfileWhereInput]
+    id: StringFilter
+    pseudo: StringFilter
+    photoUrl: StringFilter
+    gamePoint: IntFilter
+    userId: StringFilter
+    user: UserRelationFilter
+    itinaries: ItinaryFilter
+}
+
+input ProfileWhereUniqueInput {
+    id: String
+    pseudo: String
+    userId: String
+}
+
+input ProfileOrderByInput {
+    id: OrderByArg
+    pseudo: OrderByArg
+    photoUrl: OrderByArg
+    gamePoint: OrderByArg
+    userId: OrderByArg
+    user: UserOrderByInput
+    itinaries: ItinaryOrderByInput
+}
+
+input ProfileCreateInput {
+    id: String
+    pseudo: String!
+    photoUrl: String
+    gamePoint: Int!
+    user: ProfileUserCreateRelationInput!
+    itinaries: ProfileItinariesCreateRelationInput
+}
+
+input ProfileCreateManyInput {
+    id: String
+    pseudo: String!
+    photoUrl: String
+    gamePoint: Int!
+}
+
+input ProfileUpdateInput {
+    id: String
+    pseudo: String
+    photoUrl: String
+    gamePoint: Int
+    user: ProfileUserUpdateRelationsInput
+    itinaries: ProfileItinariesUpdateRelationsInput
+}
+
+input ProfileOperationInput {
+    gamePoint: IntOperation
+}
+
+input ProfileUpdateUniqueInput {
+    data: ProfileUpdateInput!
+    where: ProfileWhereUniqueInput!
+}
+
+input ProfileUpdateManyInput {
+    where: ProfileWhereInput!
+    data: ProfileUpdateInput!
+}
+
+input ProfileUpsertInput {
+    create: ProfileCreateInput!
+    update: ProfileUpdateInput!
+}
+
+input ProfileUpsertUniqueInput {
+    where: ProfileWhereUniqueInput!
+    create: ProfileCreateInput!
+    update: ProfileUpdateInput!
+}
+
+input ProfileConnectOrCreateInput {
+    where: ProfileWhereUniqueInput!
+    create: ProfileCreateInput!
+}
+
+input ProfileDeleteUniqueInput {
+    where: ProfileWhereUniqueInput!
+}
+
+input ProfileDeleteManyInput {
+    where: ProfileWhereInput!
+}
+
+input ProfileUserCreateRelationInput {
+    create: UserCreateInput
+    connect: UserWhereUniqueInput
+    connectOrCreate: UserConnectOrCreateInput
+}
+
+input ProfileUserUpdateRelationsInput {
+    connect: UserWhereUniqueInput
+    create: UserCreateInput
+    connectOrCreate: UserConnectOrCreateInput
+    update: UserUpdateInput
+    upsert: UserUpsertInput
+    delete: Boolean
+    disconnect: Boolean
+}
+input ProfileItinariesCreateRelationInput {
+    create: [ItinaryCreateInput]
+    connect: [ItinaryWhereUniqueInput]
+    connectOrCreate: [ItinaryConnectOrCreateInput]
+}
+
+input ProfileItinariesUpdateRelationsInput {
+    connect: [ItinaryWhereUniqueInput]
+    create: [ItinaryCreateInput]
+    connectOrCreate: [ItinaryConnectOrCreateInput]
+    update: [ItinaryUpdateUniqueInput]
+    upsert: [ItinaryUpsertUniqueInput]
+    delete: [ItinaryDeleteUniqueInput]
+    disconnect: [ItinaryWhereUniqueInput]
+    set: [ItinaryWhereUniqueInput]
+    updateMany: [ItinaryUpdateManyInput]
+    deleteMany: [ItinaryDeleteManyInput]
+}
+
+input ItinaryFilter {
+    some: ItinaryScalarWhereInput
+    every: ItinaryScalarWhereInput
+    none: ItinaryScalarWhereInput
+}
+
+input ItinaryRelationFilter {
+    id: StringFilter
+    name: StringFilter
+    description: StringFilter
+    gamePoint: IntFilter
+    photoUrl: StringFilter
+}
+
+input ItinaryScalarWhereInput {
+    id: StringFilter
+    name: StringFilter
+    description: StringFilter
+    gamePoint: IntFilter
+    photoUrl: StringFilter
+}
+
+input ItinaryWhereInput {
+    OR: [ItinaryWhereInput]
+    NOT: [ItinaryWhereInput]
+    AND: [ItinaryWhereInput]
+    id: StringFilter
+    name: StringFilter
+    description: StringFilter
+    gamePoint: IntFilter
+    photoUrl: StringFilter
+    profiles: ProfileFilter
+}
+
+input ItinaryWhereUniqueInput {
+    id: String
+}
+
+input ItinaryOrderByInput {
+    id: OrderByArg
+    name: OrderByArg
+    description: OrderByArg
+    gamePoint: OrderByArg
+    photoUrl: OrderByArg
+    profiles: ProfileOrderByInput
+}
+
+input ItinaryCreateInput {
+    id: String
+    name: String!
+    description: String!
+    gamePoint: Int
+    photoUrl: String
+    profiles: ItinaryProfilesCreateRelationInput
+}
+
+input ItinaryCreateManyInput {
+    id: String
+    name: String!
+    description: String!
+    gamePoint: Int
+    photoUrl: String
+}
+
+input ItinaryUpdateInput {
+    id: String
+    name: String
+    description: String
+    gamePoint: Int
+    photoUrl: String
+    profiles: ItinaryProfilesUpdateRelationsInput
+}
+
+input ItinaryOperationInput {
+    gamePoint: IntOperation
+}
+
+input ItinaryUpdateUniqueInput {
+    data: ItinaryUpdateInput!
+    where: ItinaryWhereUniqueInput!
+}
+
+input ItinaryUpdateManyInput {
+    where: ItinaryWhereInput!
+    data: ItinaryUpdateInput!
+}
+
+input ItinaryUpsertInput {
+    create: ItinaryCreateInput!
+    update: ItinaryUpdateInput!
+}
+
+input ItinaryUpsertUniqueInput {
+    where: ItinaryWhereUniqueInput!
+    create: ItinaryCreateInput!
+    update: ItinaryUpdateInput!
+}
+
+input ItinaryConnectOrCreateInput {
+    where: ItinaryWhereUniqueInput!
+    create: ItinaryCreateInput!
+}
+
+input ItinaryDeleteUniqueInput {
+    where: ItinaryWhereUniqueInput!
+}
+
+input ItinaryDeleteManyInput {
+    where: ItinaryWhereInput!
+}
+
+input ItinaryProfilesCreateRelationInput {
+    create: [ProfileCreateInput]
+    connect: [ProfileWhereUniqueInput]
+    connectOrCreate: [ProfileConnectOrCreateInput]
+}
+
+input ItinaryProfilesUpdateRelationsInput {
+    connect: [ProfileWhereUniqueInput]
+    create: [ProfileCreateInput]
+    connectOrCreate: [ProfileConnectOrCreateInput]
+    update: [ProfileUpdateUniqueInput]
+    upsert: [ProfileUpsertUniqueInput]
+    delete: [ProfileDeleteUniqueInput]
+    disconnect: [ProfileWhereUniqueInput]
+    set: [ProfileWhereUniqueInput]
+    updateMany: [ProfileUpdateManyInput]
+    deleteMany: [ProfileDeleteManyInput]
+}
+
+input IntOperation {
+    set: Int
+    increment: Int
+    decrement: Int
+    multiply: Int
+    divide: Int
+}
+
+input FloatOperation {
+    set: Float
+    increment: Float
+    decrement: Float
+    multiply: Float
+    divide: Float
+}
+
+input AWSDateTimeFilter {
+    equals: AWSDateTime
+    gt: AWSDateTime
+    gte: AWSDateTime
+    in: [AWSDateTime!]
+    lt: AWSDateTime
+    lte: AWSDateTime
+    not: AWSDateTimeFilter
+    notIn: [AWSDateTime!]
+}
+
+input AWSDateTimeListFilter {
+    equals: [AWSDateTime!]
+    has: AWSDateTime
+    hasEvery: [AWSDateTime!]
+    hasSome: [AWSDateTime!]
+    isEmpty: Boolean
+}
+
+input FloatFilter {
+    equals: Float
+    gt: Float
+    gte: Float
+    in: [Float!]
+    lt: Float
+    lte: Float
+    not: FloatFilter
+    notIn: [Float!]
+}
+
+input FloatListFilter {
+    equals: [Float!]
+    has: Float
+    hasEvery: [Float!]
+    hasSome: [Float!]
+    isEmpty: Boolean
+}
+
+input IntFilter {
+    equals: Int
+    gt: Int
+    gte: Int
+    in: [Int!]
+    lt: Int
+    lte: Int
+    not: IntFilter
+    notIn: [Int!]
+}
+
+input IntListFilter {
+    equals: [Int!]
+    has: Int
+    hasEvery: [Int!]
+    hasSome: [Int!]
+    isEmpty: Boolean
+}
+
+input AWSJSONFilter {
+    contains: String
+    endsWith: String
+    equals: AWSJSON
+    in: [AWSJSON!]
+    not: AWSJSONFilter
+    notIn: [AWSJSON!]
+    startsWith: String
+}
+
+input AWSJSONListFilter {
+    equals: [AWSJSON!]
+    has: AWSJSON
+    hasEvery: [AWSJSON!]
+    hasSome: [AWSJSON!]
+    isEmpty: Boolean
+}
+
+input AWSEmailFilter {
+    contains: String
+    endsWith: String
+    equals: AWSEmail
+    in: [AWSEmail!]
+    not: AWSEmailFilter
+    notIn: [AWSEmail!]
+    startsWith: String
+}
+
+input AWSEmailListFilter {
+    equals: [AWSEmail!]
+    has: AWSEmail
+    hasEvery: [AWSEmail!]
+    hasSome: [AWSEmail!]
+    isEmpty: Boolean
+}
+
+input AWSURLFilter {
+    contains: String
+    endsWith: String
+    equals: AWSURL
+    in: [AWSURL!]
+    not: AWSURLFilter
+    notIn: [AWSURL!]
+    startsWith: String
+}
+
+input AWSURLListFilter {
+    equals: [AWSURL!]
+    has: AWSURL
+    hasEvery: [AWSURL!]
+    hasSome: [AWSURL!]
+    isEmpty: Boolean
+}
+
+input StringFilter {
+    contains: String
+    endsWith: String
+    equals: String
+    in: [String!]
+    not: StringFilter
+    notIn: [String!]
+    startsWith: String
+    mode: String
+}
+
+input StringListFilter {
+    equals: [String!]
+    has: String
+    hasEvery: [String!]
+    hasSome: [String!]
+    isEmpty: Boolean
+}
+
+input BooleanFilter {
+    equals: Boolean
+    not: BooleanFilter
+}
+
+input BooleanListFilter {
+    equals: [Boolean!]
+    has: Boolean
+    hasEvery: [Boolean!]
+    hasSome: [Boolean!]
+}
+
+type Mutation {
+    """
+    Create a new single Log record.
+    """
+    createLog(data: LogCreateInput!): Log
+
+    """
+    Create multiple new Log records.
+    """
+    createManyLogs(
+        data: [LogCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single Log record.
+    """
+    updateLog(
+        where: LogWhereUniqueInput!
+        data: LogUpdateInput
+    ): Log
+
+    """
+    Update multiple existing Log records.
+    """
+    updateManyLogs(
+        where: LogWhereInput!
+        data: LogUpdateInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single Log record.
+    """
+    upsertLog(
+        data: LogUpdateInput!
+        where: LogWhereUniqueInput!
+    ): Log
+
+    """
+    Delete a single Log record.
+    """
+    deleteLog(where: LogWhereUniqueInput!): Log
+
+    """
+    Delete multiple Log records.
+    """
+    deleteManyLogs(where: LogWhereInput!): BatchPayload
+
+    """
+    Create a new single Test record.
+    """
+    createTest(data: TestCreateInput!): Test
+
+    """
+    Create multiple new Test records.
+    """
+    createManyTests(
+        data: [TestCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single Test record.
+    """
+    updateTest(
+        where: TestWhereUniqueInput!
+        data: TestUpdateInput
+    ): Test
+
+    """
+    Update multiple existing Test records.
+    """
+    updateManyTests(
+        where: TestWhereInput!
+        data: TestUpdateInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single Test record.
+    """
+    upsertTest(
+        data: TestUpdateInput!
+        where: TestWhereUniqueInput!
+    ): Test
+
+    """
+    Delete a single Test record.
+    """
+    deleteTest(where: TestWhereUniqueInput!): Test
+
+    """
+    Delete multiple Test records.
+    """
+    deleteManyTests(where: TestWhereInput!): BatchPayload
+
+    """
+    Create a new single User record.
+    """
+    createUser(data: UserCreateInput!): User
+
+    """
+    Create multiple new User records.
+    """
+    createManyUsers(
+        data: [UserCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single User record.
+    """
+    updateUser(
+        where: UserWhereUniqueInput!
+        data: UserUpdateInput
+    ): User
+
+    """
+    Update multiple existing User records.
+    """
+    updateManyUsers(
+        where: UserWhereInput!
+        data: UserUpdateInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single User record.
+    """
+    upsertUser(
+        data: UserUpdateInput!
+        where: UserWhereUniqueInput!
+    ): User
+
+    """
+    Delete a single User record.
+    """
+    deleteUser(where: UserWhereUniqueInput!): User
+
+    """
+    Delete multiple User records.
+    """
+    deleteManyUsers(where: UserWhereInput!): BatchPayload
+
+    """
+    Create a new single Profile record.
+    """
+    createProfile(data: ProfileCreateInput!): Profile
+
+    """
+    Create multiple new Profile records.
+    """
+    createManyProfiles(
+        data: [ProfileCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single Profile record.
+    """
+    updateProfile(
+        where: ProfileWhereUniqueInput!
+        data: ProfileUpdateInput
+        operation: ProfileOperationInput
+    ): Profile
+
+    """
+    Update multiple existing Profile records.
+    """
+    updateManyProfiles(
+        where: ProfileWhereInput!
+        data: ProfileUpdateInput
+        operation: ProfileOperationInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single Profile record.
+    """
+    upsertProfile(
+        data: ProfileUpdateInput!
+        where: ProfileWhereUniqueInput!
+    ): Profile
+
+    """
+    Delete a single Profile record.
+    """
+    deleteProfile(where: ProfileWhereUniqueInput!): Profile
+
+    """
+    Delete multiple Profile records.
+    """
+    deleteManyProfiles(
+        where: ProfileWhereInput!
+    ): BatchPayload
+
+    """
+    Create a new single Itinary record.
+    """
+    createItinary(data: ItinaryCreateInput!): Itinary
+
+    """
+    Create multiple new Itinary records.
+    """
+    createManyItinaries(
+        data: [ItinaryCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single Itinary record.
+    """
+    updateItinary(
+        where: ItinaryWhereUniqueInput!
+        data: ItinaryUpdateInput
+        operation: ItinaryOperationInput
+    ): Itinary
+
+    """
+    Update multiple existing Itinary records.
+    """
+    updateManyItinaries(
+        where: ItinaryWhereInput!
+        data: ItinaryUpdateInput
+        operation: ItinaryOperationInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single Itinary record.
+    """
+    upsertItinary(
+        data: ItinaryUpdateInput!
+        where: ItinaryWhereUniqueInput!
+    ): Itinary
+
+    """
+    Delete a single Itinary record.
+    """
+    deleteItinary(where: ItinaryWhereUniqueInput!): Itinary
+
+    """
+    Delete multiple Itinary records.
+    """
+    deleteManyItinaries(
+        where: ItinaryWhereInput!
+    ): BatchPayload
+}
+type Query {
+    """
+    Find a single Log record by unique identifier.
+    """
+    getLog(where: LogWhereUniqueInput!): Log
+
+    """
+    Find many Log records (optional query filters).
+    """
+    listLogs(
+        where: LogWhereInput
+        orderBy: [LogOrderByInput]
+        skip: Int
+        take: Int
+    ): [Log]
+
+    """
+    Count all Log records (optional query filters).
+    """
+    countLogs(
+        where: LogWhereInput
+        orderBy: [LogOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    """
+    Find a single Test record by unique identifier.
+    """
+    getTest(where: TestWhereUniqueInput!): Test
+
+    """
+    Find many Test records (optional query filters).
+    """
+    listTests(
+        where: TestWhereInput
+        orderBy: [TestOrderByInput]
+        skip: Int
+        take: Int
+    ): [Test]
+
+    """
+    Count all Test records (optional query filters).
+    """
+    countTests(
+        where: TestWhereInput
+        orderBy: [TestOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    """
+    Find a single User record by unique identifier.
+    """
+    getUser(where: UserWhereUniqueInput!): User
+
+    """
+    Find many User records (optional query filters).
+    """
+    listUsers(
+        where: UserWhereInput
+        orderBy: [UserOrderByInput]
+        skip: Int
+        take: Int
+    ): [User]
+
+    """
+    Count all User records (optional query filters).
+    """
+    countUsers(
+        where: UserWhereInput
+        orderBy: [UserOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    """
+    Find a single Profile record by unique identifier.
+    """
+    getProfile(where: ProfileWhereUniqueInput!): Profile
+
+    """
+    Find many Profile records (optional query filters).
+    """
+    listProfiles(
+        where: ProfileWhereInput
+        orderBy: [ProfileOrderByInput]
+        skip: Int
+        take: Int
+    ): [Profile]
+
+    """
+    Count all Profile records (optional query filters).
+    """
+    countProfiles(
+        where: ProfileWhereInput
+        orderBy: [ProfileOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    """
+    Find a single Itinary record by unique identifier.
+    """
+    getItinary(where: ItinaryWhereUniqueInput!): Itinary
+
+    """
+    Find many Itinary records (optional query filters).
+    """
+    listItinaries(
+        where: ItinaryWhereInput
+        orderBy: [ItinaryOrderByInput]
+        skip: Int
+        take: Int
+    ): [Itinary]
+
+    """
+    Count all Itinary records (optional query filters).
+    """
+    countItinaries(
+        where: ItinaryWhereInput
+        orderBy: [ItinaryOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+}
+type Subscription {
+    """
+    Triggered from `createLog` mutation (excl. `createManyLogs` and `upsertLog`).
+    """
+    onCreatedLog(id: String): Log
+        @aws_subscribe(mutations: ["createLog"])
+
+    """
+    Triggered from `updateLog` mutation (excl. `updateManyLogs` and `upsertLog`).
+    """
+    onUpdatedLog(id: String): Log
+        @aws_subscribe(mutations: ["updateLog"])
+
+    """
+    Triggered from `upsertLog` mutation.
+    """
+    onUpsertedLog(id: String): Log
+        @aws_subscribe(mutations: ["upsertLog"])
+
+    """
+    Triggered from `deleteLog` mutation (excl. `deleteManyLogs`).
+    """
+    onDeletedLog(id: String): Log
+        @aws_subscribe(mutations: ["deleteLog"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedLog(id: String): Log
+        @aws_subscribe(
+            mutations: [
+                "createLog"
+                "updateLog"
+                "upsertLog"
+                "deleteLog"
+            ]
+        )
+
+    """
+    Triggered from `createManyLogs` mutation.
+    """
+    onCreatedManyLogs: BatchPayload
+        @aws_subscribe(mutations: ["createManyLogs"])
+
+    """
+    Triggered from `updateManyLogs` mutation.
+    """
+    onUpdatedManyLogs: BatchPayload
+        @aws_subscribe(mutations: ["updateManyLogs"])
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManyLogs: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyLogs"
+                "updateManyLogs"
+                "deleteManyLogs"
+            ]
+        )
+
+    """
+    Triggered from `deleteManyLogs` mutation.
+    """
+    onDeletedManyLogs: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyLogs"])
+
+    """
+    Triggered from `createTest` mutation (excl. `createManyTests` and `upsertTest`).
+    """
+    onCreatedTest(id: String, text: String): Test
+        @aws_subscribe(mutations: ["createTest"])
+
+    """
+    Triggered from `updateTest` mutation (excl. `updateManyTests` and `upsertTest`).
+    """
+    onUpdatedTest(id: String, text: String): Test
+        @aws_subscribe(mutations: ["updateTest"])
+
+    """
+    Triggered from `upsertTest` mutation.
+    """
+    onUpsertedTest(id: String, text: String): Test
+        @aws_subscribe(mutations: ["upsertTest"])
+
+    """
+    Triggered from `deleteTest` mutation (excl. `deleteManyTests`).
+    """
+    onDeletedTest(id: String, text: String): Test
+        @aws_subscribe(mutations: ["deleteTest"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedTest(id: String, text: String): Test
+        @aws_subscribe(
+            mutations: [
+                "createTest"
+                "updateTest"
+                "upsertTest"
+                "deleteTest"
+            ]
+        )
+
+    """
+    Triggered from `createManyTests` mutation.
+    """
+    onCreatedManyTests: BatchPayload
+        @aws_subscribe(mutations: ["createManyTests"])
+
+    """
+    Triggered from `updateManyTests` mutation.
+    """
+    onUpdatedManyTests: BatchPayload
+        @aws_subscribe(mutations: ["updateManyTests"])
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManyTests: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyTests"
+                "updateManyTests"
+                "deleteManyTests"
+            ]
+        )
+
+    """
+    Triggered from `deleteManyTests` mutation.
+    """
+    onDeletedManyTests: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyTests"])
+
+    """
+    Triggered from `createUser` mutation (excl. `createManyUsers` and `upsertUser`).
+    """
+    onCreatedUser(
+        id: String
+        email: AWSEmail
+        token: String
+    ): User @aws_subscribe(mutations: ["createUser"])
+
+    """
+    Triggered from `updateUser` mutation (excl. `updateManyUsers` and `upsertUser`).
+    """
+    onUpdatedUser(
+        id: String
+        email: AWSEmail
+        token: String
+    ): User @aws_subscribe(mutations: ["updateUser"])
+
+    """
+    Triggered from `upsertUser` mutation.
+    """
+    onUpsertedUser(
+        id: String
+        email: AWSEmail
+        token: String
+    ): User @aws_subscribe(mutations: ["upsertUser"])
+
+    """
+    Triggered from `deleteUser` mutation (excl. `deleteManyUsers`).
+    """
+    onDeletedUser(
+        id: String
+        email: AWSEmail
+        token: String
+    ): User @aws_subscribe(mutations: ["deleteUser"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedUser(
+        id: String
+        email: AWSEmail
+        token: String
+    ): User
+        @aws_subscribe(
+            mutations: [
+                "createUser"
+                "updateUser"
+                "upsertUser"
+                "deleteUser"
+            ]
+        )
+
+    """
+    Triggered from `createManyUsers` mutation.
+    """
+    onCreatedManyUsers: BatchPayload
+        @aws_subscribe(mutations: ["createManyUsers"])
+
+    """
+    Triggered from `updateManyUsers` mutation.
+    """
+    onUpdatedManyUsers: BatchPayload
+        @aws_subscribe(mutations: ["updateManyUsers"])
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManyUsers: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyUsers"
+                "updateManyUsers"
+                "deleteManyUsers"
+            ]
+        )
+
+    """
+    Triggered from `deleteManyUsers` mutation.
+    """
+    onDeletedManyUsers: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyUsers"])
+
+    """
+    Triggered from `createProfile` mutation (excl. `createManyProfiles` and `upsertProfile`).
+    """
+    onCreatedProfile(
+        id: String
+        pseudo: String
+        userId: String
+    ): Profile @aws_subscribe(mutations: ["createProfile"])
+
+    """
+    Triggered from `updateProfile` mutation (excl. `updateManyProfiles` and `upsertProfile`).
+    """
+    onUpdatedProfile(
+        id: String
+        pseudo: String
+        userId: String
+    ): Profile @aws_subscribe(mutations: ["updateProfile"])
+
+    """
+    Triggered from `upsertProfile` mutation.
+    """
+    onUpsertedProfile(
+        id: String
+        pseudo: String
+        userId: String
+    ): Profile @aws_subscribe(mutations: ["upsertProfile"])
+
+    """
+    Triggered from `deleteProfile` mutation (excl. `deleteManyProfiles`).
+    """
+    onDeletedProfile(
+        id: String
+        pseudo: String
+        userId: String
+    ): Profile @aws_subscribe(mutations: ["deleteProfile"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedProfile(
+        id: String
+        pseudo: String
+        userId: String
+    ): Profile
+        @aws_subscribe(
+            mutations: [
+                "createProfile"
+                "updateProfile"
+                "upsertProfile"
+                "deleteProfile"
+            ]
+        )
+
+    """
+    Triggered from `createManyProfiles` mutation.
+    """
+    onCreatedManyProfiles: BatchPayload
+        @aws_subscribe(mutations: ["createManyProfiles"])
+
+    """
+    Triggered from `updateManyProfiles` mutation.
+    """
+    onUpdatedManyProfiles: BatchPayload
+        @aws_subscribe(mutations: ["updateManyProfiles"])
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManyProfiles: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyProfiles"
+                "updateManyProfiles"
+                "deleteManyProfiles"
+            ]
+        )
+
+    """
+    Triggered from `deleteManyProfiles` mutation.
+    """
+    onDeletedManyProfiles: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyProfiles"])
+
+    """
+    Triggered from `createItinary` mutation (excl. `createManyItinaries` and `upsertItinary`).
+    """
+    onCreatedItinary(id: String): Itinary
+        @aws_subscribe(mutations: ["createItinary"])
+
+    """
+    Triggered from `updateItinary` mutation (excl. `updateManyItinaries` and `upsertItinary`).
+    """
+    onUpdatedItinary(id: String): Itinary
+        @aws_subscribe(mutations: ["updateItinary"])
+
+    """
+    Triggered from `upsertItinary` mutation.
+    """
+    onUpsertedItinary(id: String): Itinary
+        @aws_subscribe(mutations: ["upsertItinary"])
+
+    """
+    Triggered from `deleteItinary` mutation (excl. `deleteManyItinaries`).
+    """
+    onDeletedItinary(id: String): Itinary
+        @aws_subscribe(mutations: ["deleteItinary"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedItinary(id: String): Itinary
+        @aws_subscribe(
+            mutations: [
+                "createItinary"
+                "updateItinary"
+                "upsertItinary"
+                "deleteItinary"
+            ]
+        )
+
+    """
+    Triggered from `createManyItinaries` mutation.
+    """
+    onCreatedManyItinaries: BatchPayload
+        @aws_subscribe(mutations: ["createManyItinaries"])
+
+    """
+    Triggered from `updateManyItinaries` mutation.
+    """
+    onUpdatedManyItinaries: BatchPayload
+        @aws_subscribe(mutations: ["updateManyItinaries"])
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManyItinaries: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyItinaries"
+                "updateManyItinaries"
+                "deleteManyItinaries"
+            ]
+        )
+
+    """
+    Triggered from `deleteManyItinaries` mutation.
+    """
+    onDeletedManyItinaries: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyItinaries"])
+}
