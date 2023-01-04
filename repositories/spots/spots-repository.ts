@@ -19,7 +19,7 @@ const spotsRepository = {
       },
       data: {
         spots: {
-          create: { ...data },
+          create: [{ ...data }],
         },
       },
       include: { spots: true },

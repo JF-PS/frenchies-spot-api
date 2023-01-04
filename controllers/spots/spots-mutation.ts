@@ -8,12 +8,11 @@ export const spotsMutation = {
   /**
    * @param {SpotDto} data
    */
-  // createSpot: (_: undefined, data: SpotDto, context: TContext) => {
-  //   const { user } = context;
-  //   const profileId = user?.profile.id;
-  //   if (!profileId) return throwError(UNAUTHENTICATED);
-  //   console.log("=======================");
-  //   console.log({ profileId });
-  //   return spotsBusiness.create(data, profileId);
-  // },
+  createSpot: (_: undefined, data: SpotDto, context: TContext) => {
+    const { user } = context;
+    const profileId = user?.profile.id;
+    if (!profileId) return throwError(UNAUTHENTICATED);
+
+    return spotsBusiness.create(data, profileId);
+  },
 };

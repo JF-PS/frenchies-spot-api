@@ -6,6 +6,8 @@ export const itinariesMutation = {
    * @param {ItinaryDto} data
    */
   createItinary: (_: undefined, data: ItinaryDto) => {
+    console.log("=======================");
+    console.log(data);
     return itinariesBusiness.create(data);
   },
 

@@ -23,6 +23,7 @@ const typeDefs = gql`
     userId: String
     user: User
     itinaries: [Itinary]
+    spots: [Spot]
   }
 
   type Itinary {
@@ -32,6 +33,7 @@ const typeDefs = gql`
     gamePoint: Int
     photoUrl: String
     profiles: [Profile]
+    spots: [Spot]
   }
 
   type Test {
@@ -52,6 +54,9 @@ const typeDefs = gql`
     isCanPark: Boolean
     isCanVisit: Boolean
     isTouristic: Boolean
+    profile: Profile
+    profileId: String
+    itinaries: [Itinary]
   }
 
   type Error {
@@ -68,7 +73,7 @@ const typeDefs = gql`
     signIn(email: String, password: String): User
     signUp(pseudo: String, email: String, password: String): User
 
-    # createSpot(name: String, description: String): Spot
+    createSpot(name: String, description: String): Profile
 
     createItinary(name: String, description: String): Itinary
     buysItinary(profileId: String, itinaryId: String): Profile

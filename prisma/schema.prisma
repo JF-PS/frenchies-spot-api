@@ -58,7 +58,7 @@ model Profile {
   // Implicit relations many to many with itinary
   itinaries Itinary[]
   //Relations one to many with spot
-  // spots Spot[]
+  spots Spot[]
 }
 
 
@@ -70,6 +70,8 @@ model Itinary {
   photoUrl String?
   // Implicit relations many to many with profile
   profiles Profile[]
+  // Implicit relations many to many with spot
+  spots Spot[]
 }
 
 model Spot {
@@ -80,8 +82,10 @@ model Spot {
   isCanPark Boolean @default(false)
   isCanVisit Boolean @default(false)
   isTouristic Boolean @default(false)
-  //Relations one to many with Spot
-  // profile Profile @relation(fields: [profileId], references: [id])
-  // profileId String @unique
+  //Relations one to many with spot
+  profile Profile @relation(fields: [profileId], references: [id])
+  profileId String
+  //Implicit relations many to many with itinary
+  itinaries Itinary[]
 }
 

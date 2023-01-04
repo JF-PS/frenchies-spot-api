@@ -64,12 +64,19 @@ CREATE TABLE "Spot" (
     "isCanPark" BOOLEAN NOT NULL DEFAULT false,
     "isCanVisit" BOOLEAN NOT NULL DEFAULT false,
     "isTouristic" BOOLEAN NOT NULL DEFAULT false,
+    "profileId" TEXT NOT NULL,
 
     CONSTRAINT "Spot_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "_ItinaryToProfile" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_ItinaryToSpot" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
@@ -95,11 +102,26 @@ CREATE UNIQUE INDEX "_ItinaryToProfile_AB_unique" ON "_ItinaryToProfile"("A", "B
 -- CreateIndex
 CREATE INDEX "_ItinaryToProfile_B_index" ON "_ItinaryToProfile"("B");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "_ItinaryToSpot_AB_unique" ON "_ItinaryToSpot"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_ItinaryToSpot_B_index" ON "_ItinaryToSpot"("B");
+
 -- AddForeignKey
 ALTER TABLE "Profile" ADD CONSTRAINT "Profile_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Spot" ADD CONSTRAINT "Spot_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ItinaryToProfile" ADD CONSTRAINT "_ItinaryToProfile_A_fkey" FOREIGN KEY ("A") REFERENCES "Itinary"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ItinaryToProfile" ADD CONSTRAINT "_ItinaryToProfile_B_fkey" FOREIGN KEY ("B") REFERENCES "Profile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ItinaryToSpot" ADD CONSTRAINT "_ItinaryToSpot_A_fkey" FOREIGN KEY ("A") REFERENCES "Itinary"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ItinaryToSpot" ADD CONSTRAINT "_ItinaryToSpot_B_fkey" FOREIGN KEY ("B") REFERENCES "Spot"("id") ON DELETE CASCADE ON UPDATE CASCADE;
