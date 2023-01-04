@@ -1,7 +1,13 @@
 import { Itinary, Profile, Spot } from "@prisma/client";
+import { ProfileSpotDto } from "./spot-dto";
 
-export interface ItinaryDto extends Pick<Itinary, "name" | "description"> {
-  // spots: Spot[];
+export interface CreateItinaryDto
+  extends Pick<Itinary, "name" | "description"> {
+  spots: Pick<Spot, "name" | "description">[];
+}
+
+export interface ItinarySpotDto extends Pick<Itinary, "name" | "description"> {
+  spots: ProfileSpotDto[];
 }
 
 export type buysItinaryDto = {

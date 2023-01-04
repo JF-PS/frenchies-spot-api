@@ -1,5 +1,5 @@
 import { itinariesRepository } from "../../repositories";
-import { ItinaryDto, buysItinaryDto } from "../../dto";
+import { CreateItinaryDto, buysItinaryDto, ProfileSpotDto } from "../../dto";
 
 const itinariesBusiness = {
   /**
@@ -10,10 +10,18 @@ const itinariesBusiness = {
   },
 
   /**
-   * @param {ItinaryDto} data
+   * @param {CreateItinaryDto} data
    */
-  create: (data: ItinaryDto) => {
-    return itinariesRepository.create(data);
+  create: (data: CreateItinaryDto, profileId: string) => {
+    const { spots } = data;
+
+    // Asign the auth user to every spots
+    const createItinary: ProfileSpotDto[] = spots.map((spot) => ({
+      ...spot,
+      profileId,
+    }));
+
+    return itinariesRepository.create({ ...data, spots: createItinary });
   },
 
   /**

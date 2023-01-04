@@ -59,6 +59,11 @@ const typeDefs = gql`
     itinaries: [Itinary]
   }
 
+  input SpotInput {
+    name: String
+    description: String
+  }
+
   type Error {
     errorMessage: String
   }
@@ -75,7 +80,12 @@ const typeDefs = gql`
 
     createSpot(name: String, description: String): Profile
 
-    createItinary(name: String, description: String): Itinary
+    createItinary(
+      name: String
+      description: String
+      spots: [SpotInput]
+    ): Itinary
+
     buysItinary(profileId: String, itinaryId: String): Profile
 
     createTest(text: String): Test
