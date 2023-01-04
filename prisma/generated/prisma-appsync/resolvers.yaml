@@ -148,3 +148,33 @@
 - typeName: Mutation
   fieldName: deleteManyItinaries
   dataSource: prisma-appsync
+- typeName: Query
+  fieldName: getSpot
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: listSpots
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: countSpots
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createSpot
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateSpot
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: upsertSpot
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteSpot
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createManySpots
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateManySpots
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteManySpots
+  dataSource: prisma-appsync

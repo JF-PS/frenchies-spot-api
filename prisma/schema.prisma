@@ -57,7 +57,10 @@ model Profile {
   user User @relation(fields: [userId], references: [id])
   // Implicit relations many to many with itinary
   itinaries Itinary[]
+  //Relations one to many with spot
+  // spots Spot[]
 }
+
 
 model Itinary {
   id String @id @default(uuid())
@@ -69,4 +72,16 @@ model Itinary {
   profiles Profile[]
 }
 
+model Spot {
+  id String @id @default(uuid())
+  name String
+  description String 
+  rating Int? @default(0)
+  isCanPark Boolean @default(false)
+  isCanVisit Boolean @default(false)
+  isTouristic Boolean @default(false)
+  //Relations one to many with Spot
+  // profile Profile @relation(fields: [profileId], references: [id])
+  // profileId String @unique
+}
 

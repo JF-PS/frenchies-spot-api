@@ -1,6 +1,10 @@
-import { Role } from "@prisma/client";
+import { User, Profile } from "@prisma/client";
+
+interface UserProfile extends User {
+  profile: Profile;
+}
 
 export interface TContext {
   isLogin: boolean;
-  role: undefined | Role;
+  user: null | UserProfile;
 }

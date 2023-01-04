@@ -11,9 +11,8 @@ const authMiddleware = async (token: string) => {
 
   // Add auth information to the context
   const isLogin: boolean = user !== null;
-  const role: undefined | Role = user?.role;
 
-  return { isLogin, role };
+  return { isLogin, user };
 };
 
 export default authMiddleware;

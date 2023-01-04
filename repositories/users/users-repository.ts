@@ -35,7 +35,7 @@ const usersRepository = {
   },
 
   getAuth: (token: string) => {
-    return User.findUnique({ where: { token } });
+    return User.findUnique({ where: { token }, include: { profile: true } });
   },
 };
 
