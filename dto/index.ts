@@ -4,4 +4,4 @@ export type {
   ItinarySpotDto,
 } from "./itinaries-dto";
 export type { SignInDto } from "./users-dto";
-export type { SpotDto, ProfileSpotDto } from "./spot-dto";
+export type { SpotDto, ProfileSpotDto, CoordinateSpotDto } from "./spot-dto";

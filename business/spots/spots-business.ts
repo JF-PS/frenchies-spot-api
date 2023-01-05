@@ -1,5 +1,5 @@
 import { spotsRepository } from "../../repositories";
-import { SpotDto } from "../../dto";
+import { CoordinateSpotDto } from "../../dto";
 
 const spotsBusiness = {
   /**
@@ -10,9 +10,9 @@ const spotsBusiness = {
   },
 
   /**
-   * @param {SpotDto} data
+   * @param {CoordinateSpotDto} data
    */
-  create: (data: SpotDto, profileId: string) => {
+  create: (data: CoordinateSpotDto, profileId: string) => {
     return spotsRepository.create(data, profileId);
   },
 };

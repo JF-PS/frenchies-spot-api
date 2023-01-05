@@ -1,4 +1,4 @@
-import { SpotDto } from "../../dto";
+import { CoordinateSpotDto } from "../../dto";
 import { Spot, Profile } from "../../models";
 
 const spotsRepository = {
@@ -10,16 +10,21 @@ const spotsRepository = {
   },
 
   /**
-   * @param {SpotDto} data
+   * @param {CoordinateSpotDto} data
    */
-  create: (data: SpotDto, profileId: string) => {
+  create: (data: CoordinateSpotDto, profileId: string) => {
     return Profile.update({
       where: {
         id: profileId,
       },
       data: {
         spots: {
-          create: [{ ...data }],
+          create: [{ 
+            ...data, 
+            coordinate: {
+              create: data.coordinate
+            } 
+          }],
         },
       },
       include: { spots: true },

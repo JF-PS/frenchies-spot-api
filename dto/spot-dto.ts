@@ -8,6 +8,5 @@ export interface ProfileSpotDto extends Pick<Spot, "name" | "description"> {
 }
 
 export interface CoordinateSpotDto extends Pick<Spot, "name" | "description"> {
-  profileId: string;
   coordinate: CoordinateDto;
 }
