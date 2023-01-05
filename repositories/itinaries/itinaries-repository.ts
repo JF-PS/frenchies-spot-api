@@ -1,6 +1,7 @@
 import { ItinarySpotDto, buysItinaryDto } from "../../dto";
 import { Itinary, Profile } from "../../models";
 import { Spot } from "@prisma/client";
+import { createItinaryCoordinateDto } from "../../dto/itinaries-dto";
 
 const itinariesRepository = {
   /**

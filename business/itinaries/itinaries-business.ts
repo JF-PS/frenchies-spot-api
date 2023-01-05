@@ -1,5 +1,7 @@
 import { itinariesRepository } from "../../repositories";
-import { CreateItinaryDto, buysItinaryDto, ProfileSpotDto } from "../../dto";
+import { CreateItinaryDto, buysItinaryDto } from "../../dto";
+import { createItinaryCoordinateDto } from "../../dto/itinaries-dto";
+import { SpotCreateCoordinateDto } from "../../dto/spot-dto";
 
 const itinariesBusiness = {
   /**
@@ -16,12 +18,12 @@ const itinariesBusiness = {
     const { spots } = data;
 
     // Asign the auth user to every spots
-    const createItinary: any[] = spots.map((spot) => ({
+    const createItinary: SpotCreateCoordinateDto[] = spots.map((spot) => ({
       ...spot,
       profileId,
       coordinate: {
         create: spot.coordinate
-      }
+      },
     }));
 
     return itinariesRepository.create({ ...data, spots: createItinary });

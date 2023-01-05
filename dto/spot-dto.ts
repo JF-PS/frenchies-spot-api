@@ -9,3 +9,7 @@ export interface ProfileSpotDto extends Pick<Spot, "name" | "description"> {
 export interface SpotDto extends Pick<Spot, "name" | "description"> {
   coordinate: CoordinateDto;
 }
+
+export interface SpotCreateCoordinateDto extends Pick<Spot, "name" | "description"> {
+  coordinate: {create: CoordinateDto};
+}
