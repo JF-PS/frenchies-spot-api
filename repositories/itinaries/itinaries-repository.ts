@@ -13,7 +13,7 @@ const itinariesRepository = {
   /**
    * @param {ItinarySpotDto} data
    */
-  create: (data: ItinarySpotDto) => {
+  create: (data: any) => {
     const { spots } = data;
 
     return Itinary.create({

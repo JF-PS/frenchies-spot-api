@@ -16,9 +16,12 @@ const itinariesBusiness = {
     const { spots } = data;
 
     // Asign the auth user to every spots
-    const createItinary: ProfileSpotDto[] = spots.map((spot) => ({
+    const createItinary: any[] = spots.map((spot) => ({
       ...spot,
       profileId,
+      coordinate: {
+        create: spot.coordinate
+      }
     }));
 
     return itinariesRepository.create({ ...data, spots: createItinary });
