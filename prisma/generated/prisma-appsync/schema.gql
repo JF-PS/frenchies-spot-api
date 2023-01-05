@@ -51,15 +51,8 @@ type Spot {
     profile: Profile!
     profileId: String!
     itinaries: [Itinary]
-    coordinate: Coordinate
-}
-
-type Coordinate {
-    id: String
     lat: Int!
     lng: Int!
-    spotId: String!
-    spot: Spot!
 }
 
 type BatchPayload {
@@ -756,6 +749,8 @@ input SpotRelationFilter {
     isCanVisit: BooleanFilter
     isTouristic: BooleanFilter
     profileId: StringFilter
+    lat: IntFilter
+    lng: IntFilter
 }
 
 input SpotScalarWhereInput {
@@ -767,6 +762,8 @@ input SpotScalarWhereInput {
     isCanVisit: BooleanFilter
     isTouristic: BooleanFilter
     profileId: StringFilter
+    lat: IntFilter
+    lng: IntFilter
 }
 
 input SpotWhereInput {
@@ -783,7 +780,8 @@ input SpotWhereInput {
     profile: ProfileRelationFilter
     profileId: StringFilter
     itinaries: ItinaryFilter
-    coordinate: CoordinateFilter
+    lat: IntFilter
+    lng: IntFilter
 }
 
 input SpotWhereUniqueInput {
@@ -802,7 +800,8 @@ input SpotOrderByInput {
     profile: ProfileOrderByInput
     profileId: OrderByArg
     itinaries: ItinaryOrderByInput
-    coordinate: CoordinateOrderByInput
+    lat: OrderByArg
+    lng: OrderByArg
 }
 
 input SpotCreateInput {
@@ -815,7 +814,8 @@ input SpotCreateInput {
     isTouristic: Boolean!
     profile: SpotProfileCreateRelationInput!
     itinaries: SpotItinariesCreateRelationInput
-    coordinate: SpotCoordinateCreateRelationInput
+    lat: Int!
+    lng: Int!
 }
 
 input SpotCreateManyInput {
@@ -826,6 +826,8 @@ input SpotCreateManyInput {
     isCanPark: Boolean!
     isCanVisit: Boolean!
     isTouristic: Boolean!
+    lat: Int!
+    lng: Int!
 }
 
 input SpotUpdateInput {
@@ -838,11 +840,14 @@ input SpotUpdateInput {
     isTouristic: Boolean
     profile: SpotProfileUpdateRelationsInput
     itinaries: SpotItinariesUpdateRelationsInput
-    coordinate: SpotCoordinateUpdateRelationsInput
+    lat: Int
+    lng: Int
 }
 
 input SpotOperationInput {
     rating: IntOperation
+    lat: IntOperation
+    lng: IntOperation
 }
 
 input SpotUpdateUniqueInput {
@@ -911,143 +916,6 @@ input SpotItinariesUpdateRelationsInput {
     set: [ItinaryWhereUniqueInput]
     updateMany: [ItinaryUpdateManyInput]
     deleteMany: [ItinaryDeleteManyInput]
-}
-input SpotCoordinateCreateRelationInput {
-    create: [CoordinateCreateInput]
-    connect: [CoordinateWhereUniqueInput]
-    connectOrCreate: [CoordinateConnectOrCreateInput]
-}
-
-input SpotCoordinateUpdateRelationsInput {
-    connect: [CoordinateWhereUniqueInput]
-    create: [CoordinateCreateInput]
-    connectOrCreate: [CoordinateConnectOrCreateInput]
-    update: [CoordinateUpdateUniqueInput]
-    upsert: [CoordinateUpsertUniqueInput]
-    delete: [CoordinateDeleteUniqueInput]
-    disconnect: [CoordinateWhereUniqueInput]
-    set: [CoordinateWhereUniqueInput]
-    updateMany: [CoordinateUpdateManyInput]
-    deleteMany: [CoordinateDeleteManyInput]
-}
-
-input CoordinateFilter {
-    some: CoordinateScalarWhereInput
-    every: CoordinateScalarWhereInput
-    none: CoordinateScalarWhereInput
-}
-
-input CoordinateRelationFilter {
-    id: StringFilter
-    lat: IntFilter
-    lng: IntFilter
-    spotId: StringFilter
-}
-
-input CoordinateScalarWhereInput {
-    id: StringFilter
-    lat: IntFilter
-    lng: IntFilter
-    spotId: StringFilter
-}
-
-input CoordinateWhereInput {
-    OR: [CoordinateWhereInput]
-    NOT: [CoordinateWhereInput]
-    AND: [CoordinateWhereInput]
-    id: StringFilter
-    lat: IntFilter
-    lng: IntFilter
-    spotId: StringFilter
-    spot: SpotRelationFilter
-}
-
-input CoordinateWhereUniqueInput {
-    id: String
-    spotId: String
-}
-
-input CoordinateOrderByInput {
-    id: OrderByArg
-    lat: OrderByArg
-    lng: OrderByArg
-    spotId: OrderByArg
-    spot: SpotOrderByInput
-}
-
-input CoordinateCreateInput {
-    id: String
-    lat: Int!
-    lng: Int!
-    spot: CoordinateSpotCreateRelationInput!
-}
-
-input CoordinateCreateManyInput {
-    id: String
-    lat: Int!
-    lng: Int!
-}
-
-input CoordinateUpdateInput {
-    id: String
-    lat: Int
-    lng: Int
-    spot: CoordinateSpotUpdateRelationsInput
-}
-
-input CoordinateOperationInput {
-    lat: IntOperation
-    lng: IntOperation
-}
-
-input CoordinateUpdateUniqueInput {
-    data: CoordinateUpdateInput!
-    where: CoordinateWhereUniqueInput!
-}
-
-input CoordinateUpdateManyInput {
-    where: CoordinateWhereInput!
-    data: CoordinateUpdateInput!
-}
-
-input CoordinateUpsertInput {
-    create: CoordinateCreateInput!
-    update: CoordinateUpdateInput!
-}
-
-input CoordinateUpsertUniqueInput {
-    where: CoordinateWhereUniqueInput!
-    create: CoordinateCreateInput!
-    update: CoordinateUpdateInput!
-}
-
-input CoordinateConnectOrCreateInput {
-    where: CoordinateWhereUniqueInput!
-    create: CoordinateCreateInput!
-}
-
-input CoordinateDeleteUniqueInput {
-    where: CoordinateWhereUniqueInput!
-}
-
-input CoordinateDeleteManyInput {
-    where: CoordinateWhereInput!
-}
-
-input CoordinateSpotCreateRelationInput {
-    create: SpotCreateInput
-    connect: SpotWhereUniqueInput
-    connectOrCreate: SpotConnectOrCreateInput
-}
-
-input CoordinateSpotUpdateRelationsInput {
-    connect: SpotWhereUniqueInput
-    create: SpotCreateInput
-    connectOrCreate: SpotConnectOrCreateInput
-    update: SpotUpdateInput
-    upsert: SpotUpsertInput
-    delete: Boolean
-    disconnect: Boolean
 }
 
 input IntOperation {
@@ -1500,61 +1368,6 @@ type Mutation {
     Delete multiple Spot records.
     """
     deleteManySpots(where: SpotWhereInput!): BatchPayload
-
-    """
-    Create a new single Coordinate record.
-    """
-    createCoordinate(
-        data: CoordinateCreateInput!
-    ): Coordinate
-
-    """
-    Create multiple new Coordinate records.
-    """
-    createManyCoordinates(
-        data: [CoordinateCreateManyInput!]
-        skipDuplicates: Boolean
-    ): BatchPayload
-
-    """
-    Update an existing single Coordinate record.
-    """
-    updateCoordinate(
-        where: CoordinateWhereUniqueInput!
-        data: CoordinateUpdateInput
-        operation: CoordinateOperationInput
-    ): Coordinate
-
-    """
-    Update multiple existing Coordinate records.
-    """
-    updateManyCoordinates(
-        where: CoordinateWhereInput!
-        data: CoordinateUpdateInput
-        operation: CoordinateOperationInput
-    ): BatchPayload
-
-    """
-    Update an existing or create a new single Coordinate record.
-    """
-    upsertCoordinate(
-        data: CoordinateUpdateInput!
-        where: CoordinateWhereUniqueInput!
-    ): Coordinate
-
-    """
-    Delete a single Coordinate record.
-    """
-    deleteCoordinate(
-        where: CoordinateWhereUniqueInput!
-    ): Coordinate
-
-    """
-    Delete multiple Coordinate records.
-    """
-    deleteManyCoordinates(
-        where: CoordinateWhereInput!
-    ): BatchPayload
 }
 type Query {
     """
@@ -1703,33 +1516,6 @@ type Query {
     countSpots(
         where: SpotWhereInput
         orderBy: [SpotOrderByInput]
-        skip: Int
-        take: Int
-    ): Int
-
-    """
-    Find a single Coordinate record by unique identifier.
-    """
-    getCoordinate(
-        where: CoordinateWhereUniqueInput!
-    ): Coordinate
-
-    """
-    Find many Coordinate records (optional query filters).
-    """
-    listCoordinates(
-        where: CoordinateWhereInput
-        orderBy: [CoordinateOrderByInput]
-        skip: Int
-        take: Int
-    ): [Coordinate]
-
-    """
-    Count all Coordinate records (optional query filters).
-    """
-    countCoordinates(
-        where: CoordinateWhereInput
-        orderBy: [CoordinateOrderByInput]
         skip: Int
         take: Int
     ): Int
@@ -2168,86 +1954,4 @@ type Subscription {
     """
     onDeletedManySpots: BatchPayload
         @aws_subscribe(mutations: ["deleteManySpots"])
-
-    """
-    Triggered from `createCoordinate` mutation (excl. `createManyCoordinates` and `upsertCoordinate`).
-    """
-    onCreatedCoordinate(
-        id: String
-        spotId: String
-    ): Coordinate
-        @aws_subscribe(mutations: ["createCoordinate"])
-
-    """
-    Triggered from `updateCoordinate` mutation (excl. `updateManyCoordinates` and `upsertCoordinate`).
-    """
-    onUpdatedCoordinate(
-        id: String
-        spotId: String
-    ): Coordinate
-        @aws_subscribe(mutations: ["updateCoordinate"])
-
-    """
-    Triggered from `upsertCoordinate` mutation.
-    """
-    onUpsertedCoordinate(
-        id: String
-        spotId: String
-    ): Coordinate
-        @aws_subscribe(mutations: ["upsertCoordinate"])
-
-    """
-    Triggered from `deleteCoordinate` mutation (excl. `deleteManyCoordinates`).
-    """
-    onDeletedCoordinate(
-        id: String
-        spotId: String
-    ): Coordinate
-        @aws_subscribe(mutations: ["deleteCoordinate"])
-
-    """
-    Triggered from ANY SINGLE record mutation.
-    """
-    onMutatedCoordinate(
-        id: String
-        spotId: String
-    ): Coordinate
-        @aws_subscribe(
-            mutations: [
-                "createCoordinate"
-                "updateCoordinate"
-                "upsertCoordinate"
-                "deleteCoordinate"
-            ]
-        )
-
-    """
-    Triggered from `createManyCoordinates` mutation.
-    """
-    onCreatedManyCoordinates: BatchPayload
-        @aws_subscribe(mutations: ["createManyCoordinates"])
-
-    """
-    Triggered from `updateManyCoordinates` mutation.
-    """
-    onUpdatedManyCoordinates: BatchPayload
-        @aws_subscribe(mutations: ["updateManyCoordinates"])
-
-    """
-    Triggered from ANY MULTIPLE records mutation.
-    """
-    onMutatedManyCoordinates: BatchPayload
-        @aws_subscribe(
-            mutations: [
-                "createManyCoordinates"
-                "updateManyCoordinates"
-                "deleteManyCoordinates"
-            ]
-        )
-
-    """
-    Triggered from `deleteManyCoordinates` mutation.
-    """
-    onDeletedManyCoordinates: BatchPayload
-        @aws_subscribe(mutations: ["deleteManyCoordinates"])
 }

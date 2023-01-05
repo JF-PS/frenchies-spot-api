@@ -87,14 +87,7 @@ model Spot {
   profileId String
   //Implicit relations many to many with itinary
   itinaries Itinary[]
-  coordinate Coordinate?
-}
-
-model Coordinate {
-  id String @id @default(uuid())
   lat Int
   lng Int
-  //Relations one to one with spot
-  spotId String @unique
-  spot Spot @relation(fields: [spotId], references: [id])
 }
+

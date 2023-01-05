@@ -56,16 +56,9 @@ const typeDefs = gql`
     isTouristic: Boolean
     profile: Profile
     profileId: String
-    coordinate: Coordinate
-    coordinateId: String
     itinaries: [Itinary]
-  }
-
-  type Coordinate {
-    id: String
     lat: Int
     lng: Int
-    spots: [Spot]
   }
 
   input CoordinateInput {
@@ -76,7 +69,8 @@ const typeDefs = gql`
   input SpotInput {
     name: String
     description: String
-    coordinate: CoordinateInput
+    lat: Int
+    lng: Int
   }
 
   type Query {
@@ -89,7 +83,7 @@ const typeDefs = gql`
     signIn(email: String, password: String): User
     signUp(pseudo: String, email: String, password: String): User
 
-    createSpot(name: String, description: String, coordinate: CoordinateInput): Profile
+    createSpot(name: String, description: String, lat: Int, lng: Int): Profile
 
     createItinary(
       name: String

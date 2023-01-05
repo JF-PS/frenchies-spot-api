@@ -65,18 +65,10 @@ CREATE TABLE "Spot" (
     "isCanVisit" BOOLEAN NOT NULL DEFAULT false,
     "isTouristic" BOOLEAN NOT NULL DEFAULT false,
     "profileId" TEXT NOT NULL,
-
-    CONSTRAINT "Spot_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Coordinate" (
-    "id" TEXT NOT NULL,
     "lat" INTEGER NOT NULL,
     "lng" INTEGER NOT NULL,
-    "spotId" TEXT NOT NULL,
 
-    CONSTRAINT "Coordinate_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Spot_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -107,9 +99,6 @@ CREATE UNIQUE INDEX "Profile_pseudo_key" ON "Profile"("pseudo");
 CREATE UNIQUE INDEX "Profile_userId_key" ON "Profile"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Coordinate_spotId_key" ON "Coordinate"("spotId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "_ItinaryToProfile_AB_unique" ON "_ItinaryToProfile"("A", "B");
 
 -- CreateIndex
@@ -126,9 +115,6 @@ ALTER TABLE "Profile" ADD CONSTRAINT "Profile_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Spot" ADD CONSTRAINT "Spot_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Coordinate" ADD CONSTRAINT "Coordinate_spotId_fkey" FOREIGN KEY ("spotId") REFERENCES "Spot"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ItinaryToProfile" ADD CONSTRAINT "_ItinaryToProfile_A_fkey" FOREIGN KEY ("A") REFERENCES "Itinary"("id") ON DELETE CASCADE ON UPDATE CASCADE;

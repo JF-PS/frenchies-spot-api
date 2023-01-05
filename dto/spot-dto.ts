@@ -1,15 +1,9 @@
 import { Spot } from "@prisma/client";
 import { CoordinateDto } from "./coordinate-dto";
 
-export interface ProfileSpotDto extends Pick<Spot, "name" | "description"> {
+export interface ProfileSpotDto
+  extends Pick<Spot, "name" | "description" | "lat" | "lng"> {
   profileId: string;
-  coordinate: CoordinateDto;
 }
 
-export interface SpotDto extends Pick<Spot, "name" | "description"> {
-  coordinate: CoordinateDto;
-}
-
-export interface SpotCreateCoordinateDto extends Pick<Spot, "name" | "description"> {
-  coordinate: {create: CoordinateDto};
-}
+export type SpotDto = Pick<Spot, "name" | "description" | "lat" | "lng">;

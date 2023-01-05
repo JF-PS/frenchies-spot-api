@@ -1,22 +1,22 @@
-import { ItinarySpotDto, buysItinaryDto } from "../../dto";
+import { buysItinaryDto } from "../../dto";
 import { Itinary, Profile } from "../../models";
-import { Spot } from "@prisma/client";
-import { createItinaryCoordinateDto } from "../../dto/itinaries-dto";
+import { CreateItinariesRepositoryDto } from "../../dto";
 
 const itinariesRepository = {
   /**
    * Find all Itinary
    */
   getAll: () => {
-    return Itinary.findMany({ include: { spots: true } });
+    return Itinary.findMany({
+      include: { spots: true },
+    });
   },
 
   /**
-   * @param {ItinarySpotDto} data
+   * @param {CreateItinariesRepositoryDto} data
    */
-  create: (data: any) => {
+  create: (data: CreateItinariesRepositoryDto) => {
     const { spots } = data;
-
     return Itinary.create({
       data: {
         ...data,

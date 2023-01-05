@@ -1,5 +1,6 @@
 import { SpotDto } from "../../dto";
 import { Spot, Profile } from "../../models";
+import { Coordinate } from "@prisma/client";
 
 const spotsRepository = {
   /**
@@ -19,11 +20,8 @@ const spotsRepository = {
       },
       data: {
         spots: {
-          create: { 
-            ...data, 
-            coordinate: {
-              create: data.coordinate
-            } 
+          create: {
+            ...data,
           },
         },
       },

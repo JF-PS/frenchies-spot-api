@@ -1,6 +1,5 @@
 import { Itinary, Profile } from "@prisma/client";
-import { CoordinateDto } from "./coordinate-dto";
-import { ProfileSpotDto, SpotCreateCoordinateDto, SpotDto } from "./spot-dto";
+import { ProfileSpotDto, SpotDto } from "./spot-dto";
 
 export interface CreateItinaryDto
   extends Pick<Itinary, "name" | "description"> {
@@ -16,6 +15,7 @@ export type buysItinaryDto = {
   itinaryId: Itinary["id"];
 };
 
-export interface createItinaryCoordinateDto extends Pick<Itinary, "name" | "description"> {
-  spots: SpotCreateCoordinateDto[];
+export interface CreateItinariesRepositoryDto
+  extends Pick<Itinary, "name" | "description"> {
+  spots: ProfileSpotDto[];
 }

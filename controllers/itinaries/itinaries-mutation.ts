@@ -21,9 +21,6 @@ export const itinariesMutation = {
    * @param {buysItinaryDto} data
    */
   buysItinary: (_: undefined, data: buysItinaryDto) => {
-    console.log("=======================");
-    console.log({ data });
-    console.log("=======================");
     return itinariesBusiness.connectUser(data);
   },
 };
