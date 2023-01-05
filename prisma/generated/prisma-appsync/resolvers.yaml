@@ -178,3 +178,33 @@
 - typeName: Mutation
   fieldName: deleteManySpots
   dataSource: prisma-appsync
+- typeName: Query
+  fieldName: getCoordinate
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: listCoordinates
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: countCoordinates
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createCoordinate
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateCoordinate
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: upsertCoordinate
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteCoordinate
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createManyCoordinates
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateManyCoordinates
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteManyCoordinates
+  dataSource: prisma-appsync
