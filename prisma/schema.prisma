@@ -89,5 +89,14 @@ model Spot {
   itinaries Itinary[]
   lat Int
   lng Int
+  //Relations one to many with spot_pictures
+  spotPicture Spot_Picture[]
+}
+
+model Spot_Picture {
+  id String @id @default(uuid())
+  url String
+  spot Spot @relation(fields: [spotId], references: [id])
+  spotId String @unique
 }
 
