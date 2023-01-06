@@ -1,6 +1,5 @@
 import { SpotDto } from "../../dto";
 import { Spot, Profile } from "../../models";
-import { Coordinate } from "@prisma/client";
 
 const spotsRepository = {
   /**

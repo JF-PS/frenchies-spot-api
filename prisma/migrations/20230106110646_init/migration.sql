@@ -72,6 +72,15 @@ CREATE TABLE "Spot" (
 );
 
 -- CreateTable
+CREATE TABLE "Spot_Picture" (
+    "id" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "spotId" TEXT NOT NULL,
+
+    CONSTRAINT "Spot_Picture_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_ItinaryToProfile" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
@@ -99,6 +108,9 @@ CREATE UNIQUE INDEX "Profile_pseudo_key" ON "Profile"("pseudo");
 CREATE UNIQUE INDEX "Profile_userId_key" ON "Profile"("userId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Spot_Picture_spotId_key" ON "Spot_Picture"("spotId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "_ItinaryToProfile_AB_unique" ON "_ItinaryToProfile"("A", "B");
 
 -- CreateIndex
@@ -115,6 +127,9 @@ ALTER TABLE "Profile" ADD CONSTRAINT "Profile_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Spot" ADD CONSTRAINT "Spot_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Spot_Picture" ADD CONSTRAINT "Spot_Picture_spotId_fkey" FOREIGN KEY ("spotId") REFERENCES "Spot"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ItinaryToProfile" ADD CONSTRAINT "_ItinaryToProfile_A_fkey" FOREIGN KEY ("A") REFERENCES "Itinary"("id") ON DELETE CASCADE ON UPDATE CASCADE;
