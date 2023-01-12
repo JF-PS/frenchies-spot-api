@@ -83,7 +83,15 @@ const typeDefs = gql`
     signIn(email: String, password: String): User
     signUp(pseudo: String, email: String, password: String): User
 
-    createSpot(name: String, description: String, lat: Int, lng: Int): Profile
+    createSpot(
+      name: String, 
+      description: String, 
+      lat: Int, 
+      lng: Int, 
+      isCanPark: Boolean, 
+      isCanVisit: Boolean,
+      isTouristic: Boolean,
+    ): Profile
 
     createItinary(
       name: String
