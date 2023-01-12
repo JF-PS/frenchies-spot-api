@@ -57,15 +57,20 @@ const typeDefs = gql`
     profile: Profile
     profileId: String
     itinaries: [Itinary]
+    lat: Int
+    lng: Int
+  }
+
+  input CoordinateInput {
+    lat: Int
+    lng: Int
   }
 
   input SpotInput {
     name: String
     description: String
-  }
-
-  type Error {
-    errorMessage: String
+    lat: Int
+    lng: Int
   }
 
   type Query {
@@ -78,7 +83,7 @@ const typeDefs = gql`
     signIn(email: String, password: String): User
     signUp(pseudo: String, email: String, password: String): User
 
-    createSpot(name: String, description: String): Profile
+    createSpot(name: String, description: String, lat: Int, lng: Int): Profile
 
     createItinary(
       name: String

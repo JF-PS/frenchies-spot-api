@@ -82,10 +82,12 @@ model Spot {
   isCanPark Boolean @default(false)
   isCanVisit Boolean @default(false)
   isTouristic Boolean @default(false)
-  //Relations one to many with spot
+  //Relations one to many with profile
   profile Profile @relation(fields: [profileId], references: [id])
   profileId String
   //Implicit relations many to many with itinary
   itinaries Itinary[]
+  lat Int
+  lng Int
 }
 

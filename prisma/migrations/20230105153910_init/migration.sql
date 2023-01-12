@@ -65,6 +65,8 @@ CREATE TABLE "Spot" (
     "isCanVisit" BOOLEAN NOT NULL DEFAULT false,
     "isTouristic" BOOLEAN NOT NULL DEFAULT false,
     "profileId" TEXT NOT NULL,
+    "lat" INTEGER NOT NULL,
+    "lng" INTEGER NOT NULL,
 
     CONSTRAINT "Spot_pkey" PRIMARY KEY ("id")
 );

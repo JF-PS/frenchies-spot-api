@@ -51,6 +51,8 @@ type Spot {
     profile: Profile!
     profileId: String!
     itinaries: [Itinary]
+    lat: Int!
+    lng: Int!
 }
 
 type BatchPayload {
@@ -747,6 +749,8 @@ input SpotRelationFilter {
     isCanVisit: BooleanFilter
     isTouristic: BooleanFilter
     profileId: StringFilter
+    lat: IntFilter
+    lng: IntFilter
 }
 
 input SpotScalarWhereInput {
@@ -758,6 +762,8 @@ input SpotScalarWhereInput {
     isCanVisit: BooleanFilter
     isTouristic: BooleanFilter
     profileId: StringFilter
+    lat: IntFilter
+    lng: IntFilter
 }
 
 input SpotWhereInput {
@@ -774,6 +780,8 @@ input SpotWhereInput {
     profile: ProfileRelationFilter
     profileId: StringFilter
     itinaries: ItinaryFilter
+    lat: IntFilter
+    lng: IntFilter
 }
 
 input SpotWhereUniqueInput {
@@ -792,6 +800,8 @@ input SpotOrderByInput {
     profile: ProfileOrderByInput
     profileId: OrderByArg
     itinaries: ItinaryOrderByInput
+    lat: OrderByArg
+    lng: OrderByArg
 }
 
 input SpotCreateInput {
@@ -804,6 +814,8 @@ input SpotCreateInput {
     isTouristic: Boolean!
     profile: SpotProfileCreateRelationInput!
     itinaries: SpotItinariesCreateRelationInput
+    lat: Int!
+    lng: Int!
 }
 
 input SpotCreateManyInput {
@@ -814,6 +826,8 @@ input SpotCreateManyInput {
     isCanPark: Boolean!
     isCanVisit: Boolean!
     isTouristic: Boolean!
+    lat: Int!
+    lng: Int!
 }
 
 input SpotUpdateInput {
@@ -826,10 +840,14 @@ input SpotUpdateInput {
     isTouristic: Boolean
     profile: SpotProfileUpdateRelationsInput
     itinaries: SpotItinariesUpdateRelationsInput
+    lat: Int
+    lng: Int
 }
 
 input SpotOperationInput {
     rating: IntOperation
+    lat: IntOperation
+    lng: IntOperation
 }
 
 input SpotUpdateUniqueInput {

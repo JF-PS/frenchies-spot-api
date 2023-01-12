@@ -1,5 +1,5 @@
 import { spotsBusiness } from "../../business";
-import { SpotDto } from "../../dto";
+import { SpotDto } from "../../dto/spot-dto";
 import { TContext } from "../../graphql/context";
 import { throwError, codeErrors } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
