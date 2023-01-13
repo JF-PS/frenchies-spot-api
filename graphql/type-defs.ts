@@ -93,6 +93,17 @@ const typeDefs = gql`
       isTouristic: Boolean,
     ): Profile
 
+    updateSpot(
+      id: String,
+      name: String, 
+      description: String, 
+      lat: Int, 
+      lng: Int, 
+      isCanPark: Boolean, 
+      isCanVisit: Boolean,
+      isTouristic: Boolean,
+    ): Profile
+
     createItinary(
       name: String
       description: String

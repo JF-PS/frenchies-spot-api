@@ -1,6 +1,6 @@
 import { SpotDto } from "../../dto";
 import { Spot, Profile } from "../../models";
-import { Coordinate } from "@prisma/client";
+import { UpdateSpotDto } from "../../dto/spot-dto";
 
 const spotsRepository = {
   /**
@@ -23,6 +23,27 @@ const spotsRepository = {
           create: {
             ...data,
           },
+        },
+      },
+      include: { spots: true },
+    });
+  },
+
+  update: (data: SpotDto, profileId: string, spotId: string) => {
+    return Profile.update({
+      where: {
+        id: profileId,
+      },
+      data: {
+        spots: {
+          update: {
+            where: {
+              id: spotId,
+            },
+            data: {
+              ...data,
+            }
+          }
         },
       },
       include: { spots: true },

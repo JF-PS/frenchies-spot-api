@@ -6,3 +6,5 @@ export interface ProfileSpotDto
 }
 
 export type SpotDto = Pick<Spot, "name" | "description" | "lat" | "lng" | "isCanPark" | "isCanVisit" | "isTouristic">;
+
+export type UpdateSpotDto = Pick<Spot, "id" | "name" | "description" | "lat" | "lng" | "isCanPark" | "isCanVisit" | "isTouristic">;

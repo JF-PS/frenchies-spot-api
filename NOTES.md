@@ -31,7 +31,9 @@ enum Level {
   Error
 }
 ```
+npx prisma generate
 
+(before remove prisma/generate and prisma/migration)
 npx prisma migrate dev --name init
 
 npx prisma studio
@@ -39,6 +41,7 @@ npx prisma studio
 npx prisma migrate reset
 
 lancer le serveur : yarn dev
+
 
 ---
 
