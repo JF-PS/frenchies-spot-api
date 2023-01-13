@@ -77,7 +77,7 @@ const typeDefs = gql`
     users: [User]
     itinaries: [Itinary]
     spots: [Spot]
-    spot: [Spot]
+    spot(id: String): Spot
   }
 
   type Mutation {

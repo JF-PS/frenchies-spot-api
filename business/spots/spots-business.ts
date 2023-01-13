@@ -1,6 +1,5 @@
 import { spotsRepository } from "../../repositories";
 import { SpotDto } from "../../dto";
-import { UpdateSpotDto } from "../../dto/spot-dto";
 
 const spotsBusiness = {
   /**
