@@ -10,6 +10,7 @@ const spotsBusiness = {
   },
 
   getById: (spotId: string) => {
+    console.log(spotId);
     return spotsRepository.getById(spotId);
   },
 
@@ -20,12 +21,21 @@ const spotsBusiness = {
     return spotsRepository.create(data, profileId);
   },
 
+  /**
+   * @param {SpotDto} data
+   * @param {string} profileId
+   * @param {string} spotId
+   */
   update: (data: SpotDto, profileId: string, spotId: string) => {
     return spotsRepository.update(data, profileId, spotId);
   },
 
-  delete: (data: SpotDto, profileId: string, spotId: string) => {
-    return spotsRepository.delete(data, profileId, spotId);
+  /**
+   * @param {string} profileId
+   * @param {string} spotId
+   */
+  delete: (profileId: string, spotId: string) => {
+    return spotsRepository.delete(profileId, spotId);
   },
 };
 

@@ -25,12 +25,17 @@ export const spotsMutation = {
     return spotsBusiness.update(data, profileId, spotId);
   },
 
+  /**
+   * @param {string} profileId
+   * @param {string} spotId
+   */
   deleteSpot: (_: undefined, data: UpdateSpotDto, context: TContext) => {
     const { user } = context;
+
     const profileId = user?.profile.id;
     if (!profileId) return throwError(UNAUTHENTICATED);
     const { id: spotId } = data;
 
-    return spotsBusiness.delete(data, profileId, spotId);
+    return spotsBusiness.delete(profileId, spotId);
   },
 };

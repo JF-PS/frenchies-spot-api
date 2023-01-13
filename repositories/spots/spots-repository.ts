@@ -9,12 +9,13 @@ const spotsRepository = {
     return Spot.findMany();
   },
 
-  getById: (spotId: string) => {
+  getById: (id: string) => {
+    console.log(id);
     return Spot.findUnique({
       where: {
-        id: spotId,
-      }
-    })
+        id,
+      },
+    });
   },
 
   /**
@@ -50,14 +51,18 @@ const spotsRepository = {
             where: {
               id: spotId,
             },
-          }
+          },
         },
       },
       include: { spots: true },
     });
   },
 
-  delete: (data: SpotDto, profileId: string, spotId: string) => {
+  /**
+   * @param {string} profileId
+   * @param {string} spotId
+   */
+  delete: (profileId: string, spotId: string) => {
     return Profile.update({
       where: {
         id: profileId,
@@ -66,7 +71,7 @@ const spotsRepository = {
         spots: {
           delete: {
             id: spotId,
-          }
+          },
         },
       },
       include: { spots: true },

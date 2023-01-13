@@ -9,9 +9,9 @@ export const spotsQuery = {
     return spotsBusiness.getAll();
   },
 
-  spot: (spotId: string) => {
-    console.log("****************************")
-    console.log(spotId)
+  spot: (_: undefined, data: { id: string }) => {
+    const { id: spotId } = data;
+    console.log(spotId);
     return spotsBusiness.getById(spotId);
   },
 };
