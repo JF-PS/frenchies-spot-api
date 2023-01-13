@@ -37,12 +37,28 @@ const spotsRepository = {
       data: {
         spots: {
           update: {
+            data: {
+              ...data,
+            },
             where: {
               id: spotId,
             },
-            data: {
-              ...data,
-            }
+          }
+        },
+      },
+      include: { spots: true },
+    });
+  },
+
+  delete: (data: SpotDto, profileId: string, spotId: string) => {
+    return Profile.update({
+      where: {
+        id: profileId,
+      },
+      data: {
+        spots: {
+          delete: {
+            id: spotId,
           }
         },
       },
