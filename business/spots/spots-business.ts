@@ -10,6 +10,10 @@ const spotsBusiness = {
     return spotsRepository.getAll();
   },
 
+  getById: (spotId: string) => {
+    return spotsRepository.getById(spotId);
+  },
+
   /**
    * @param {SpotDto} data
    */

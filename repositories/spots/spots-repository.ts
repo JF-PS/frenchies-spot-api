@@ -10,6 +10,14 @@ const spotsRepository = {
     return Spot.findMany();
   },
 
+  getById: (spotId: string) => {
+    return Spot.findUnique({
+      where: {
+        id: spotId,
+      }
+    })
+  },
+
   /**
    * @param {SpotDto} data
    */

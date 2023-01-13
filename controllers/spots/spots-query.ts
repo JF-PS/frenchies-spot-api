@@ -7,4 +7,8 @@ export const spotsQuery = {
   spots: () => {
     return spotsBusiness.getAll();
   },
+
+  spot: (spotId: string) => {
+    return spotsBusiness.getById(spotId);
+  },
 };
