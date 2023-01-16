@@ -5,12 +5,21 @@ const spotsBusiness = {
   /**
    * Get all itinary
    */
-  getAll: () => {
-    return spotsRepository.getAll();
+  getAll: (
+    orderBy: 'asc' | 'desc', 
+    isCanPark: boolean, 
+    isCanVisit: boolean, 
+    isTouristic: boolean
+  ) => {
+    return spotsRepository.getAll(
+      orderBy,
+      isCanPark,
+      isCanVisit,
+      isTouristic,
+    );
   },
 
   getById: (spotId: string) => {
-    console.log(spotId);
     return spotsRepository.getById(spotId);
   },
 

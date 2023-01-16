@@ -5,12 +5,27 @@ const spotsRepository = {
   /**
    * Find all Spot
    */
-  getAll: () => {
-    return Spot.findMany();
+  getAll: (orderBy: 'asc' | 'desc', isCanPark: boolean, isCanVisit: boolean, isTouristic: boolean) => {
+    return Spot.findMany({
+      orderBy: {
+        name: orderBy,
+        // rating: 'asc'
+      }, 
+
+      where: {
+        isCanPark: isCanPark,
+        isCanVisit: isCanVisit,
+        isTouristic: isTouristic,
+      },      
+      
+      // ADD: par région dans les champs spot
+      // ADD: par rayon autour de soi
+      // ADD: search bar
+      // ADD: 5 premiers spots autour de soi
+    });
   },
 
   getById: (id: string) => {
-    console.log(id);
     return Spot.findUnique({
       where: {
         id,
