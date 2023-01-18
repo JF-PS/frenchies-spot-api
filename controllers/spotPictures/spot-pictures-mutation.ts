@@ -12,7 +12,7 @@ export const spotPicturesMutation = {
     const { user } = context;
     const profileId = user?.profile.id;
     if (!profileId) return throwError(UNAUTHENTICATED);
-
+    
     return spotPicturesBusiness.create(data);
   },
 };
