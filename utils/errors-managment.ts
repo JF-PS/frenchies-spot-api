@@ -8,9 +8,10 @@ interface TError {
 export enum codeErrors {
   USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS",
   UNAUTHENTICATED = "UNAUTHENTICATED",
-  USER_NOT_EXISTS = "USER_NOT_EXISTS",
+  USER_NOT_FOUND = "USER_NOT_FOUND",
   INCORRECT_PASSWORD = "INCORRECT_PASSWORD",
   INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
+  SPOT_NOT_FOUND = "SPOT_NOT_FOUND",
 }
 
 const errorsMessage: Record<keyof typeof codeErrors, TError> = {
@@ -22,7 +23,7 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
     statusCode: 401,
     errorMessage: { en: "User is not authenticated" },
   },
-  USER_NOT_EXISTS: {
+  USER_NOT_FOUND: {
     statusCode: 401,
     errorMessage: { en: "No user registred with the email: " },
   },
@@ -34,6 +35,10 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
     statusCode: 500,
     errorMessage: { en: "500 Internal Server Error: " },
   },
+  SPOT_NOT_FOUND: {
+    statusCode: 404,
+    errorMessage: { en: "No spot found with id: "}
+  }
 };
 
 const throwError = (codeError: keyof typeof codeErrors, err: string = "") => {

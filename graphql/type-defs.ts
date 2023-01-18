@@ -61,6 +61,13 @@ const typeDefs = gql`
     lng: Int
   }
 
+  type SpotPicture {
+    id: String
+    url: String
+    spot: Spot
+    spotId: String
+  }
+
   input CoordinateInput {
     lat: Int
     lng: Int
@@ -125,6 +132,8 @@ const typeDefs = gql`
     buysItinary(profileId: String, itinaryId: String): Profile
 
     createTest(text: String): Test
+
+    addSpotPicture(url: String, spotId: String): SpotPicture
   }
 `;
 
