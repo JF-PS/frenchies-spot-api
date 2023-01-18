@@ -6,3 +6,4 @@ export type {
 } from "./itinaries-dto";
 export type { SignInDto } from "./users-dto";
 export type { SpotDto, ProfileSpotDto } from "./spot-dto";
+export type {SpotPictureDto} from "./spot-pictures-dto";

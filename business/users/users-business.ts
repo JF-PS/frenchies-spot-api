@@ -5,7 +5,7 @@ import { throwError, codeErrors } from "../../utils";
 import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const { USER_ALREADY_EXISTS, USER_NOT_EXISTS, INCORRECT_PASSWORD } = codeErrors;
+const { USER_ALREADY_EXISTS, USER_NOT_FOUND, INCORRECT_PASSWORD } = codeErrors;
 const secretKey = process.env.SECRET_KEY;
 
 const usersBusiness = {
@@ -35,7 +35,7 @@ const usersBusiness = {
 
     // Create our token
     const token = jwt.sign({ email, password: hashPassword }, `${secretKey}`, {
-      expiresIn: "2h",
+      expiresIn: "48h",
     });
 
     return usersRepository.create(pseudo, email, hashPassword, token);
@@ -52,7 +52,7 @@ const usersBusiness = {
 
     // Throw error if user doesn't exist
     if (!currentUser) {
-      return throwError(USER_NOT_EXISTS, email);
+      return throwError(USER_NOT_FOUND, email);
     }
 
     // Check if the entered password equals to the hash password
@@ -66,7 +66,7 @@ const usersBusiness = {
         { email, password: hashPassword },
         `${secretKey}`,
         {
-          expiresIn: "2h",
+          expiresIn: "48h",
         }
       );
 
