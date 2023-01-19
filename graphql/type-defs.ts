@@ -76,7 +76,14 @@ const typeDefs = gql`
   type Query {
     users: [User]
     itinaries: [Itinary]
-    spots(orderBy: String, isCanPark: Boolean, isCanVisit: Boolean, isTouristic: Boolean): [Spot]
+    spots(
+      orderBy: String, 
+      isCanPark: Boolean, 
+      isCanVisit: Boolean, 
+      isTouristic: Boolean,
+      searchValue: String,
+      region: String,
+    ): [Spot]
     spot(id: String): Spot
   }
 

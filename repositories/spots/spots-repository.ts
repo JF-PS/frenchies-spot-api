@@ -1,3 +1,4 @@
+import { stringify } from "querystring";
 import { SpotDto } from "../../dto";
 import { Spot, Profile } from "../../models";
 
@@ -5,7 +6,14 @@ const spotsRepository = {
   /**
    * Find all Spot
    */
-  getAll: (orderBy: 'asc' | 'desc', isCanPark: boolean, isCanVisit: boolean, isTouristic: boolean) => {
+  getAll: (
+    orderBy: 'asc' | 'desc', 
+    isCanPark: boolean, 
+    isCanVisit: boolean, 
+    isTouristic: boolean,
+    searchValue: string,
+    region: string,
+  ) => {
     return Spot.findMany({
       orderBy: {
         name: orderBy,
@@ -16,11 +24,16 @@ const spotsRepository = {
         isCanPark: isCanPark,
         isCanVisit: isCanVisit,
         isTouristic: isTouristic,
+        region: region,
+
+        name: {
+          search: searchValue,
+        }
       },      
       
       // ADD: par région dans les champs spot
-      // ADD: par rayon autour de soi
       // ADD: search bar
+      // ADD: par rayon autour de soi
       // ADD: 5 premiers spots autour de soi
     });
   },

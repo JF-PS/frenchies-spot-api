@@ -67,6 +67,7 @@ CREATE TABLE "Spot" (
     "profileId" TEXT NOT NULL,
     "lat" INTEGER NOT NULL,
     "lng" INTEGER NOT NULL,
+    "region" TEXT NOT NULL,
 
     CONSTRAINT "Spot_pkey" PRIMARY KEY ("id")
 );

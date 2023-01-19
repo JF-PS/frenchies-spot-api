@@ -9,6 +9,8 @@ export const spotsQuery = {
     isCanPark: boolean,
     isCanVisit: boolean,
     isToursitic: boolean,
+    searchValue: string,
+    region: string,
   }) => {
     console.log("************orderBY*****************")
     console.log(data)
@@ -17,6 +19,8 @@ export const spotsQuery = {
       data.isCanPark,
       data.isCanVisit,
       data.isToursitic,
+      data.searchValue,
+      data.region,
     );
   },
 

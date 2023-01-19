@@ -9,13 +9,17 @@ const spotsBusiness = {
     orderBy: 'asc' | 'desc', 
     isCanPark: boolean, 
     isCanVisit: boolean, 
-    isTouristic: boolean
+    isTouristic: boolean, 
+    searchValue: string,
+    region: string,
   ) => {
     return spotsRepository.getAll(
       orderBy,
       isCanPark,
       isCanVisit,
       isTouristic,
+      searchValue,
+      region,
     );
   },
 
