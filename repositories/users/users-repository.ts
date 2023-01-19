@@ -1,3 +1,5 @@
+import { UpdateSpotDto } from "../../dto/spot-dto";
+import { UpdateUserDto, UserDto } from "../../dto/users-dto";
 import { User } from "../../models";
 
 const usersRepository = {
@@ -21,6 +23,18 @@ const usersRepository = {
         password,
         token,
         profile: { create: { pseudo } },
+      },
+      include: { profile: true },
+    });
+  },
+
+  update: (data: UserDto, userId: string) => {
+    return User.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        ...data,
       },
       include: { profile: true },
     });

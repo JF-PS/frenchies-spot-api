@@ -1,6 +1,9 @@
 import { usersBusiness } from "../../business";
 import { TContext } from "../../graphql/context";
 import { SignInDto } from "../../dto";
+import { UpdateUserDto } from "../../dto/users-dto";
+import { codeErrors, throwError } from "../../utils";
+const { UNAUTHENTICATED } = codeErrors;
 
 export const usersMutation = {
   /**
@@ -24,7 +27,14 @@ export const usersMutation = {
     //     http: { status: 401 },
     //   },
     // });
-
     return usersBusiness.signIn(data);
+  },
+
+  updateUser: (_: undefined, data: UpdateUserDto, context: TContext) => {
+    const { user } = context;
+    const idUser = user?.id
+    if (!idUser) return throwError(UNAUTHENTICATED);
+    const { id: userId } = data 
+    return usersBusiness.update(data, userId);
   },
 };

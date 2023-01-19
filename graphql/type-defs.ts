@@ -101,6 +101,13 @@ const typeDefs = gql`
     signIn(email: String, password: String): User
     signUp(pseudo: String, email: String, password: String): User
 
+    updateUser(
+      id: String
+      email: String
+      password: String
+      profile: Profile
+    ): User
+
     createSpot(
       name: String
       description: String
