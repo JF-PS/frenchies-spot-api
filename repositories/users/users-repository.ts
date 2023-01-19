@@ -1,3 +1,4 @@
+import { Profile } from "@prisma/client";
 import { UserDto } from "../../dto/users-dto";
 import { User } from "../../models";
 
@@ -27,13 +28,23 @@ const usersRepository = {
     });
   },
 
-  update: (data: UserDto, userId: string) => {
+  update: (user: Pick<UserDto, "email" | "password">, profile: Pick<Profile, "pseudo" | "photoUrl">, userId: string) => {
     return User.update({
       where: {
         id: userId,
       },
       data: {
-        ...data,
+        ...user,
+        profile: {
+          upsert: {
+            update: {
+              ...profile,
+            },
+            create: {
+              ...profile,
+            },
+          },
+        },
       },
       include: { profile: true },
     });

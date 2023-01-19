@@ -110,7 +110,9 @@ const typeDefs = gql`
       id: String
       email: String
       password: String
-      profile: ProfileInput
+      pseudo: String
+      photoUrl: String
+      # profile: ProfileInput
     ): User
 
     createSpot(

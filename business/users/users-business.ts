@@ -16,12 +16,16 @@ const usersBusiness = {
     return usersRepository.getAll();
   },
 
-    /**
+  /**
    * @param {UserDto} data
    */
-    update: (data: UserDto, userId: string) => {
-      return usersRepository.update(data, userId);
-    },
+  update: (data: UserDto, userId: string) => {
+    const { email, password, pseudo, photoUrl } = data;
+    const user = { email, password};
+    const profile = { pseudo, photoUrl};
+    return usersRepository.update(user, profile, userId);
+  },
+
   /**
    * @param {SignInDto} data
    */

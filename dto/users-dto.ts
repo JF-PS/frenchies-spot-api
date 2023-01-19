@@ -5,6 +5,3 @@ export type SignInDto = Pick<User, "email" | "password"> &
 
 export type UserDto = Pick<User, "email" | "password"> &
   Pick<Profile, "pseudo" | "photoUrl">;
-
-export type UpdateUserDto = Pick<User, "id" | "email" | "password"> &
-  Pick<Profile, "pseudo" | "photoUrl">;
