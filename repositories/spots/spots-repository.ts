@@ -27,7 +27,7 @@ const spotsRepository = {
         region: region,
 
         name: {
-          search: searchValue,
+          contains: searchValue,
         }
       },      
       
