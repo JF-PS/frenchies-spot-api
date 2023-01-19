@@ -32,7 +32,7 @@ export const usersMutation = {
 
   updateUser: (_: undefined, data: UpdateUserDto, context: TContext) => {
     const { user } = context;
-    const idUser = user?.id
+    const idUser = user?.profile.id
     if (!idUser) return throwError(UNAUTHENTICATED);
     const { id: userId } = data 
     return usersBusiness.update(data, userId);

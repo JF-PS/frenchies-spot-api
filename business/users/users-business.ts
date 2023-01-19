@@ -1,10 +1,9 @@
 import { usersRepository } from "../../repositories";
 import { SignInDto } from "../../dto";
-import { GraphQLError } from "graphql";
 import { throwError, codeErrors } from "../../utils";
 import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
-import { UpdateUserDto, UserDto } from "../../dto/users-dto";
+import { UserDto } from "../../dto/users-dto";
 
 const { USER_ALREADY_EXISTS, USER_NOT_FOUND, INCORRECT_PASSWORD } = codeErrors;
 const secretKey = process.env.SECRET_KEY;

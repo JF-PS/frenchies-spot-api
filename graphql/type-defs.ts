@@ -81,6 +81,11 @@ const typeDefs = gql`
     lng: Int
   }
 
+  input ProfileInput {
+    pseudo: String
+    photoUrl: String
+  }
+
   type Query {
     users: [User]
     itinaries: [Itinary]
@@ -105,7 +110,7 @@ const typeDefs = gql`
       id: String
       email: String
       password: String
-      profile: Profile
+      profile: ProfileInput
     ): User
 
     createSpot(

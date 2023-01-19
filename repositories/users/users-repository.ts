@@ -1,5 +1,4 @@
-import { UpdateSpotDto } from "../../dto/spot-dto";
-import { UpdateUserDto, UserDto } from "../../dto/users-dto";
+import { UserDto } from "../../dto/users-dto";
 import { User } from "../../models";
 
 const usersRepository = {
