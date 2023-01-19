@@ -16,8 +16,8 @@ const spotsRepository = {
   ) => {
     return Spot.findMany({
       orderBy: {
-        name: orderBy,
-        // rating: 'asc'
+        // name: orderBy,
+        rating: orderBy,
       }, 
 
       where: {
@@ -31,8 +31,6 @@ const spotsRepository = {
         }
       },      
       
-      // ADD: par région dans les champs spot
-      // ADD: search bar
       // ADD: par rayon autour de soi
       // ADD: 5 premiers spots autour de soi
     });

@@ -89,7 +89,7 @@ model Spot {
   itinaries   Itinary[]
   lat         Int
   lng         Int
-  region String
+  region      String
   //Relations one to many with spot_pictures
   spotPicture Spot_Picture[]
 }

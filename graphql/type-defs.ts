@@ -59,6 +59,7 @@ const typeDefs = gql`
     itinaries: [Itinary]
     lat: Int
     lng: Int
+    region: String
   }
 
   type SpotPicture {
@@ -106,6 +107,7 @@ const typeDefs = gql`
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
+      region: String
     ): Profile
 
     updateSpot(
@@ -117,6 +119,7 @@ const typeDefs = gql`
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
+      region: String
     ): Profile
 
     deleteSpot(
@@ -128,6 +131,7 @@ const typeDefs = gql`
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
+      region: String
     ): Profile
 
     createItinary(
