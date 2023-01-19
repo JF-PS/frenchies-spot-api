@@ -55,7 +55,7 @@ model Profile {
   photoUrl  String?
   gamePoint Int       @default(0)
   userId    String    @unique
-  user      User      @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   // Implicit relations many to many with itinary
   itinaries Itinary[]
   //Relations one to many with spot

@@ -26,6 +26,14 @@ const usersBusiness = {
     return usersRepository.update(user, profile, userId);
   },
 
+  delete: async(userId: string, profileId: string) => {
+    const isProfileDeleted = await usersRepository.deleteProfile(profileId);
+    const isUserDeleted = await usersRepository.deleteUser(userId);
+
+    if(isProfileDeleted && isUserDeleted) return true;
+    return false;
+  },
+
   /**
    * @param {SignInDto} data
    */

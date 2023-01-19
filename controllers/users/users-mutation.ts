@@ -32,8 +32,20 @@ export const usersMutation = {
 
   updateUser: (_: undefined, data: UserDto, context: TContext) => {
     const { user } = context;
-    const userId = user?.profile.id
-    if (!userId) return throwError(UNAUTHENTICATED);
-    return usersBusiness.update(data, userId);
+    const profileId = user?.profile.id
+    if (!profileId) return throwError(UNAUTHENTICATED);
+    return usersBusiness.update(data, profileId);
+  },
+
+  deleteUser: (_: undefined, data: UserDto, context: TContext) => {
+    const { user } = context;
+    const userId = user?.id;
+    const profileId = user?.profile.id;
+
+    console.log("******USERID ****")
+    console.log({userId, profileId})
+    
+    if (!userId || !profileId) return throwError(UNAUTHENTICATED);
+    return usersBusiness.delete(userId, profileId);
   },
 };

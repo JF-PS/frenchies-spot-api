@@ -31,6 +31,7 @@ enum Level {
   Error
 }
 ```
+(if we do a migration don't need generate because the migration do the generation)
 npx prisma generate
 
 (before remove prisma/generate and prisma/migration)
