@@ -11,6 +11,8 @@ export const spotsQuery = {
     isToursitic: boolean,
     searchValue: string,
     region: string,
+    skip: number,
+    take: number,
   }) => {
     console.log("************orderBY*****************")
     console.log(data)
@@ -21,6 +23,8 @@ export const spotsQuery = {
       data.isToursitic,
       data.searchValue,
       data.region,
+      data.skip,
+      data.take,
     );
   },
 

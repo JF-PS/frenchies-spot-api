@@ -1,4 +1,3 @@
-import { stringify } from "querystring";
 import { SpotDto } from "../../dto";
 import { Spot, Profile } from "../../models";
 
@@ -13,6 +12,8 @@ const spotsRepository = {
     isTouristic: boolean,
     searchValue: string,
     region: string,
+    skip: number,
+    take: number,
   ) => {
     return Spot.findMany({
       orderBy: {
@@ -31,6 +32,9 @@ const spotsRepository = {
         }
       },      
       
+      skip: skip,
+      take: take,
+
       // ADD: par rayon autour de soi
       // ADD: 5 premiers spots autour de soi
     });

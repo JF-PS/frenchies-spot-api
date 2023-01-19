@@ -12,6 +12,8 @@ const spotsBusiness = {
     isTouristic: boolean, 
     searchValue: string,
     region: string,
+    skip: number,
+    take: number,
   ) => {
     return spotsRepository.getAll(
       orderBy,
@@ -20,6 +22,8 @@ const spotsBusiness = {
       isTouristic,
       searchValue,
       region,
+      skip,
+      take,
     );
   },
 

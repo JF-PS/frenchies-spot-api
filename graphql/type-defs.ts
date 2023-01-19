@@ -91,6 +91,8 @@ const typeDefs = gql`
       isTouristic: Boolean,
       searchValue: String,
       region: String,
+      skip: Int,
+      take: Int,
     ): [Spot]
     spot(id: String): Spot
   }
