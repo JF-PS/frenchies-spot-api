@@ -54,6 +54,14 @@ type Spot {
     lat: Int!
     lng: Int!
     region: String!
+    spotPicture: [SpotPicture]
+}
+
+type SpotPicture {
+    id: String
+    url: AWSURL!
+    spot: Spot!
+    spotId: String!
 }
 
 type BatchPayload {
@@ -786,6 +794,7 @@ input SpotWhereInput {
     lat: IntFilter
     lng: IntFilter
     region: StringFilter
+    spotPicture: SpotPictureFilter
 }
 
 input SpotWhereUniqueInput {
@@ -807,6 +816,7 @@ input SpotOrderByInput {
     lat: OrderByArg
     lng: OrderByArg
     region: OrderByArg
+    spotPicture: SpotPictureOrderByInput
 }
 
 input SpotCreateInput {
@@ -822,6 +832,7 @@ input SpotCreateInput {
     lat: Int!
     lng: Int!
     region: String!
+    spotPicture: SpotSpotPictureCreateRelationInput
 }
 
 input SpotCreateManyInput {
@@ -850,6 +861,7 @@ input SpotUpdateInput {
     lat: Int
     lng: Int
     region: String
+    spotPicture: SpotSpotPictureUpdateRelationsInput
 }
 
 input SpotOperationInput {
@@ -924,6 +936,131 @@ input SpotItinariesUpdateRelationsInput {
     set: [ItinaryWhereUniqueInput]
     updateMany: [ItinaryUpdateManyInput]
     deleteMany: [ItinaryDeleteManyInput]
+}
+input SpotSpotPictureCreateRelationInput {
+    create: [SpotPictureCreateInput]
+    connect: [SpotPictureWhereUniqueInput]
+    connectOrCreate: [SpotPictureConnectOrCreateInput]
+}
+
+input SpotSpotPictureUpdateRelationsInput {
+    connect: [SpotPictureWhereUniqueInput]
+    create: [SpotPictureCreateInput]
+    connectOrCreate: [SpotPictureConnectOrCreateInput]
+    update: [SpotPictureUpdateUniqueInput]
+    upsert: [SpotPictureUpsertUniqueInput]
+    delete: [SpotPictureDeleteUniqueInput]
+    disconnect: [SpotPictureWhereUniqueInput]
+    set: [SpotPictureWhereUniqueInput]
+    updateMany: [SpotPictureUpdateManyInput]
+    deleteMany: [SpotPictureDeleteManyInput]
+}
+
+input SpotPictureFilter {
+    some: SpotPictureScalarWhereInput
+    every: SpotPictureScalarWhereInput
+    none: SpotPictureScalarWhereInput
+}
+
+input SpotPictureRelationFilter {
+    id: StringFilter
+    url: AWSURLFilter
+    spotId: StringFilter
+}
+
+input SpotPictureScalarWhereInput {
+    id: StringFilter
+    url: AWSURLFilter
+    spotId: StringFilter
+}
+
+input SpotPictureWhereInput {
+    OR: [SpotPictureWhereInput]
+    NOT: [SpotPictureWhereInput]
+    AND: [SpotPictureWhereInput]
+    id: StringFilter
+    url: AWSURLFilter
+    spot: SpotRelationFilter
+    spotId: StringFilter
+}
+
+input SpotPictureWhereUniqueInput {
+    id: String
+    spotId: String
+}
+
+input SpotPictureOrderByInput {
+    id: OrderByArg
+    url: OrderByArg
+    spot: SpotOrderByInput
+    spotId: OrderByArg
+}
+
+input SpotPictureCreateInput {
+    id: String
+    url: AWSURL!
+    spot: SpotPictureSpotCreateRelationInput!
+}
+
+input SpotPictureCreateManyInput {
+    id: String
+    url: AWSURL!
+}
+
+input SpotPictureUpdateInput {
+    id: String
+    url: AWSURL
+    spot: SpotPictureSpotUpdateRelationsInput
+}
+
+input SpotPictureUpdateUniqueInput {
+    data: SpotPictureUpdateInput!
+    where: SpotPictureWhereUniqueInput!
+}
+
+input SpotPictureUpdateManyInput {
+    where: SpotPictureWhereInput!
+    data: SpotPictureUpdateInput!
+}
+
+input SpotPictureUpsertInput {
+    create: SpotPictureCreateInput!
+    update: SpotPictureUpdateInput!
+}
+
+input SpotPictureUpsertUniqueInput {
+    where: SpotPictureWhereUniqueInput!
+    create: SpotPictureCreateInput!
+    update: SpotPictureUpdateInput!
+}
+
+input SpotPictureConnectOrCreateInput {
+    where: SpotPictureWhereUniqueInput!
+    create: SpotPictureCreateInput!
+}
+
+input SpotPictureDeleteUniqueInput {
+    where: SpotPictureWhereUniqueInput!
+}
+
+input SpotPictureDeleteManyInput {
+    where: SpotPictureWhereInput!
+}
+
+input SpotPictureSpotCreateRelationInput {
+    create: SpotCreateInput
+    connect: SpotWhereUniqueInput
+    connectOrCreate: SpotConnectOrCreateInput
+}
+
+input SpotPictureSpotUpdateRelationsInput {
+    connect: SpotWhereUniqueInput
+    create: SpotCreateInput
+    connectOrCreate: SpotConnectOrCreateInput
+    update: SpotUpdateInput
+    upsert: SpotUpsertInput
+    delete: Boolean
+    disconnect: Boolean
 }
 
 input IntOperation {
@@ -1376,6 +1513,59 @@ type Mutation {
     Delete multiple Spot records.
     """
     deleteManySpots(where: SpotWhereInput!): BatchPayload
+
+    """
+    Create a new single SpotPicture record.
+    """
+    createSpotPicture(
+        data: SpotPictureCreateInput!
+    ): SpotPicture
+
+    """
+    Create multiple new SpotPicture records.
+    """
+    createManySpotPictures(
+        data: [SpotPictureCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single SpotPicture record.
+    """
+    updateSpotPicture(
+        where: SpotPictureWhereUniqueInput!
+        data: SpotPictureUpdateInput
+    ): SpotPicture
+
+    """
+    Update multiple existing SpotPicture records.
+    """
+    updateManySpotPictures(
+        where: SpotPictureWhereInput!
+        data: SpotPictureUpdateInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single SpotPicture record.
+    """
+    upsertSpotPicture(
+        data: SpotPictureUpdateInput!
+        where: SpotPictureWhereUniqueInput!
+    ): SpotPicture
+
+    """
+    Delete a single SpotPicture record.
+    """
+    deleteSpotPicture(
+        where: SpotPictureWhereUniqueInput!
+    ): SpotPicture
+
+    """
+    Delete multiple SpotPicture records.
+    """
+    deleteManySpotPictures(
+        where: SpotPictureWhereInput!
+    ): BatchPayload
 }
 type Query {
     """
@@ -1524,6 +1714,33 @@ type Query {
     countSpots(
         where: SpotWhereInput
         orderBy: [SpotOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    """
+    Find a single SpotPicture record by unique identifier.
+    """
+    getSpotPicture(
+        where: SpotPictureWhereUniqueInput!
+    ): SpotPicture
+
+    """
+    Find many SpotPicture records (optional query filters).
+    """
+    listSpotPictures(
+        where: SpotPictureWhereInput
+        orderBy: [SpotPictureOrderByInput]
+        skip: Int
+        take: Int
+    ): [SpotPicture]
+
+    """
+    Count all SpotPicture records (optional query filters).
+    """
+    countSpotPictures(
+        where: SpotPictureWhereInput
+        orderBy: [SpotPictureOrderByInput]
         skip: Int
         take: Int
     ): Int
@@ -1962,4 +2179,92 @@ type Subscription {
     """
     onDeletedManySpots: BatchPayload
         @aws_subscribe(mutations: ["deleteManySpots"])
+
+    """
+    Triggered from `createSpotPicture` mutation (excl. `createManySpotPictures` and `upsertSpotPicture`).
+    """
+    onCreatedSpotPicture(
+        id: String
+        spotId: String
+    ): SpotPicture
+        @aws_subscribe(mutations: ["createSpotPicture"])
+
+    """
+    Triggered from `updateSpotPicture` mutation (excl. `updateManySpotPictures` and `upsertSpotPicture`).
+    """
+    onUpdatedSpotPicture(
+        id: String
+        spotId: String
+    ): SpotPicture
+        @aws_subscribe(mutations: ["updateSpotPicture"])
+
+    """
+    Triggered from `upsertSpotPicture` mutation.
+    """
+    onUpsertedSpotPicture(
+        id: String
+        spotId: String
+    ): SpotPicture
+        @aws_subscribe(mutations: ["upsertSpotPicture"])
+
+    """
+    Triggered from `deleteSpotPicture` mutation (excl. `deleteManySpotPictures`).
+    """
+    onDeletedSpotPicture(
+        id: String
+        spotId: String
+    ): SpotPicture
+        @aws_subscribe(mutations: ["deleteSpotPicture"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedSpotPicture(
+        id: String
+        spotId: String
+    ): SpotPicture
+        @aws_subscribe(
+            mutations: [
+                "createSpotPicture"
+                "updateSpotPicture"
+                "upsertSpotPicture"
+                "deleteSpotPicture"
+            ]
+        )
+
+    """
+    Triggered from `createManySpotPictures` mutation.
+    """
+    onCreatedManySpotPictures: BatchPayload
+        @aws_subscribe(
+            mutations: ["createManySpotPictures"]
+        )
+
+    """
+    Triggered from `updateManySpotPictures` mutation.
+    """
+    onUpdatedManySpotPictures: BatchPayload
+        @aws_subscribe(
+            mutations: ["updateManySpotPictures"]
+        )
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManySpotPictures: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManySpotPictures"
+                "updateManySpotPictures"
+                "deleteManySpotPictures"
+            ]
+        )
+
+    """
+    Triggered from `deleteManySpotPictures` mutation.
+    """
+    onDeletedManySpotPictures: BatchPayload
+        @aws_subscribe(
+            mutations: ["deleteManySpotPictures"]
+        )
 }

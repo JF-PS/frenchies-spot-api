@@ -2,26 +2,26 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
   previewFeatures = ["fullTextSearch"]
 }
 
 generator appsync {
-	provider = "prisma-appsync"
+  provider = "prisma-appsync"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Log {
-  id String @id @default(uuid())
+  id      String @id @default(uuid())
   message String
-  level Level
-  meta Json
+  level   Level
+  meta    Json
 }
 
 enum Level {
@@ -30,18 +30,18 @@ enum Level {
   Error
 }
 
-model  Test {
-  id String @id @default(uuid())
+model Test {
+  id   String @id @default(uuid())
   text String @unique
 }
 
 model User {
-  id String @id @default(uuid())
-  email String @unique
+  id       String   @id @default(uuid())
+  email    String   @unique
   password String
-  token String @unique
-  role Role @default(SIMPLE_USER)
-  profile Profile?
+  token    String   @unique
+  role     Role     @default(SIMPLE_USER)
+  profile  Profile?
 }
 
 enum Role {
@@ -50,46 +50,53 @@ enum Role {
 }
 
 model Profile {
-  id String @id @default(uuid())
-  pseudo String @unique
-  photoUrl String?
-  gamePoint Int @default(0)
-  userId String @unique
-  user User @relation(fields: [userId], references: [id])
+  id        String    @id @default(uuid())
+  pseudo    String    @unique
+  photoUrl  String?
+  gamePoint Int       @default(0)
+  userId    String    @unique
+  user      User      @relation(fields: [userId], references: [id])
   // Implicit relations many to many with itinary
   itinaries Itinary[]
   //Relations one to many with spot
-  spots Spot[]
+  spots     Spot[]
 }
 
-
 model Itinary {
-  id String @id @default(uuid())
-  name String
+  id          String    @id @default(uuid())
+  name        String
   description String
-  gamePoint Int?
-  photoUrl String?
+  gamePoint   Int?
+  photoUrl    String?
   // Implicit relations many to many with profile
-  profiles Profile[]
+  profiles    Profile[]
   // Implicit relations many to many with spot
-  spots Spot[]
+  spots       Spot[]
 }
 
 model Spot {
-  id String @id @default(uuid())
-  name String
-  description String 
-  rating Int? @default(0)
-  isCanPark Boolean @default(false)
-  isCanVisit Boolean @default(false)
-  isTouristic Boolean @default(false)
+  id          String         @id @default(uuid())
+  name        String
+  description String
+  rating      Int?           @default(0)
+  isCanPark   Boolean        @default(false)
+  isCanVisit  Boolean        @default(false)
+  isTouristic Boolean        @default(false)
   //Relations one to many with profile
-  profile Profile @relation(fields: [profileId], references: [id])
-  profileId String
+  profile     Profile        @relation(fields: [profileId], references: [id])
+  profileId   String
   //Implicit relations many to many with itinary
-  itinaries Itinary[]
-  lat Int
-  lng Int
+  itinaries   Itinary[]
+  lat         Int
+  lng         Int
   region String
+  //Relations one to many with spot_pictures
+  spotPicture Spot_Picture[]
 }
 
+model Spot_Picture {
+  id     String @id @default(uuid())
+  url    String
+  spot   Spot   @relation(fields: [spotId], references: [id])
+  spotId String
+}
