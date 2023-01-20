@@ -1,5 +1,3 @@
-import { Profile, Rating, Spot } from "@prisma/client";
+import { Rating } from "@prisma/client";
 
-export type RatingDto = Pick<Rating, "rate">;
-
-export type RatingBusinessDto = Pick<Rating, "rate" | "profileId" | "spotId">;
+export type RatingDto = Pick<Rating, "rate" | "profileId" | "spotId">;
