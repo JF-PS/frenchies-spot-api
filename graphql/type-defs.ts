@@ -24,6 +24,7 @@ const typeDefs = gql`
     user: User
     itinaries: [Itinary]
     spots: [Spot]
+    ratings: [Rating]
   }
 
   type Itinary {
@@ -59,6 +60,7 @@ const typeDefs = gql`
     lat: Int
     lng: Int
     region: String
+    ratings: [Rating]
   }
 
   type SpotPicture {
@@ -71,7 +73,9 @@ const typeDefs = gql`
   type Rating {
     id: String
     rate: Int
-    userId: String
+    profile: Profile
+    profileId: String
+    spot: Spot
     spotId: String
   }
 
@@ -157,6 +161,11 @@ const typeDefs = gql`
       description: String
       spots: [SpotInput]
     ): Itinary
+
+    createRating(
+      spotId: String
+      rate: Int
+    ): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 

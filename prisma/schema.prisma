@@ -94,7 +94,7 @@ model Spot {
   //Relations one to many with spot_pictures
   spotPicture Spot_Picture[]
   //Relations many to many with rating
-  ratings      Rating[]
+  ratings     Rating[]
 }
 
 model Spot_Picture {
@@ -106,7 +106,7 @@ model Spot_Picture {
 
 model Rating {
   id        String  @id @default(uuid())
-  rate      Int     @default(0)
+  rate      Int     
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String
   spot      Spot   @relation(fields: [spotId], references: [id])

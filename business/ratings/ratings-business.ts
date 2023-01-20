@@ -15,8 +15,10 @@ const ratingsBusiness = {
 //     return ratingsRepository.getById(ratingId);
 //   },
 
-  create: (data: RatingDto, profileId: string, spotId: string) => {
-    return ratingsRepository.create(data, profileId, spotId);
+  create: (data: RatingDto, spotId: string, profileId: string) => {
+    //vérifier spotId existe
+
+    return ratingsRepository.create(data, spotId, profileId);
   },
 
 //   update: (data: RatingDto, userId: string, spotId: string) => {

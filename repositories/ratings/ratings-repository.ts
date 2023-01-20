@@ -1,8 +1,5 @@
-import { getSupportedCodeFixes } from "typescript";
 import { RatingDto } from "../../dto";
-import { CreateRatingsRepositoryDto } from "../../dto/rating-dto";
-import { Profile, Spot, User } from "../../models";
-import Rating from "../../models/rating";
+import { Profile, Spot } from "../../models";
 
 const ratingsRepository = {
 
@@ -26,59 +23,19 @@ const ratingsRepository = {
 
   create: (data: RatingDto, spotId: string, profileId: string) => {
 
-    return Profile.update({
+    return Spot.update({
         where: {
-            id: profileId,
+            id: spotId,
         },
         data: {
-            spots: {
-                update: {
-                    where: {
-                        id: spotId,
-                    },
-                    data: {
-                        ratings: {
-                            create: {
-                                ...data,
-                            },
-                        },
-                    },
+            ratings: {
+                create: {
+                    ...data,
+                    profileId,
                 },
             },
         },
-        // data: {
-        //     ratings: {
-        //         create: {
-        //             ...data,
-        //         }
-        //     }
-        // }
-        // where: {
-        //     id: profileId,
-        // },
-        // data: {
-        //     spots: {
-        //         update: {
-        //             where: {
-        //                 id: spotId,
-        //             },
-        //             data: {
-
-        //             }
-        //         }
-        //     }
-        // },
-        // ratings: {
-        //     create: {
-        //         rate: data,
-        //         data: {
-        //             ...data,
-        //         },
-        //         where: {
-        //             id: spotId,
-        //         },
-        //     },
-        // },
+        include: { ratings: true }
     });
   },
 

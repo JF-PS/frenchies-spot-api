@@ -11,8 +11,9 @@ export const ratingsMutation = {
     const { user } = context;
     const profileId = user?.profile.id;
     if (!profileId) return throwError(UNAUTHENTICATED);
-    const { spotId } = data;
 
-    return ratingsBusiness.create(data, profileId, spotId);
+    const { spotId } = data;
+    
+    return ratingsBusiness.create(data, spotId, profileId);
   },
 }

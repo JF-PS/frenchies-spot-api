@@ -83,7 +83,7 @@ CREATE TABLE "Spot_Picture" (
 -- CreateTable
 CREATE TABLE "Rating" (
     "id" TEXT NOT NULL,
-    "rate" INTEGER NOT NULL DEFAULT 0,
+    "rate" INTEGER NOT NULL,
     "profileId" TEXT NOT NULL,
     "spotId" TEXT NOT NULL,
 
