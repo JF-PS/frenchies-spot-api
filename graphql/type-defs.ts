@@ -50,7 +50,6 @@ const typeDefs = gql`
     id: String
     name: String
     description: String
-    rating: Int
     isCanPark: Boolean
     isCanVisit: Boolean
     isTouristic: Boolean
@@ -66,6 +65,13 @@ const typeDefs = gql`
     id: String
     url: String
     spot: Spot
+    spotId: String
+  }
+
+  type Rating {
+    id: String
+    rate: Int
+    userId: String
     spotId: String
   }
 

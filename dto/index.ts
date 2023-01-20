@@ -4,6 +4,7 @@ export type {
   ItinarySpotDto,
   CreateItinariesRepositoryDto,
 } from "./itinaries-dto";
-export type { SignInDto } from "./users-dto";
-export type { SpotDto, ProfileSpotDto } from "./spot-dto";
-export type {SpotPictureDto} from "./spot-pictures-dto";
+export type { SignInDto, UserDto } from "./users-dto";
+export type { SpotDto, ProfileSpotDto, UpdateSpotDto } from "./spot-dto";
+export type { SpotPictureDto } from "./spot-pictures-dto";
+export type { RatingDto } from "./rating-dto";
