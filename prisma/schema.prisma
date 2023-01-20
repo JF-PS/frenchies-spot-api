@@ -42,6 +42,8 @@ model User {
   token    String   @unique
   role     Role     @default(SIMPLE_USER)
   profile  Profile?
+  //Relations many to many with rating
+  ratings   Rating[]
 }
 
 enum Role {
@@ -78,7 +80,6 @@ model Spot {
   id          String         @id @default(uuid())
   name        String
   description String
-  rating      Int?           @default(0)
   isCanPark   Boolean        @default(false)
   isCanVisit  Boolean        @default(false)
   isTouristic Boolean        @default(false)
@@ -92,11 +93,22 @@ model Spot {
   region      String
   //Relations one to many with spot_pictures
   spotPicture Spot_Picture[]
+  //Relations many to many with rating
+  ratings      Rating[]
 }
 
 model Spot_Picture {
   id     String @id @default(uuid())
   url    String
+  spot   Spot   @relation(fields: [spotId], references: [id])
+  spotId String
+}
+
+model Rating {
+  id     String @id @default(uuid())
+  rate   Int
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
   spot   Spot   @relation(fields: [spotId], references: [id])
   spotId String
 }

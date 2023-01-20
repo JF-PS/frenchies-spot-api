@@ -60,7 +60,6 @@ CREATE TABLE "Spot" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "rating" INTEGER DEFAULT 0,
     "isCanPark" BOOLEAN NOT NULL DEFAULT false,
     "isCanVisit" BOOLEAN NOT NULL DEFAULT false,
     "isTouristic" BOOLEAN NOT NULL DEFAULT false,
@@ -79,6 +78,16 @@ CREATE TABLE "Spot_Picture" (
     "spotId" TEXT NOT NULL,
 
     CONSTRAINT "Spot_Picture_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Rating" (
+    "id" TEXT NOT NULL,
+    "rate" INTEGER NOT NULL,
+    "userId" TEXT NOT NULL,
+    "spotId" TEXT NOT NULL,
+
+    CONSTRAINT "Rating_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -128,6 +137,12 @@ ALTER TABLE "Spot" ADD CONSTRAINT "Spot_profileId_fkey" FOREIGN KEY ("profileId"
 
 -- AddForeignKey
 ALTER TABLE "Spot_Picture" ADD CONSTRAINT "Spot_Picture_spotId_fkey" FOREIGN KEY ("spotId") REFERENCES "Spot"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Rating" ADD CONSTRAINT "Rating_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Rating" ADD CONSTRAINT "Rating_spotId_fkey" FOREIGN KEY ("spotId") REFERENCES "Spot"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ItinaryToProfile" ADD CONSTRAINT "_ItinaryToProfile_A_fkey" FOREIGN KEY ("A") REFERENCES "Itinary"("id") ON DELETE CASCADE ON UPDATE CASCADE;
