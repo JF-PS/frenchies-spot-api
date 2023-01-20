@@ -17,7 +17,6 @@ type User {
     token: String!
     role: Role!
     profile: Profile
-    ratings: [Rating]
 }
 
 type Profile {
@@ -29,6 +28,7 @@ type Profile {
     user: User!
     itinaries: [Itinary]
     spots: [Spot]
+    ratings: [Rating]
 }
 
 type Itinary {
@@ -68,8 +68,8 @@ type SpotPicture {
 type Rating {
     id: String
     rate: Int!
-    user: User!
-    userId: String!
+    profile: Profile!
+    profileId: String!
     spot: Spot!
     spotId: String!
 }
@@ -335,7 +335,6 @@ input UserWhereInput {
     token: StringFilter
     role: RoleEnumFilter
     profile: ProfileFilter
-    ratings: RatingFilter
 }
 
 input UserWhereUniqueInput {
@@ -351,7 +350,6 @@ input UserOrderByInput {
     token: OrderByArg
     role: OrderByArg
     profile: ProfileOrderByInput
-    ratings: RatingOrderByInput
 }
 
 input UserCreateInput {
@@ -361,7 +359,6 @@ input UserCreateInput {
     token: String!
     role: Role!
     profile: UserProfileCreateRelationInput
-    ratings: UserRatingsCreateRelationInput
 }
 
 input UserCreateManyInput {
@@ -379,7 +376,6 @@ input UserUpdateInput {
     token: String
     role: Role
     profile: UserProfileUpdateRelationsInput
-    ratings: UserRatingsUpdateRelationsInput
 }
 
 input UserUpdateUniqueInput {
@@ -434,24 +430,6 @@ input UserProfileUpdateRelationsInput {
     updateMany: [ProfileUpdateManyInput]
     deleteMany: [ProfileDeleteManyInput]
 }
-input UserRatingsCreateRelationInput {
-    create: [RatingCreateInput]
-    connect: [RatingWhereUniqueInput]
-    connectOrCreate: [RatingConnectOrCreateInput]
-}
-
-input UserRatingsUpdateRelationsInput {
-    connect: [RatingWhereUniqueInput]
-    create: [RatingCreateInput]
-    connectOrCreate: [RatingConnectOrCreateInput]
-    update: [RatingUpdateUniqueInput]
-    upsert: [RatingUpsertUniqueInput]
-    delete: [RatingDeleteUniqueInput]
-    disconnect: [RatingWhereUniqueInput]
-    set: [RatingWhereUniqueInput]
-    updateMany: [RatingUpdateManyInput]
-    deleteMany: [RatingDeleteManyInput]
-}
 
 input ProfileFilter {
     some: ProfileScalarWhereInput
@@ -487,6 +465,7 @@ input ProfileWhereInput {
     user: UserRelationFilter
     itinaries: ItinaryFilter
     spots: SpotFilter
+    ratings: RatingFilter
 }
 
 input ProfileWhereUniqueInput {
@@ -504,6 +483,7 @@ input ProfileOrderByInput {
     user: UserOrderByInput
     itinaries: ItinaryOrderByInput
     spots: SpotOrderByInput
+    ratings: RatingOrderByInput
 }
 
 input ProfileCreateInput {
@@ -514,6 +494,7 @@ input ProfileCreateInput {
     user: ProfileUserCreateRelationInput!
     itinaries: ProfileItinariesCreateRelationInput
     spots: ProfileSpotsCreateRelationInput
+    ratings: ProfileRatingsCreateRelationInput
 }
 
 input ProfileCreateManyInput {
@@ -531,6 +512,7 @@ input ProfileUpdateInput {
     user: ProfileUserUpdateRelationsInput
     itinaries: ProfileItinariesUpdateRelationsInput
     spots: ProfileSpotsUpdateRelationsInput
+    ratings: ProfileRatingsUpdateRelationsInput
 }
 
 input ProfileOperationInput {
@@ -621,6 +603,24 @@ input ProfileSpotsUpdateRelationsInput {
     set: [SpotWhereUniqueInput]
     updateMany: [SpotUpdateManyInput]
     deleteMany: [SpotDeleteManyInput]
+}
+input ProfileRatingsCreateRelationInput {
+    create: [RatingCreateInput]
+    connect: [RatingWhereUniqueInput]
+    connectOrCreate: [RatingConnectOrCreateInput]
+}
+
+input ProfileRatingsUpdateRelationsInput {
+    connect: [RatingWhereUniqueInput]
+    create: [RatingCreateInput]
+    connectOrCreate: [RatingConnectOrCreateInput]
+    update: [RatingUpdateUniqueInput]
+    upsert: [RatingUpsertUniqueInput]
+    delete: [RatingDeleteUniqueInput]
+    disconnect: [RatingWhereUniqueInput]
+    set: [RatingWhereUniqueInput]
+    updateMany: [RatingUpdateManyInput]
+    deleteMany: [RatingDeleteManyInput]
 }
 
 input ItinaryFilter {
@@ -1118,14 +1118,14 @@ input RatingFilter {
 input RatingRelationFilter {
     id: StringFilter
     rate: IntFilter
-    userId: StringFilter
+    profileId: StringFilter
     spotId: StringFilter
 }
 
 input RatingScalarWhereInput {
     id: StringFilter
     rate: IntFilter
-    userId: StringFilter
+    profileId: StringFilter
     spotId: StringFilter
 }
 
@@ -1135,23 +1135,23 @@ input RatingWhereInput {
     AND: [RatingWhereInput]
     id: StringFilter
     rate: IntFilter
-    user: UserRelationFilter
-    userId: StringFilter
+    profile: ProfileRelationFilter
+    profileId: StringFilter
     spot: SpotRelationFilter
     spotId: StringFilter
 }
 
 input RatingWhereUniqueInput {
     id: String
-    userId: String
+    profileId: String
     spotId: String
 }
 
 input RatingOrderByInput {
     id: OrderByArg
     rate: OrderByArg
-    user: UserOrderByInput
-    userId: OrderByArg
+    profile: ProfileOrderByInput
+    profileId: OrderByArg
     spot: SpotOrderByInput
     spotId: OrderByArg
 }
@@ -1159,7 +1159,7 @@ input RatingOrderByInput {
 input RatingCreateInput {
     id: String
     rate: Int!
-    user: RatingUserCreateRelationInput!
+    profile: RatingProfileCreateRelationInput!
     spot: RatingSpotCreateRelationInput!
 }
 
@@ -1171,7 +1171,7 @@ input RatingCreateManyInput {
 input RatingUpdateInput {
     id: String
     rate: Int
-    user: RatingUserUpdateRelationsInput
+    profile: RatingProfileUpdateRelationsInput
     spot: RatingSpotUpdateRelationsInput
 }
 
@@ -1213,18 +1213,18 @@ input RatingDeleteManyInput {
     where: RatingWhereInput!
 }
 
-input RatingUserCreateRelationInput {
-    create: UserCreateInput
-    connect: UserWhereUniqueInput
-    connectOrCreate: UserConnectOrCreateInput
+input RatingProfileCreateRelationInput {
+    create: ProfileCreateInput
+    connect: ProfileWhereUniqueInput
+    connectOrCreate: ProfileConnectOrCreateInput
 }
 
-input RatingUserUpdateRelationsInput {
-    connect: UserWhereUniqueInput
-    create: UserCreateInput
-    connectOrCreate: UserConnectOrCreateInput
-    update: UserUpdateInput
-    upsert: UserUpsertInput
+input RatingProfileUpdateRelationsInput {
+    connect: ProfileWhereUniqueInput
+    create: ProfileCreateInput
+    connectOrCreate: ProfileConnectOrCreateInput
+    update: ProfileUpdateInput
+    upsert: ProfileUpsertInput
     delete: Boolean
     disconnect: Boolean
 }
@@ -2530,7 +2530,7 @@ type Subscription {
     """
     onCreatedRating(
         id: String
-        userId: String
+        profileId: String
         spotId: String
     ): Rating @aws_subscribe(mutations: ["createRating"])
 
@@ -2539,7 +2539,7 @@ type Subscription {
     """
     onUpdatedRating(
         id: String
-        userId: String
+        profileId: String
         spotId: String
     ): Rating @aws_subscribe(mutations: ["updateRating"])
 
@@ -2548,7 +2548,7 @@ type Subscription {
     """
     onUpsertedRating(
         id: String
-        userId: String
+        profileId: String
         spotId: String
     ): Rating @aws_subscribe(mutations: ["upsertRating"])
 
@@ -2557,7 +2557,7 @@ type Subscription {
     """
     onDeletedRating(
         id: String
-        userId: String
+        profileId: String
         spotId: String
     ): Rating @aws_subscribe(mutations: ["deleteRating"])
 
@@ -2566,7 +2566,7 @@ type Subscription {
     """
     onMutatedRating(
         id: String
-        userId: String
+        profileId: String
         spotId: String
     ): Rating
         @aws_subscribe(

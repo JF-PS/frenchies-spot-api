@@ -1,5 +1,7 @@
 import { getSupportedCodeFixes } from "typescript";
-import { RatingDto, SpotDto } from "../../dto";
+import { RatingDto } from "../../dto";
+import { CreateRatingsRepositoryDto } from "../../dto/rating-dto";
+import { Profile, Spot, User } from "../../models";
 import Rating from "../../models/rating";
 
 const ratingsRepository = {
@@ -22,20 +24,61 @@ const ratingsRepository = {
 //     });
 //   },
 
-  create: (data: RatingDto, userId: string, spotId: string) => {
-    return Rating.update({
-      where: {
-        userId: userId,
-        spotId: getSupportedCodeFixes,
-      },
-      data: {
-        spots: {
-          create: {
-            ...data,
-          },
+  create: (data: RatingDto, spotId: string, profileId: string) => {
+
+    return Profile.update({
+        where: {
+            id: profileId,
         },
-      },
-      include: { spots: true },
+        data: {
+            spots: {
+                update: {
+                    where: {
+                        id: spotId,
+                    },
+                    data: {
+                        ratings: {
+                            create: {
+                                ...data,
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        // data: {
+        //     ratings: {
+        //         create: {
+        //             ...data,
+        //         }
+        //     }
+        // }
+        // where: {
+        //     id: profileId,
+        // },
+        // data: {
+        //     spots: {
+        //         update: {
+        //             where: {
+        //                 id: spotId,
+        //             },
+        //             data: {
+
+        //             }
+        //         }
+        //     }
+        // },
+        // ratings: {
+        //     create: {
+        //         rate: data,
+        //         data: {
+        //             ...data,
+        //         },
+        //         where: {
+        //             id: spotId,
+        //         },
+        //     },
+        // },
     });
   },
 

@@ -42,8 +42,6 @@ model User {
   token    String   @unique
   role     Role     @default(SIMPLE_USER)
   profile  Profile?
-  //Relations many to many with rating
-  ratings   Rating[]
 }
 
 enum Role {
@@ -62,6 +60,8 @@ model Profile {
   itinaries Itinary[]
   //Relations one to many with spot
   spots     Spot[]
+  //Relations many to many with rating
+  ratings   Rating[]
 }
 
 model Itinary {
@@ -105,10 +105,10 @@ model Spot_Picture {
 }
 
 model Rating {
-  id     String @id @default(uuid())
-  rate   Int
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
-  spot   Spot   @relation(fields: [spotId], references: [id])
-  spotId String
+  id        String  @id @default(uuid())
+  rate      Int     @default(0)
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String
+  spot      Spot   @relation(fields: [spotId], references: [id])
+  spotId    String
 }
