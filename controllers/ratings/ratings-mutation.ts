@@ -1,5 +1,5 @@
 import { ratingsBusiness } from "../../business/ratings";
-import { CreateRatingsRepositoryDto, RatingBusinessDto } from "../../dto/rating-dto";
+import { RatingBusinessDto } from "../../dto/rating-dto";
 import { TContext } from "../../graphql/context";
 import { codeErrors, throwError } from "../../utils";
 

@@ -1,5 +1,5 @@
 import { RatingDto } from "../../dto";
-import { Profile, Spot } from "../../models";
+import { Spot } from "../../models";
 
 const ratingsRepository = {
 

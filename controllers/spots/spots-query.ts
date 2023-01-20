@@ -14,8 +14,6 @@ export const spotsQuery = {
     skip: number,
     take: number,
   }) => {
-    console.log("************orderBY*****************")
-    console.log(data)
     return spotsBusiness.getAll(
       data.orderBy,
       data.isCanPark,

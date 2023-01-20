@@ -58,9 +58,9 @@ model Profile {
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   // Implicit relations many to many with itinary
   itinaries Itinary[]
-  //Relations one to many with spot
+  // Relations one to many with spot
   spots     Spot[]
-  //Relations many to many with rating
+  // Relations one to many with rating
   ratings   Rating[]
 }
 
@@ -83,17 +83,17 @@ model Spot {
   isCanPark   Boolean        @default(false)
   isCanVisit  Boolean        @default(false)
   isTouristic Boolean        @default(false)
-  //Relations one to many with profile
+  // Relations one to many with profile
   profile     Profile        @relation(fields: [profileId], references: [id])
   profileId   String
-  //Implicit relations many to many with itinary
+  // Implicit relations many to many with itinary
   itinaries   Itinary[]
   lat         Int
   lng         Int
   region      String
-  //Relations one to many with spot_pictures
+  // Relations one to many with spot_pictures
   spotPicture Spot_Picture[]
-  //Relations many to many with rating
+  // Relations one to many with rating
   ratings     Rating[]
 }
 
