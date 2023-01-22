@@ -13,17 +13,17 @@ const itinariesBusiness = {
   /**
    * @param {CreateItinaryDto} data
    */
-  create: (data: CreateItinaryDto, profileId: string) => {
-    const { spots } = data;
+  // create: (data: CreateItinaryDto, profileId: string) => {
+  //   const { spots } = data;
 
-    // Asign the auth user to every spots
-    const createItinary: ProfileSpotDto[] = spots.map((spot) => ({
-      ...spot,
-      profileId,
-    }));
+  //   // Asign the auth user to every spots
+  //   const createItinary: ProfileSpotDto[] = spots.map((spot) => ({
+  //     ...spot,
+  //     profileId,
+  //   }));
 
-    return itinariesRepository.create({ ...data, spots: createItinary });
-  },
+  //   return itinariesRepository.create({ ...data, spots: createItinary });
+  // },
 
   /**
    * @param {buysItinaryDto} data
