@@ -4,3 +4,5 @@ export * from "./spots";
 export * from "./products";
 export * from "./spotPictures";
 export * from "./stripe";
+export * from "./spotPictures";
+export * from "./ratings";

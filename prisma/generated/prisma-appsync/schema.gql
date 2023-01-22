@@ -1,17 +1,17 @@
 type Log {
-    id: String
+    id: String!
     message: String!
     level: Level!
     meta: AWSJSON!
 }
 
 type Test {
-    id: String
+    id: String!
     text: String!
 }
 
 type User {
-    id: String
+    id: String!
     email: AWSEmail!
     password: String!
     token: String!
@@ -20,7 +20,7 @@ type User {
 }
 
 type Profile {
-    id: String
+    id: String!
     pseudo: String!
     photoUrl: String
     gamePoint: Int!
@@ -28,10 +28,11 @@ type Profile {
     user: User!
     itinaries: [Itinary]
     spots: [Spot]
+    ratings: [Rating]
 }
 
 type Itinary {
-    id: String
+    id: String!
     name: String!
     description: String!
     gamePoint: Int
@@ -41,10 +42,9 @@ type Itinary {
 }
 
 type Spot {
-    id: String
+    id: String!
     name: String!
     description: String!
-    rating: Int
     isCanPark: Boolean!
     isCanVisit: Boolean!
     isTouristic: Boolean!
@@ -55,20 +55,30 @@ type Spot {
     lng: Int!
     region: String!
     spotPicture: [SpotPicture]
+    ratings: [Rating]
 }
 
 type SpotPicture {
-    id: String
+    id: String!
     url: AWSURL!
     spot: Spot!
     spotId: String!
 }
 
 type Product {
-    id: String
+    id: String!
     photoUrl: String
     gamePoints: Int!
     price: Int!
+}
+
+type Rating {
+    id: String!
+    rate: Int!
+    profile: Profile!
+    profileId: String!
+    spot: Spot!
+    spotId: String!
 }
 
 type BatchPayload {
@@ -122,23 +132,9 @@ enum OrderByArg {
 }
 
 input LogFilter {
-    some: LogScalarWhereInput
-    every: LogScalarWhereInput
-    none: LogScalarWhereInput
-}
-
-input LogRelationFilter {
-    id: StringFilter
-    message: StringFilter
-    level: LevelEnumFilter
-    meta: AWSJSONFilter
-}
-
-input LogScalarWhereInput {
-    id: StringFilter
-    message: StringFilter
-    level: LevelEnumFilter
-    meta: AWSJSONFilter
+    some: LogWhereInput
+    every: LogWhereInput
+    none: LogWhereInput
 }
 
 input LogWhereInput {
@@ -153,6 +149,16 @@ input LogWhereInput {
 
 input LogWhereUniqueInput {
     id: String
+}
+
+input LogExtendedWhereUniqueInput {
+    OR: [LogWhereInput]
+    NOT: [LogWhereInput]
+    AND: [LogWhereInput]
+    id: String
+    message: StringFilter
+    level: LevelEnumFilter
+    meta: AWSJSONFilter
 }
 
 input LogOrderByInput {
@@ -218,19 +224,9 @@ input LogDeleteManyInput {
 }
 
 input TestFilter {
-    some: TestScalarWhereInput
-    every: TestScalarWhereInput
-    none: TestScalarWhereInput
-}
-
-input TestRelationFilter {
-    id: StringFilter
-    text: StringFilter
-}
-
-input TestScalarWhereInput {
-    id: StringFilter
-    text: StringFilter
+    some: TestWhereInput
+    every: TestWhereInput
+    none: TestWhereInput
 }
 
 input TestWhereInput {
@@ -242,6 +238,14 @@ input TestWhereInput {
 }
 
 input TestWhereUniqueInput {
+    id: String
+    text: String
+}
+
+input TestExtendedWhereUniqueInput {
+    OR: [TestWhereInput]
+    NOT: [TestWhereInput]
+    AND: [TestWhereInput]
     id: String
     text: String
 }
@@ -301,25 +305,9 @@ input TestDeleteManyInput {
 }
 
 input UserFilter {
-    some: UserScalarWhereInput
-    every: UserScalarWhereInput
-    none: UserScalarWhereInput
-}
-
-input UserRelationFilter {
-    id: StringFilter
-    email: AWSEmailFilter
-    password: StringFilter
-    token: StringFilter
-    role: RoleEnumFilter
-}
-
-input UserScalarWhereInput {
-    id: StringFilter
-    email: AWSEmailFilter
-    password: StringFilter
-    token: StringFilter
-    role: RoleEnumFilter
+    some: UserWhereInput
+    every: UserWhereInput
+    none: UserWhereInput
 }
 
 input UserWhereInput {
@@ -331,13 +319,25 @@ input UserWhereInput {
     password: StringFilter
     token: StringFilter
     role: RoleEnumFilter
-    profile: ProfileFilter
+    profile: ProfileWhereInput
 }
 
 input UserWhereUniqueInput {
     id: String
     email: AWSEmail
     token: String
+}
+
+input UserExtendedWhereUniqueInput {
+    OR: [UserWhereInput]
+    NOT: [UserWhereInput]
+    AND: [UserWhereInput]
+    id: String
+    email: AWSEmail
+    password: StringFilter
+    token: String
+    role: RoleEnumFilter
+    profile: ProfileWhereInput
 }
 
 input UserOrderByInput {
@@ -410,44 +410,25 @@ input UserDeleteManyInput {
 }
 
 input UserProfileCreateRelationInput {
-    create: [ProfileCreateInput]
-    connect: [ProfileWhereUniqueInput]
-    connectOrCreate: [ProfileConnectOrCreateInput]
+    create: ProfileCreateInput
+    connect: ProfileWhereUniqueInput
+    connectOrCreate: ProfileConnectOrCreateInput
 }
 
 input UserProfileUpdateRelationsInput {
-    connect: [ProfileWhereUniqueInput]
-    create: [ProfileCreateInput]
-    connectOrCreate: [ProfileConnectOrCreateInput]
-    update: [ProfileUpdateUniqueInput]
-    upsert: [ProfileUpsertUniqueInput]
-    delete: [ProfileDeleteUniqueInput]
-    disconnect: [ProfileWhereUniqueInput]
-    set: [ProfileWhereUniqueInput]
-    updateMany: [ProfileUpdateManyInput]
-    deleteMany: [ProfileDeleteManyInput]
+    connect: ProfileWhereUniqueInput
+    create: ProfileCreateInput
+    connectOrCreate: ProfileConnectOrCreateInput
+    update: ProfileUpdateInput
+    upsert: ProfileUpsertInput
+    delete: Boolean
+    disconnect: Boolean
 }
 
 input ProfileFilter {
-    some: ProfileScalarWhereInput
-    every: ProfileScalarWhereInput
-    none: ProfileScalarWhereInput
-}
-
-input ProfileRelationFilter {
-    id: StringFilter
-    pseudo: StringFilter
-    photoUrl: StringFilter
-    gamePoint: IntFilter
-    userId: StringFilter
-}
-
-input ProfileScalarWhereInput {
-    id: StringFilter
-    pseudo: StringFilter
-    photoUrl: StringFilter
-    gamePoint: IntFilter
-    userId: StringFilter
+    some: ProfileWhereInput
+    every: ProfileWhereInput
+    none: ProfileWhereInput
 }
 
 input ProfileWhereInput {
@@ -459,15 +440,31 @@ input ProfileWhereInput {
     photoUrl: StringFilter
     gamePoint: IntFilter
     userId: StringFilter
-    user: UserRelationFilter
+    user: UserWhereInput
     itinaries: ItinaryFilter
     spots: SpotFilter
+    ratings: RatingFilter
 }
 
 input ProfileWhereUniqueInput {
     id: String
     pseudo: String
     userId: String
+}
+
+input ProfileExtendedWhereUniqueInput {
+    OR: [ProfileWhereInput]
+    NOT: [ProfileWhereInput]
+    AND: [ProfileWhereInput]
+    id: String
+    pseudo: String
+    photoUrl: StringFilter
+    gamePoint: IntFilter
+    userId: String
+    user: UserWhereInput
+    itinaries: ItinaryFilter
+    spots: SpotFilter
+    ratings: RatingFilter
 }
 
 input ProfileOrderByInput {
@@ -479,6 +476,7 @@ input ProfileOrderByInput {
     user: UserOrderByInput
     itinaries: ItinaryOrderByInput
     spots: SpotOrderByInput
+    ratings: RatingOrderByInput
 }
 
 input ProfileCreateInput {
@@ -489,6 +487,7 @@ input ProfileCreateInput {
     user: ProfileUserCreateRelationInput!
     itinaries: ProfileItinariesCreateRelationInput
     spots: ProfileSpotsCreateRelationInput
+    ratings: ProfileRatingsCreateRelationInput
 }
 
 input ProfileCreateManyInput {
@@ -506,6 +505,7 @@ input ProfileUpdateInput {
     user: ProfileUserUpdateRelationsInput
     itinaries: ProfileItinariesUpdateRelationsInput
     spots: ProfileSpotsUpdateRelationsInput
+    ratings: ProfileRatingsUpdateRelationsInput
 }
 
 input ProfileOperationInput {
@@ -597,27 +597,29 @@ input ProfileSpotsUpdateRelationsInput {
     updateMany: [SpotUpdateManyInput]
     deleteMany: [SpotDeleteManyInput]
 }
+input ProfileRatingsCreateRelationInput {
+    create: [RatingCreateInput]
+    connect: [RatingWhereUniqueInput]
+    connectOrCreate: [RatingConnectOrCreateInput]
+}
+
+input ProfileRatingsUpdateRelationsInput {
+    connect: [RatingWhereUniqueInput]
+    create: [RatingCreateInput]
+    connectOrCreate: [RatingConnectOrCreateInput]
+    update: [RatingUpdateUniqueInput]
+    upsert: [RatingUpsertUniqueInput]
+    delete: [RatingDeleteUniqueInput]
+    disconnect: [RatingWhereUniqueInput]
+    set: [RatingWhereUniqueInput]
+    updateMany: [RatingUpdateManyInput]
+    deleteMany: [RatingDeleteManyInput]
+}
 
 input ItinaryFilter {
-    some: ItinaryScalarWhereInput
-    every: ItinaryScalarWhereInput
-    none: ItinaryScalarWhereInput
-}
-
-input ItinaryRelationFilter {
-    id: StringFilter
-    name: StringFilter
-    description: StringFilter
-    gamePoint: IntFilter
-    photoUrl: StringFilter
-}
-
-input ItinaryScalarWhereInput {
-    id: StringFilter
-    name: StringFilter
-    description: StringFilter
-    gamePoint: IntFilter
-    photoUrl: StringFilter
+    some: ItinaryWhereInput
+    every: ItinaryWhereInput
+    none: ItinaryWhereInput
 }
 
 input ItinaryWhereInput {
@@ -635,6 +637,19 @@ input ItinaryWhereInput {
 
 input ItinaryWhereUniqueInput {
     id: String
+}
+
+input ItinaryExtendedWhereUniqueInput {
+    OR: [ItinaryWhereInput]
+    NOT: [ItinaryWhereInput]
+    AND: [ItinaryWhereInput]
+    id: String
+    name: StringFilter
+    description: StringFilter
+    gamePoint: IntFilter
+    photoUrl: StringFilter
+    profiles: ProfileFilter
+    spots: SpotFilter
 }
 
 input ItinaryOrderByInput {
@@ -751,37 +766,9 @@ input ItinarySpotsUpdateRelationsInput {
 }
 
 input SpotFilter {
-    some: SpotScalarWhereInput
-    every: SpotScalarWhereInput
-    none: SpotScalarWhereInput
-}
-
-input SpotRelationFilter {
-    id: StringFilter
-    name: StringFilter
-    description: StringFilter
-    rating: IntFilter
-    isCanPark: BooleanFilter
-    isCanVisit: BooleanFilter
-    isTouristic: BooleanFilter
-    profileId: StringFilter
-    lat: IntFilter
-    lng: IntFilter
-    region: StringFilter
-}
-
-input SpotScalarWhereInput {
-    id: StringFilter
-    name: StringFilter
-    description: StringFilter
-    rating: IntFilter
-    isCanPark: BooleanFilter
-    isCanVisit: BooleanFilter
-    isTouristic: BooleanFilter
-    profileId: StringFilter
-    lat: IntFilter
-    lng: IntFilter
-    region: StringFilter
+    some: SpotWhereInput
+    every: SpotWhereInput
+    none: SpotWhereInput
 }
 
 input SpotWhereInput {
@@ -791,29 +778,47 @@ input SpotWhereInput {
     id: StringFilter
     name: StringFilter
     description: StringFilter
-    rating: IntFilter
     isCanPark: BooleanFilter
     isCanVisit: BooleanFilter
     isTouristic: BooleanFilter
-    profile: ProfileRelationFilter
+    profile: ProfileWhereInput
     profileId: StringFilter
     itinaries: ItinaryFilter
     lat: IntFilter
     lng: IntFilter
     region: StringFilter
     spotPicture: SpotPictureFilter
+    ratings: RatingFilter
 }
 
 input SpotWhereUniqueInput {
     id: String
-    profileId: String
+}
+
+input SpotExtendedWhereUniqueInput {
+    OR: [SpotWhereInput]
+    NOT: [SpotWhereInput]
+    AND: [SpotWhereInput]
+    id: String
+    name: StringFilter
+    description: StringFilter
+    isCanPark: BooleanFilter
+    isCanVisit: BooleanFilter
+    isTouristic: BooleanFilter
+    profile: ProfileWhereInput
+    profileId: StringFilter
+    itinaries: ItinaryFilter
+    lat: IntFilter
+    lng: IntFilter
+    region: StringFilter
+    spotPicture: SpotPictureFilter
+    ratings: RatingFilter
 }
 
 input SpotOrderByInput {
     id: OrderByArg
     name: OrderByArg
     description: OrderByArg
-    rating: OrderByArg
     isCanPark: OrderByArg
     isCanVisit: OrderByArg
     isTouristic: OrderByArg
@@ -824,13 +829,13 @@ input SpotOrderByInput {
     lng: OrderByArg
     region: OrderByArg
     spotPicture: SpotPictureOrderByInput
+    ratings: RatingOrderByInput
 }
 
 input SpotCreateInput {
     id: String
     name: String!
     description: String!
-    rating: Int
     isCanPark: Boolean!
     isCanVisit: Boolean!
     isTouristic: Boolean!
@@ -840,13 +845,13 @@ input SpotCreateInput {
     lng: Int!
     region: String!
     spotPicture: SpotSpotPictureCreateRelationInput
+    ratings: SpotRatingsCreateRelationInput
 }
 
 input SpotCreateManyInput {
     id: String
     name: String!
     description: String!
-    rating: Int
     isCanPark: Boolean!
     isCanVisit: Boolean!
     isTouristic: Boolean!
@@ -859,7 +864,6 @@ input SpotUpdateInput {
     id: String
     name: String
     description: String
-    rating: Int
     isCanPark: Boolean
     isCanVisit: Boolean
     isTouristic: Boolean
@@ -869,10 +873,10 @@ input SpotUpdateInput {
     lng: Int
     region: String
     spotPicture: SpotSpotPictureUpdateRelationsInput
+    ratings: SpotRatingsUpdateRelationsInput
 }
 
 input SpotOperationInput {
-    rating: IntOperation
     lat: IntOperation
     lng: IntOperation
 }
@@ -962,23 +966,29 @@ input SpotSpotPictureUpdateRelationsInput {
     updateMany: [SpotPictureUpdateManyInput]
     deleteMany: [SpotPictureDeleteManyInput]
 }
+input SpotRatingsCreateRelationInput {
+    create: [RatingCreateInput]
+    connect: [RatingWhereUniqueInput]
+    connectOrCreate: [RatingConnectOrCreateInput]
+}
+
+input SpotRatingsUpdateRelationsInput {
+    connect: [RatingWhereUniqueInput]
+    create: [RatingCreateInput]
+    connectOrCreate: [RatingConnectOrCreateInput]
+    update: [RatingUpdateUniqueInput]
+    upsert: [RatingUpsertUniqueInput]
+    delete: [RatingDeleteUniqueInput]
+    disconnect: [RatingWhereUniqueInput]
+    set: [RatingWhereUniqueInput]
+    updateMany: [RatingUpdateManyInput]
+    deleteMany: [RatingDeleteManyInput]
+}
 
 input SpotPictureFilter {
-    some: SpotPictureScalarWhereInput
-    every: SpotPictureScalarWhereInput
-    none: SpotPictureScalarWhereInput
-}
-
-input SpotPictureRelationFilter {
-    id: StringFilter
-    url: AWSURLFilter
-    spotId: StringFilter
-}
-
-input SpotPictureScalarWhereInput {
-    id: StringFilter
-    url: AWSURLFilter
-    spotId: StringFilter
+    some: SpotPictureWhereInput
+    every: SpotPictureWhereInput
+    none: SpotPictureWhereInput
 }
 
 input SpotPictureWhereInput {
@@ -987,13 +997,22 @@ input SpotPictureWhereInput {
     AND: [SpotPictureWhereInput]
     id: StringFilter
     url: AWSURLFilter
-    spot: SpotRelationFilter
+    spot: SpotWhereInput
     spotId: StringFilter
 }
 
 input SpotPictureWhereUniqueInput {
     id: String
-    spotId: String
+}
+
+input SpotPictureExtendedWhereUniqueInput {
+    OR: [SpotPictureWhereInput]
+    NOT: [SpotPictureWhereInput]
+    AND: [SpotPictureWhereInput]
+    id: String
+    url: AWSURLFilter
+    spot: SpotWhereInput
+    spotId: StringFilter
 }
 
 input SpotPictureOrderByInput {
@@ -1071,23 +1090,9 @@ input SpotPictureSpotUpdateRelationsInput {
 }
 
 input ProductFilter {
-    some: ProductScalarWhereInput
-    every: ProductScalarWhereInput
-    none: ProductScalarWhereInput
-}
-
-input ProductRelationFilter {
-    id: StringFilter
-    photoUrl: StringFilter
-    gamePoints: IntFilter
-    price: IntFilter
-}
-
-input ProductScalarWhereInput {
-    id: StringFilter
-    photoUrl: StringFilter
-    gamePoints: IntFilter
-    price: IntFilter
+    some: ProductWhereInput
+    every: ProductWhereInput
+    none: ProductWhereInput
 }
 
 input ProductWhereInput {
@@ -1102,6 +1107,16 @@ input ProductWhereInput {
 
 input ProductWhereUniqueInput {
     id: String
+}
+
+input ProductExtendedWhereUniqueInput {
+    OR: [ProductWhereInput]
+    NOT: [ProductWhereInput]
+    AND: [ProductWhereInput]
+    id: String
+    photoUrl: StringFilter
+    gamePoints: IntFilter
+    price: IntFilter
 }
 
 input ProductOrderByInput {
@@ -1169,6 +1184,137 @@ input ProductDeleteUniqueInput {
 
 input ProductDeleteManyInput {
     where: ProductWhereInput!
+}
+
+input RatingFilter {
+    some: RatingWhereInput
+    every: RatingWhereInput
+    none: RatingWhereInput
+}
+
+input RatingWhereInput {
+    OR: [RatingWhereInput]
+    NOT: [RatingWhereInput]
+    AND: [RatingWhereInput]
+    id: StringFilter
+    rate: IntFilter
+    profile: ProfileWhereInput
+    profileId: StringFilter
+    spot: SpotWhereInput
+    spotId: StringFilter
+}
+
+input RatingWhereUniqueInput {
+    id: String
+}
+
+input RatingExtendedWhereUniqueInput {
+    OR: [RatingWhereInput]
+    NOT: [RatingWhereInput]
+    AND: [RatingWhereInput]
+    id: String
+    rate: IntFilter
+    profile: ProfileWhereInput
+    profileId: StringFilter
+    spot: SpotWhereInput
+    spotId: StringFilter
+}
+
+input RatingOrderByInput {
+    id: OrderByArg
+    rate: OrderByArg
+    profile: ProfileOrderByInput
+    profileId: OrderByArg
+    spot: SpotOrderByInput
+    spotId: OrderByArg
+}
+
+input RatingCreateInput {
+    id: String
+    rate: Int!
+    profile: RatingProfileCreateRelationInput!
+    spot: RatingSpotCreateRelationInput!
+}
+
+input RatingCreateManyInput {
+    id: String
+    rate: Int!
+}
+
+input RatingUpdateInput {
+    id: String
+    rate: Int
+    profile: RatingProfileUpdateRelationsInput
+    spot: RatingSpotUpdateRelationsInput
+}
+
+input RatingOperationInput {
+    rate: IntOperation
+}
+
+input RatingUpdateUniqueInput {
+    data: RatingUpdateInput!
+    where: RatingWhereUniqueInput!
+}
+
+input RatingUpdateManyInput {
+    where: RatingWhereInput!
+    data: RatingUpdateInput!
+}
+
+input RatingUpsertInput {
+    create: RatingCreateInput!
+    update: RatingUpdateInput!
+}
+
+input RatingUpsertUniqueInput {
+    where: RatingWhereUniqueInput!
+    create: RatingCreateInput!
+    update: RatingUpdateInput!
+}
+
+input RatingConnectOrCreateInput {
+    where: RatingWhereUniqueInput!
+    create: RatingCreateInput!
+}
+
+input RatingDeleteUniqueInput {
+    where: RatingWhereUniqueInput!
+}
+
+input RatingDeleteManyInput {
+    where: RatingWhereInput!
+}
+
+input RatingProfileCreateRelationInput {
+    create: ProfileCreateInput
+    connect: ProfileWhereUniqueInput
+    connectOrCreate: ProfileConnectOrCreateInput
+}
+
+input RatingProfileUpdateRelationsInput {
+    connect: ProfileWhereUniqueInput
+    create: ProfileCreateInput
+    connectOrCreate: ProfileConnectOrCreateInput
+    update: ProfileUpdateInput
+    upsert: ProfileUpsertInput
+    delete: Boolean
+    disconnect: Boolean
+}
+input RatingSpotCreateRelationInput {
+    create: SpotCreateInput
+    connect: SpotWhereUniqueInput
+    connectOrCreate: SpotConnectOrCreateInput
+}
+
+input RatingSpotUpdateRelationsInput {
+    connect: SpotWhereUniqueInput
+    create: SpotCreateInput
+    connectOrCreate: SpotConnectOrCreateInput
+    update: SpotUpdateInput
+    upsert: SpotUpsertInput
+    delete: Boolean
+    disconnect: Boolean
 }
 
 input IntOperation {
@@ -1725,6 +1871,57 @@ type Mutation {
     deleteManyProducts(
         where: ProductWhereInput!
     ): BatchPayload
+
+    """
+    Create a new single Rating record.
+    """
+    createRating(data: RatingCreateInput!): Rating
+
+    """
+    Create multiple new Rating records.
+    """
+    createManyRatings(
+        data: [RatingCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single Rating record.
+    """
+    updateRating(
+        where: RatingWhereUniqueInput!
+        data: RatingUpdateInput
+        operation: RatingOperationInput
+    ): Rating
+
+    """
+    Update multiple existing Rating records.
+    """
+    updateManyRatings(
+        where: RatingWhereInput!
+        data: RatingUpdateInput
+        operation: RatingOperationInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single Rating record.
+    """
+    upsertRating(
+        data: RatingUpdateInput!
+        where: RatingWhereUniqueInput!
+    ): Rating
+
+    """
+    Delete a single Rating record.
+    """
+    deleteRating(where: RatingWhereUniqueInput!): Rating
+
+    """
+    Delete multiple Rating records.
+    """
+    deleteManyRatings(
+        where: RatingWhereInput!
+    ): BatchPayload
 }
 type Query {
     """
@@ -1925,6 +2122,31 @@ type Query {
     countProducts(
         where: ProductWhereInput
         orderBy: [ProductOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    """
+    Find a single Rating record by unique identifier.
+    """
+    getRating(where: RatingWhereUniqueInput!): Rating
+
+    """
+    Find many Rating records (optional query filters).
+    """
+    listRatings(
+        where: RatingWhereInput
+        orderBy: [RatingOrderByInput]
+        skip: Int
+        take: Int
+    ): [Rating]
+
+    """
+    Count all Rating records (optional query filters).
+    """
+    countRatings(
+        where: RatingWhereInput
+        orderBy: [RatingOrderByInput]
         skip: Int
         take: Int
     ): Int
@@ -2300,31 +2522,31 @@ type Subscription {
     """
     Triggered from `createSpot` mutation (excl. `createManySpots` and `upsertSpot`).
     """
-    onCreatedSpot(id: String, profileId: String): Spot
+    onCreatedSpot(id: String): Spot
         @aws_subscribe(mutations: ["createSpot"])
 
     """
     Triggered from `updateSpot` mutation (excl. `updateManySpots` and `upsertSpot`).
     """
-    onUpdatedSpot(id: String, profileId: String): Spot
+    onUpdatedSpot(id: String): Spot
         @aws_subscribe(mutations: ["updateSpot"])
 
     """
     Triggered from `upsertSpot` mutation.
     """
-    onUpsertedSpot(id: String, profileId: String): Spot
+    onUpsertedSpot(id: String): Spot
         @aws_subscribe(mutations: ["upsertSpot"])
 
     """
     Triggered from `deleteSpot` mutation (excl. `deleteManySpots`).
     """
-    onDeletedSpot(id: String, profileId: String): Spot
+    onDeletedSpot(id: String): Spot
         @aws_subscribe(mutations: ["deleteSpot"])
 
     """
     Triggered from ANY SINGLE record mutation.
     """
-    onMutatedSpot(id: String, profileId: String): Spot
+    onMutatedSpot(id: String): Spot
         @aws_subscribe(
             mutations: [
                 "createSpot"
@@ -2367,46 +2589,31 @@ type Subscription {
     """
     Triggered from `createSpotPicture` mutation (excl. `createManySpotPictures` and `upsertSpotPicture`).
     """
-    onCreatedSpotPicture(
-        id: String
-        spotId: String
-    ): SpotPicture
+    onCreatedSpotPicture(id: String): SpotPicture
         @aws_subscribe(mutations: ["createSpotPicture"])
 
     """
     Triggered from `updateSpotPicture` mutation (excl. `updateManySpotPictures` and `upsertSpotPicture`).
     """
-    onUpdatedSpotPicture(
-        id: String
-        spotId: String
-    ): SpotPicture
+    onUpdatedSpotPicture(id: String): SpotPicture
         @aws_subscribe(mutations: ["updateSpotPicture"])
 
     """
     Triggered from `upsertSpotPicture` mutation.
     """
-    onUpsertedSpotPicture(
-        id: String
-        spotId: String
-    ): SpotPicture
+    onUpsertedSpotPicture(id: String): SpotPicture
         @aws_subscribe(mutations: ["upsertSpotPicture"])
 
     """
     Triggered from `deleteSpotPicture` mutation (excl. `deleteManySpotPictures`).
     """
-    onDeletedSpotPicture(
-        id: String
-        spotId: String
-    ): SpotPicture
+    onDeletedSpotPicture(id: String): SpotPicture
         @aws_subscribe(mutations: ["deleteSpotPicture"])
 
     """
     Triggered from ANY SINGLE record mutation.
     """
-    onMutatedSpotPicture(
-        id: String
-        spotId: String
-    ): SpotPicture
+    onMutatedSpotPicture(id: String): SpotPicture
         @aws_subscribe(
             mutations: [
                 "createSpotPicture"
@@ -2518,4 +2725,71 @@ type Subscription {
     """
     onDeletedManyProducts: BatchPayload
         @aws_subscribe(mutations: ["deleteManyProducts"])
+
+    """
+    Triggered from `createRating` mutation (excl. `createManyRatings` and `upsertRating`).
+    """
+    onCreatedRating(id: String): Rating
+        @aws_subscribe(mutations: ["createRating"])
+
+    """
+    Triggered from `updateRating` mutation (excl. `updateManyRatings` and `upsertRating`).
+    """
+    onUpdatedRating(id: String): Rating
+        @aws_subscribe(mutations: ["updateRating"])
+
+    """
+    Triggered from `upsertRating` mutation.
+    """
+    onUpsertedRating(id: String): Rating
+        @aws_subscribe(mutations: ["upsertRating"])
+
+    """
+    Triggered from `deleteRating` mutation (excl. `deleteManyRatings`).
+    """
+    onDeletedRating(id: String): Rating
+        @aws_subscribe(mutations: ["deleteRating"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedRating(id: String): Rating
+        @aws_subscribe(
+            mutations: [
+                "createRating"
+                "updateRating"
+                "upsertRating"
+                "deleteRating"
+            ]
+        )
+
+    """
+    Triggered from `createManyRatings` mutation.
+    """
+    onCreatedManyRatings: BatchPayload
+        @aws_subscribe(mutations: ["createManyRatings"])
+
+    """
+    Triggered from `updateManyRatings` mutation.
+    """
+    onUpdatedManyRatings: BatchPayload
+        @aws_subscribe(mutations: ["updateManyRatings"])
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManyRatings: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyRatings"
+                "updateManyRatings"
+                "deleteManyRatings"
+            ]
+        )
+
+    """
+    Triggered from `deleteManyRatings` mutation.
+    """
+    onDeletedManyRatings: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyRatings"])
 }

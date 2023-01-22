@@ -1,4 +1,6 @@
-import { User } from "../../models";
+import { Profile as ProfileDto } from "@prisma/client";
+import { UserDto } from "../../dto/users-dto";
+import { Profile, User } from "../../models";
 
 const usersRepository = {
   /**
@@ -23,6 +25,44 @@ const usersRepository = {
         profile: { create: { pseudo } },
       },
       include: { profile: true },
+    });
+  },
+
+  update: (user: Pick<UserDto, "email" | "password">, profile: Pick<ProfileDto, "pseudo" | "photoUrl">, userId: string) => {
+    return User.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        ...user,
+        profile: {
+          upsert: {
+            update: {
+              ...profile,
+            },
+            create: {
+              ...profile,
+            },
+          },
+        },
+      },
+      include: { profile: true },
+    });
+  },
+
+  deleteUser: (userId: string) => {
+    return User.delete({
+      where: {
+        id: userId,
+      },
+    });
+  },
+
+  deleteProfile: (profileId: string) => {
+    return Profile.delete({
+      where: {
+        id: profileId,
+      },
     });
   },
 

@@ -55,11 +55,13 @@ model Profile {
   photoUrl  String?
   gamePoint Int       @default(0)
   userId    String    @unique
-  user      User      @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   // Implicit relations many to many with itinary
   itinaries Itinary[]
-  //Relations one to many with spot
+  // Relations one to many with spot
   spots     Spot[]
+  // Relations one to many with rating
+  ratings   Rating[]
 }
 
 model Itinary {
@@ -78,20 +80,21 @@ model Spot {
   id          String         @id @default(uuid())
   name        String
   description String
-  rating      Int?           @default(0)
   isCanPark   Boolean        @default(false)
   isCanVisit  Boolean        @default(false)
   isTouristic Boolean        @default(false)
-  //Relations one to many with profile
+  // Relations one to many with profile
   profile     Profile        @relation(fields: [profileId], references: [id])
   profileId   String
-  //Implicit relations many to many with itinary
+  // Implicit relations many to many with itinary
   itinaries   Itinary[]
   lat         Int
   lng         Int
   region      String
-  //Relations one to many with spot_pictures
+  // Relations one to many with spot_pictures
   spotPicture Spot_Picture[]
+  // Relations one to many with rating
+  ratings     Rating[]
 }
 
 model Spot_Picture {
@@ -108,3 +111,11 @@ model Product {
   price Int
 }
 
+model Rating {
+  id        String  @id @default(uuid())
+  rate      Int     
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String
+  spot      Spot   @relation(fields: [spotId], references: [id])
+  spotId    String
+}

@@ -1,9 +1,9 @@
 import { usersRepository } from "../../repositories";
 import { SignInDto } from "../../dto";
-import { GraphQLError } from "graphql";
 import { throwError, codeErrors } from "../../utils";
 import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
+import { UserDto } from "../../dto/users-dto";
 
 const { USER_ALREADY_EXISTS, USER_NOT_FOUND, INCORRECT_PASSWORD } = codeErrors;
 const secretKey = process.env.SECRET_KEY;
@@ -14,6 +14,24 @@ const usersBusiness = {
    */
   getAll: () => {
     return usersRepository.getAll();
+  },
+
+  /**
+   * @param {UserDto} data
+   */
+  update: (data: UserDto, userId: string) => {
+    const { email, password, pseudo, photoUrl } = data;
+    const user = { email, password};
+    const profile = { pseudo, photoUrl};
+    return usersRepository.update(user, profile, userId);
+  },
+
+  delete: async(userId: string, profileId: string) => {
+    const isProfileDeleted = await usersRepository.deleteProfile(profileId);
+    const isUserDeleted = await usersRepository.deleteUser(userId);
+
+    if(isProfileDeleted && isUserDeleted) return true;
+    return false;
   },
 
   /**

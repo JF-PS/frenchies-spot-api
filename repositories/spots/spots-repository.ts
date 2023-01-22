@@ -17,8 +17,8 @@ const spotsRepository = {
   ) => {
     return Spot.findMany({
       orderBy: {
-        // name: orderBy,
-        rating: orderBy,
+        name: orderBy,
+        // rating: orderBy,
       }, 
 
       where: {

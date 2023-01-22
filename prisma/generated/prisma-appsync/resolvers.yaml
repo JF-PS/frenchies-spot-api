@@ -238,3 +238,33 @@
 - typeName: Mutation
   fieldName: deleteManyProducts
   dataSource: prisma-appsync
+- typeName: Query
+  fieldName: getRating
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: listRatings
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: countRatings
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createRating
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateRating
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: upsertRating
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteRating
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createManyRatings
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateManyRatings
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteManyRatings
+  dataSource: prisma-appsync

@@ -24,6 +24,7 @@ const typeDefs = gql`
     user: User
     itinaries: [Itinary]
     spots: [Spot]
+    ratings: [Rating]
   }
 
   type Itinary {
@@ -50,7 +51,6 @@ const typeDefs = gql`
     id: String
     name: String
     description: String
-    rating: Int
     isCanPark: Boolean
     isCanVisit: Boolean
     isTouristic: Boolean
@@ -60,6 +60,7 @@ const typeDefs = gql`
     lat: Int
     lng: Int
     region: String
+    ratings: [Rating]
   }
 
   type SpotPicture {
@@ -69,11 +70,22 @@ const typeDefs = gql`
     spotId: String
   }
 
+
   type Product {
     id: String
     photoUrl: String
     gamePoints: Int
     price: Int
+  }
+
+  type Rating {
+    id: String
+    rate: Int
+    profile: Profile
+    profileId: String
+    spot: Spot
+    spotId: String
+
   }
 
   input CoordinateInput {
@@ -115,6 +127,16 @@ const typeDefs = gql`
     createProduct(photoUrl: String, gamePoints: Int, price: Int): Product
     buyProduct(gamePoint: Int, token: String, amount: Int): Profile
 
+    updateUser(
+      id: String
+      email: String
+      password: String
+      pseudo: String
+      photoUrl: String
+    ): User
+
+    deleteUser: Boolean!
+
     createSpot(
       name: String
       description: String
@@ -155,6 +177,11 @@ const typeDefs = gql`
       description: String
       spots: [SpotInput]
     ): Itinary
+
+    createRating(
+      spotId: String
+      rate: Int
+    ): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 
