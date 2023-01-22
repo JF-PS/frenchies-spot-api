@@ -1,6 +1,5 @@
 import { itinariesRepository } from "../../repositories";
 import { CreateItinaryDto, buysItinaryDto } from "../../dto";
-import { SpotCreateCoordinateDto } from "../../dto/spot-dto";
 import { ProfileSpotDto } from "./../../dto/spot-dto";
 
 const itinariesBusiness = {
