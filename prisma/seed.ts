@@ -50,6 +50,7 @@ async function main() {
           name: "lac",
           description: "lac",
           // rating: 5,
+
           isCanPark: false,
           isCanVisit: true,
           isTouristic: true,
