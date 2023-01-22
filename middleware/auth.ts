@@ -1,4 +1,4 @@
-import { usersRepository } from "../repositories";
+import { usersBusiness } from "../business";
 import { Role } from "@prisma/client";
 
 /**
@@ -7,7 +7,7 @@ import { Role } from "@prisma/client";
  */
 const authMiddleware = async (token: string) => {
   // Try to retrieve a user with the token
-  const user = await usersRepository.getAuth(token);
+  const user = await usersBusiness.authByToken(token);
 
   // Add auth information to the context
   const isLogin: boolean = user !== null;

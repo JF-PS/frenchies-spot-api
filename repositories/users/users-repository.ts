@@ -34,6 +34,16 @@ const usersRepository = {
     });
   },
 
+  logout: async (token: string) => {
+    return User.update({
+      where: { token },
+      data: { token: "" },
+      include: { profile: true },
+    })
+      .then(() => true)
+      .catch(() => false);
+  },
+
   getAuth: (token: string) => {
     return User.findUnique({ where: { token }, include: { profile: true } });
   },

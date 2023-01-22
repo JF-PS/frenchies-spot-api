@@ -64,6 +64,13 @@ type SpotPicture {
     spotId: String!
 }
 
+type Product {
+    id: String
+    photoUrl: String
+    gamePoints: Int!
+    price: Int!
+}
+
 type BatchPayload {
     count: Int
 }
@@ -1063,6 +1070,107 @@ input SpotPictureSpotUpdateRelationsInput {
     disconnect: Boolean
 }
 
+input ProductFilter {
+    some: ProductScalarWhereInput
+    every: ProductScalarWhereInput
+    none: ProductScalarWhereInput
+}
+
+input ProductRelationFilter {
+    id: StringFilter
+    photoUrl: StringFilter
+    gamePoints: IntFilter
+    price: IntFilter
+}
+
+input ProductScalarWhereInput {
+    id: StringFilter
+    photoUrl: StringFilter
+    gamePoints: IntFilter
+    price: IntFilter
+}
+
+input ProductWhereInput {
+    OR: [ProductWhereInput]
+    NOT: [ProductWhereInput]
+    AND: [ProductWhereInput]
+    id: StringFilter
+    photoUrl: StringFilter
+    gamePoints: IntFilter
+    price: IntFilter
+}
+
+input ProductWhereUniqueInput {
+    id: String
+}
+
+input ProductOrderByInput {
+    id: OrderByArg
+    photoUrl: OrderByArg
+    gamePoints: OrderByArg
+    price: OrderByArg
+}
+
+input ProductCreateInput {
+    id: String
+    photoUrl: String
+    gamePoints: Int!
+    price: Int!
+}
+
+input ProductCreateManyInput {
+    id: String
+    photoUrl: String
+    gamePoints: Int!
+    price: Int!
+}
+
+input ProductUpdateInput {
+    id: String
+    photoUrl: String
+    gamePoints: Int
+    price: Int
+}
+
+input ProductOperationInput {
+    gamePoints: IntOperation
+    price: IntOperation
+}
+
+input ProductUpdateUniqueInput {
+    data: ProductUpdateInput!
+    where: ProductWhereUniqueInput!
+}
+
+input ProductUpdateManyInput {
+    where: ProductWhereInput!
+    data: ProductUpdateInput!
+}
+
+input ProductUpsertInput {
+    create: ProductCreateInput!
+    update: ProductUpdateInput!
+}
+
+input ProductUpsertUniqueInput {
+    where: ProductWhereUniqueInput!
+    create: ProductCreateInput!
+    update: ProductUpdateInput!
+}
+
+input ProductConnectOrCreateInput {
+    where: ProductWhereUniqueInput!
+    create: ProductCreateInput!
+}
+
+input ProductDeleteUniqueInput {
+    where: ProductWhereUniqueInput!
+}
+
+input ProductDeleteManyInput {
+    where: ProductWhereInput!
+}
+
 input IntOperation {
     set: Int
     increment: Int
@@ -1566,6 +1674,57 @@ type Mutation {
     deleteManySpotPictures(
         where: SpotPictureWhereInput!
     ): BatchPayload
+
+    """
+    Create a new single Product record.
+    """
+    createProduct(data: ProductCreateInput!): Product
+
+    """
+    Create multiple new Product records.
+    """
+    createManyProducts(
+        data: [ProductCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single Product record.
+    """
+    updateProduct(
+        where: ProductWhereUniqueInput!
+        data: ProductUpdateInput
+        operation: ProductOperationInput
+    ): Product
+
+    """
+    Update multiple existing Product records.
+    """
+    updateManyProducts(
+        where: ProductWhereInput!
+        data: ProductUpdateInput
+        operation: ProductOperationInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single Product record.
+    """
+    upsertProduct(
+        data: ProductUpdateInput!
+        where: ProductWhereUniqueInput!
+    ): Product
+
+    """
+    Delete a single Product record.
+    """
+    deleteProduct(where: ProductWhereUniqueInput!): Product
+
+    """
+    Delete multiple Product records.
+    """
+    deleteManyProducts(
+        where: ProductWhereInput!
+    ): BatchPayload
 }
 type Query {
     """
@@ -1741,6 +1900,31 @@ type Query {
     countSpotPictures(
         where: SpotPictureWhereInput
         orderBy: [SpotPictureOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    """
+    Find a single Product record by unique identifier.
+    """
+    getProduct(where: ProductWhereUniqueInput!): Product
+
+    """
+    Find many Product records (optional query filters).
+    """
+    listProducts(
+        where: ProductWhereInput
+        orderBy: [ProductOrderByInput]
+        skip: Int
+        take: Int
+    ): [Product]
+
+    """
+    Count all Product records (optional query filters).
+    """
+    countProducts(
+        where: ProductWhereInput
+        orderBy: [ProductOrderByInput]
         skip: Int
         take: Int
     ): Int
@@ -2267,4 +2451,71 @@ type Subscription {
         @aws_subscribe(
             mutations: ["deleteManySpotPictures"]
         )
+
+    """
+    Triggered from `createProduct` mutation (excl. `createManyProducts` and `upsertProduct`).
+    """
+    onCreatedProduct(id: String): Product
+        @aws_subscribe(mutations: ["createProduct"])
+
+    """
+    Triggered from `updateProduct` mutation (excl. `updateManyProducts` and `upsertProduct`).
+    """
+    onUpdatedProduct(id: String): Product
+        @aws_subscribe(mutations: ["updateProduct"])
+
+    """
+    Triggered from `upsertProduct` mutation.
+    """
+    onUpsertedProduct(id: String): Product
+        @aws_subscribe(mutations: ["upsertProduct"])
+
+    """
+    Triggered from `deleteProduct` mutation (excl. `deleteManyProducts`).
+    """
+    onDeletedProduct(id: String): Product
+        @aws_subscribe(mutations: ["deleteProduct"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedProduct(id: String): Product
+        @aws_subscribe(
+            mutations: [
+                "createProduct"
+                "updateProduct"
+                "upsertProduct"
+                "deleteProduct"
+            ]
+        )
+
+    """
+    Triggered from `createManyProducts` mutation.
+    """
+    onCreatedManyProducts: BatchPayload
+        @aws_subscribe(mutations: ["createManyProducts"])
+
+    """
+    Triggered from `updateManyProducts` mutation.
+    """
+    onUpdatedManyProducts: BatchPayload
+        @aws_subscribe(mutations: ["updateManyProducts"])
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManyProducts: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyProducts"
+                "updateManyProducts"
+                "deleteManyProducts"
+            ]
+        )
+
+    """
+    Triggered from `deleteManyProducts` mutation.
+    """
+    onDeletedManyProducts: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyProducts"])
 }

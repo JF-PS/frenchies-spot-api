@@ -1,6 +1,8 @@
 import { usersBusiness } from "../../business";
 import { TContext } from "../../graphql/context";
 import { SignInDto } from "../../dto";
+import { throwError, codeErrors } from "../../utils";
+const { UNAUTHENTICATED } = codeErrors;
 
 export const usersMutation = {
   /**
@@ -12,19 +14,19 @@ export const usersMutation = {
 
   /**
    * @param {SignInDto} data
-   * @param {TContext} ctx
+   * @param {TContext} context
    */
-  signIn: (_: undefined, data: SignInDto, ctx: TContext) => {
-    console.log("=============================");
-    console.log(ctx);
-
-    // throw new GraphQLError("User is not authenticated", {
-    //   extensions: {
-    //     code: "UNAUTHENTICATED",
-    //     http: { status: 401 },
-    //   },
-    // });
-
+  signIn: (_: undefined, data: SignInDto, context: TContext) => {
     return usersBusiness.signIn(data);
+  },
+
+  /**
+   * @param {TContext} context
+   */
+  signOut: (_: undefined, data: undefined, context: TContext) => {
+    const { user } = context;
+    if (!user) return throwError(UNAUTHENTICATED);
+    const { token } = user;
+    return usersBusiness.signOut(token);
   },
 };

@@ -82,6 +82,16 @@ CREATE TABLE "Spot_Picture" (
 );
 
 -- CreateTable
+CREATE TABLE "Product" (
+    "id" TEXT NOT NULL,
+    "photoUrl" TEXT,
+    "gamePoints" INTEGER NOT NULL,
+    "price" INTEGER NOT NULL,
+
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_ItinaryToProfile" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL

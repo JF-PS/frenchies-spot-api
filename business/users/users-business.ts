@@ -75,6 +75,20 @@ const usersBusiness = {
 
     return throwError(INCORRECT_PASSWORD);
   },
+
+  /**
+   * @param {string} token
+   */
+  authByToken: async (token: string) => {
+    return usersRepository.getAuth(token);
+  },
+
+  /**
+   * @param {string} token
+   */
+  signOut: async (token: string) => {
+    return await usersRepository.logout(token);
+  },
 };
 
 export default usersBusiness;

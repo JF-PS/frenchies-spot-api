@@ -3,6 +3,7 @@ import {
   itinariesController,
   spotsController,
   spotPicturesController,
+  productsController,
 } from "../controllers";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
@@ -12,6 +13,7 @@ const Query = {
   ...itinariesController.query,
   ...spotsController.query,
   ...spotPicturesController.query,
+  ...productsController.query,
 };
 
 const Mutation = {
@@ -19,6 +21,7 @@ const Mutation = {
   ...itinariesController.mutation,
   ...spotsController.mutation,
   ...spotPicturesController.mutation,
+  ...productsController.mutation,
   createTest: (parent: any, args: any, ctx: any) => {
     return prisma.test.create({ data: { text: args.text } });
   },

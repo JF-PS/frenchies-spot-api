@@ -208,3 +208,33 @@
 - typeName: Mutation
   fieldName: deleteManySpotPictures
   dataSource: prisma-appsync
+- typeName: Query
+  fieldName: getProduct
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: listProducts
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: countProducts
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createProduct
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateProduct
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: upsertProduct
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteProduct
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createManyProducts
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateManyProducts
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteManyProducts
+  dataSource: prisma-appsync

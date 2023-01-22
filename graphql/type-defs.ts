@@ -69,6 +69,13 @@ const typeDefs = gql`
     spotId: String
   }
 
+  type Product {
+    id: String
+    photoUrl: String
+    gamePoints: Int
+    price: Int
+  }
+
   input CoordinateInput {
     lat: Int
     lng: Int
@@ -85,21 +92,28 @@ const typeDefs = gql`
     users: [User]
     itinaries: [Itinary]
     spots(
-      orderBy: String, 
-      isCanPark: Boolean, 
-      isCanVisit: Boolean, 
-      isTouristic: Boolean,
-      searchValue: String,
-      region: String,
-      skip: Int,
-      take: Int,
+      orderBy: String
+      isCanPark: Boolean
+      isCanVisit: Boolean
+      isTouristic: Boolean
+      searchValue: String
+      region: String
+      skip: Int
+      take: Int
     ): [Spot]
     spot(id: String): Spot
+    products: [Product]
+    authByToken: User
+    getBuyProductRequest(amount: Int): String
   }
 
   type Mutation {
     signIn(email: String, password: String): User
     signUp(pseudo: String, email: String, password: String): User
+    signOut: Boolean
+
+    createProduct(photoUrl: String, gamePoints: Int, price: Int): Product
+    buyProduct(gamePoint: Int, token: String, amount: Int): Profile
 
     createSpot(
       name: String

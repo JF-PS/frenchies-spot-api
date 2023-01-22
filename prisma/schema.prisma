@@ -100,3 +100,11 @@ model Spot_Picture {
   spot   Spot   @relation(fields: [spotId], references: [id])
   spotId String
 }
+
+model Product {
+  id  String @id @default(uuid())
+  photoUrl    String?
+  gamePoints Int
+  price Int
+}
+

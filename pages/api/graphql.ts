@@ -16,13 +16,11 @@ const startServer = apolloServer.start();
 
 export default cors(async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "*"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "*"
+    // "Origin, X-Requested-With, Content-Type, Accept"
   );
 
   if (req.method === "OPTIONS") {
