@@ -1,6 +1,6 @@
 import { productsRepository, stripeRepository } from "../../repositories";
 import { ProductDto } from "../../dto";
-import { throwError, codeErrors } from "../../utils";
+import { GenericError, codeErrors } from "../../utils";
 const { INTERNAL_SERVER_ERROR } = codeErrors;
 
 const productsBusiness = {
@@ -39,7 +39,7 @@ const productsBusiness = {
         return productsRepository.buy(gamePoint, profileId);
       })
       .catch((err) => {
-        return throwError(
+        throw new GenericError(
           INTERNAL_SERVER_ERROR,
           `Payment method failed : ${err}`
         );

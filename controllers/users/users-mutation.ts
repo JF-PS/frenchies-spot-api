@@ -1,7 +1,7 @@
 import { usersBusiness } from "../../business";
 import { TContext } from "../../graphql/context";
 import { SignInDto } from "../../dto";
-import { throwError, codeErrors } from "../../utils";
+import { GenericError, codeErrors } from "../../utils";
 import { UserDto } from "../../dto/users-dto";
 const { UNAUTHENTICATED } = codeErrors;
 
@@ -32,7 +32,7 @@ export const usersMutation = {
    */
   signOut: (_: undefined, data: undefined, context: TContext) => {
     const { user } = context;
-    if (!user) return throwError(UNAUTHENTICATED);
+    if (!user) throw new GenericError(UNAUTHENTICATED);
     const { token } = user;
     return usersBusiness.signOut(token);
   },
@@ -40,7 +40,7 @@ export const usersMutation = {
   updateUser: (_: undefined, data: UserDto, context: TContext) => {
     const { user } = context;
     const profileId = user?.profile.id;
-    if (!profileId) return throwError(UNAUTHENTICATED);
+    if (!profileId) throw new GenericError(UNAUTHENTICATED);
     return usersBusiness.update(data, profileId);
   },
 
@@ -52,7 +52,7 @@ export const usersMutation = {
     console.log("******USERID ****");
     console.log({ userId, profileId });
 
-    if (!userId || !profileId) return throwError(UNAUTHENTICATED);
+    if (!userId || !profileId) throw new GenericError(UNAUTHENTICATED);
     return usersBusiness.delete(userId, profileId);
   },
 };

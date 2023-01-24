@@ -1,6 +1,6 @@
 import { spotsRepository } from "../../repositories";
 import ratingsRepository from "../../repositories/ratings/ratings-repository";
-import { codeErrors, throwError } from "../../utils";
+import { codeErrors, GenericError } from "../../utils";
 
 const { SPOT_NOT_FOUND } = codeErrors;
 
@@ -21,7 +21,7 @@ const ratingsBusiness = {
     //vérifier spotId existe
     const spot = await spotsRepository.getById(spotId);
     if (!spot) {
-      return throwError(SPOT_NOT_FOUND, spotId);
+      throw new GenericError(SPOT_NOT_FOUND, spotId);
     }
     return ratingsRepository.create(rate, spotId, profileId);
   },

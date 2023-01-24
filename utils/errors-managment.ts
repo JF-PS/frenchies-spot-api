@@ -46,16 +46,23 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   }
 };
 
-const throwError = (codeError: keyof typeof codeErrors, err: string = "") => {
-  const errorMessage = errorsMessage[codeError].errorMessage["en"];
-  const statusCode = errorsMessage[codeError].statusCode;
 
-  throw new GraphQLError(`${errorMessage}${err}`, {
-    extensions: {
-      code: codeError,
-      http: { status: statusCode },
-    },
-  });
-};
+class GenericError extends GraphQLError {
+  constructor (codeError: keyof typeof codeErrors, err: string = "") {
+    const errorMessage = errorsMessage[codeError].errorMessage["en"];
+    const statusCode = errorsMessage[codeError].statusCode;
+  
+    super(`${errorMessage}${err}`, {
+      extensions: {
+        code: codeError,
+        http: { status: statusCode },
+      },
+    })
+  }
+}
 
-export default throwError;
+// const genericError = (codeError: keyof typeof codeErrors, err: string = "") => {  
+//   return new GenericError(codeError, err);
+// };
+
+export default GenericError;

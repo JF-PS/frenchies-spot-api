@@ -1,7 +1,7 @@
 import { itinariesBusiness } from "../../business";
 import { CreateItinaryDto, buysItinaryDto } from "../../dto";
 import { TContext } from "../../graphql/context";
-import { throwError, codeErrors } from "../../utils";
+import { GenericError, codeErrors } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
 
 export const itinariesMutation = {
@@ -12,7 +12,7 @@ export const itinariesMutation = {
     const { user } = context;
 
     const profileId = user?.profile.id;
-    if (!profileId) return throwError(UNAUTHENTICATED);
+    if (!profileId) throw new GenericError(UNAUTHENTICATED);
 
     return itinariesBusiness.create(data, profileId);
   },

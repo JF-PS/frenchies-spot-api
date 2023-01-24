@@ -1,6 +1,6 @@
 import { usersRepository } from "../../repositories";
 import { SignInDto } from "../../dto";
-import { throwError, codeErrors } from "../../utils";
+import { GenericError, codeErrors } from "../../utils";
 import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
 import { UserDto } from "../../dto/users-dto";
@@ -45,7 +45,7 @@ const usersBusiness = {
 
     // Throw error if that user exists
     if (oldUser) {
-      return throwError(USER_ALREADY_EXISTS, email);
+      throw new GenericError(USER_ALREADY_EXISTS, email);
     }
 
     // Encrypt password
@@ -70,7 +70,7 @@ const usersBusiness = {
 
     // Throw error if user doesn't exist
     if (!currentUser) {
-      return throwError(USER_NOT_FOUND, email);
+      throw new GenericError(USER_NOT_FOUND, email);
     }
 
     // Check if the entered password equals to the hash password
@@ -91,7 +91,7 @@ const usersBusiness = {
       return usersRepository.login(email, token);
     }
 
-    return throwError(INCORRECT_PASSWORD);
+    throw new GenericError(INCORRECT_PASSWORD);
   },
 
   /**
