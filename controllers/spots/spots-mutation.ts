@@ -20,9 +20,8 @@ export const spotsMutation = {
     const { user } = context;
     const profileId = user?.profile.id;
     if (!profileId) return throwError(UNAUTHENTICATED);
-    const { id: spotId } = data;
 
-    return spotsBusiness.update(data, profileId, spotId);
+    return spotsBusiness.update(data, profileId);
   },
 
   /**

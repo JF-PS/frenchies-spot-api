@@ -12,6 +12,7 @@ export enum codeErrors {
   INCORRECT_PASSWORD = "INCORRECT_PASSWORD",
   INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
   SPOT_NOT_FOUND = "SPOT_NOT_FOUND",
+  SPOT_ID_NOT_MATCH_PROFILE_ID = "SPOT_ID_NOT_MATCH_PROFILE_ID",
 }
 
 const errorsMessage: Record<keyof typeof codeErrors, TError> = {
@@ -38,6 +39,10 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   SPOT_NOT_FOUND: {
     statusCode: 404,
     errorMessage: { en: "No spot found with id: "}
+  },
+  SPOT_ID_NOT_MATCH_PROFILE_ID: {
+    statusCode: 404,
+    errorMessage: { en: "Spot profile id doesn't match with the current profile id"}
   }
 };
 
