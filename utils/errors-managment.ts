@@ -49,7 +49,7 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   },
   SPOT_ID_MATCH_PROFILE_ID: {
     statusCode: 404,
-    errorMessage: { en: "Spot profile id does match with the current profile id"}
+    errorMessage: { en: "Spot ProfileId is the same that your profileId. You can't rate your own spot."}
   },
   RATING_NOT_FOUND: {
     statusCode: 404,

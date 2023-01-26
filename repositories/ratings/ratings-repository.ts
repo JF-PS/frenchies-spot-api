@@ -20,19 +20,6 @@ const ratingsRepository = {
       },
       data: {
         ratings: {
-          // upsert: {
-          //   where: {
-          //     id: spotId,
-          //   },
-          //   create: {
-          //     rate,
-          //     profileId
-          //   },
-          //   update: {
-          //     rate,
-          //     profileId
-          //   },
-          // }
           create: {
             rate,
             profileId,

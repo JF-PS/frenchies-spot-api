@@ -179,23 +179,12 @@ const typeDefs = gql`
       spots: [SpotInput]
     ): Itinary
 
-    createRating(
-      spotId: String
-      rate: Int
-    ): Spot
-
-    updateRating(
-      ratingId: String
-      spotId: String
-      rate: Int
-    ): Spot
-
     createOrUpdateRating(
       ratingId: String
       spotId: String
       rate: Int
     ): Spot
-    
+
     buysItinary(profileId: String, itinaryId: String): Profile
 
     createTest(text: String): Test
