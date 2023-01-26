@@ -11,14 +11,10 @@ export interface PrismaAppSyncOptionsType {
 }
 export type Options = Required<PrismaAppSyncOptionsType> & {
     modelsMapping: any;
-    fieldsMapping: any;
 };
 export interface InjectedConfig {
     modelsMapping?: {
         [modelVariant: string]: string;
-    };
-    fieldsMapping?: {
-        [fieldPath: string]: string;
     };
     operations?: string;
 }
@@ -125,7 +121,7 @@ export type AfterHookParams = QueryParams & {
 export type Reason = string | ((context: Context) => string);
 export interface Shield {
     [matcher: string]: boolean | {
-        rule: boolean | ((context: Context) => boolean | Promise<boolean>) | any;
+        rule: boolean | any;
         reason?: Reason;
     };
 }
