@@ -6,7 +6,7 @@ const spotsRepository = {
    * Find all Spot
    */
   getAll: (
-    orderBy: 'asc' | 'desc', 
+    orderBy: "asc" | "desc", 
     isCanPark: boolean, 
     isCanVisit: boolean, 
     isTouristic: boolean,
@@ -16,11 +16,6 @@ const spotsRepository = {
     take: number,
   ) => {
     return Spot.findMany({
-      orderBy: {
-        name: orderBy,
-        // rating: orderBy,
-      }, 
-
       where: {
         isCanPark: isCanPark,
         isCanVisit: isCanVisit,
@@ -34,6 +29,7 @@ const spotsRepository = {
       
       skip: skip,
       take: take,
+
 
       // ADD: par rayon autour de soi
       // ADD: 5 premiers spots autour de soi

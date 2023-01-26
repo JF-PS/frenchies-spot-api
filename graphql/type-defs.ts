@@ -85,7 +85,6 @@ const typeDefs = gql`
     profileId: String
     spot: Spot
     spotId: String
-
   }
 
   input CoordinateInput {

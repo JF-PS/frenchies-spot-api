@@ -18,7 +18,6 @@ const ratingsBusiness = {
   //   },
 
   create: async (rate: number, spotId: string, profileId: string) => {
-    //vérifier spotId existe
     const spot = await spotsRepository.getById(spotId);
     if (!spot) {
       throw new GenericError(SPOT_NOT_FOUND, spotId);
