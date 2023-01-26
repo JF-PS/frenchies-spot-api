@@ -30,6 +30,23 @@ const spotsRepository = {
       skip: skip,
       take: take,
 
+      // include: {
+      //   ratings: {
+      //     orderBy: {
+      //       rate: orderBy,
+      //     }
+      //   }
+      // },
+
+      // select: {
+      //   id: true, 
+      //   ratings: {
+      //     _avg: {
+      //       rate: true,
+      //     }
+      //   }
+      // }
+
 
       // ADD: par rayon autour de soi
       // ADD: 5 premiers spots autour de soi

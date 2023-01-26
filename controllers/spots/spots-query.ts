@@ -27,8 +27,6 @@ export const spotsQuery = {
   },
 
   spot: (_: undefined, data: { id: string }) => {
-    console.log("**********iiiiiiiidddddd*******************")
-    console.log(data)
     const { id: spotId } = data;
     return spotsBusiness.getById(spotId);
   },

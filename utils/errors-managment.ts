@@ -13,6 +13,9 @@ export enum codeErrors {
   INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
   SPOT_NOT_FOUND = "SPOT_NOT_FOUND",
   SPOT_ID_NOT_MATCH_PROFILE_ID = "SPOT_ID_NOT_MATCH_PROFILE_ID",
+  SPOT_ID_MATCH_PROFILE_ID = "SPOT_ID_MATCH_PROFILE_ID",
+  RATING_NOT_FOUND = "RATING_NOT_FOUND",
+  RATING_ID_NOT_MATCH_PROFILE_ID = "RATING_ID_NOT_MATCH_PROFILE_ID",
 }
 
 const errorsMessage: Record<keyof typeof codeErrors, TError> = {
@@ -43,7 +46,19 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   SPOT_ID_NOT_MATCH_PROFILE_ID: {
     statusCode: 404,
     errorMessage: { en: "Spot profile id doesn't match with the current profile id"}
-  }
+  },
+  SPOT_ID_MATCH_PROFILE_ID: {
+    statusCode: 404,
+    errorMessage: { en: "Spot profile id does match with the current profile id"}
+  },
+  RATING_NOT_FOUND: {
+    statusCode: 404,
+    errorMessage: { en: "No rating found with id: "}
+  },
+  RATING_ID_NOT_MATCH_PROFILE_ID: {
+    statusCode: 404,
+    errorMessage: { en: "Rating profile id doesn't match already with the current profile id"}
+  },
 };
 
 

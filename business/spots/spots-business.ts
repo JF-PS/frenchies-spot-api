@@ -1,6 +1,5 @@
 import { spotsRepository } from "../../repositories";
 import { SpotDto } from "../../dto";
-import { TContext } from "../../graphql/context";
 import { codeErrors, GenericError } from "../../utils";
 import { UpdateSpotDto } from "../../dto/spot-dto";
 const { SPOT_ID_NOT_MATCH_PROFILE_ID, SPOT_NOT_FOUND } = codeErrors;
