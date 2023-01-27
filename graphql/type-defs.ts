@@ -176,11 +176,11 @@ const typeDefs = gql`
       region: String
     ): Profile
 
-    createItinary(
-      name: String
-      description: String
-      spots: [SpotInput]
-    ): Itinary
+    # createItinary(
+    #   name: String
+    #   description: String
+    #   spots: [SpotInput]
+    # ): Itinary
 
     createRating(spotId: String, rate: Int): Spot
 
