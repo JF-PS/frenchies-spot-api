@@ -57,6 +57,7 @@ const typeDefs = gql`
     profile: Profile
     profileId: String
     itinaries: [Itinary]
+    spotPicture: [SpotPicture]
     lat: Int
     lng: Int
     region: String
@@ -69,7 +70,6 @@ const typeDefs = gql`
     spot: Spot
     spotId: String
   }
-
 
   type Product {
     id: String
@@ -85,7 +85,6 @@ const typeDefs = gql`
     profileId: String
     spot: Spot
     spotId: String
-
   }
 
   input CoordinateInput {
@@ -98,6 +97,10 @@ const typeDefs = gql`
     description: String
     lat: Int
     lng: Int
+  }
+
+  input PictureInput {
+    url: String
   }
 
   type Query {
@@ -146,7 +149,8 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
-    ): Profile
+      pictures: [PictureInput]
+    ): Spot
 
     updateSpot(
       id: String
@@ -178,10 +182,7 @@ const typeDefs = gql`
       spots: [SpotInput]
     ): Itinary
 
-    createRating(
-      spotId: String
-      rate: Int
-    ): Spot
+    createRating(spotId: String, rate: Int): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 

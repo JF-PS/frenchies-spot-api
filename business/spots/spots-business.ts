@@ -1,19 +1,19 @@
 import { spotsRepository } from "../../repositories";
-import { SpotDto } from "../../dto";
+import { SpotDto, SpotPicturesDto } from "../../dto";
 
 const spotsBusiness = {
   /**
    * Get all itinary
    */
   getAll: (
-    orderBy: 'asc' | 'desc', 
-    isCanPark: boolean, 
-    isCanVisit: boolean, 
-    isTouristic: boolean, 
+    orderBy: "asc" | "desc",
+    isCanPark: boolean,
+    isCanVisit: boolean,
+    isTouristic: boolean,
     searchValue: string,
     region: string,
     skip: number,
-    take: number,
+    take: number
   ) => {
     return spotsRepository.getAll(
       orderBy,
@@ -23,7 +23,7 @@ const spotsBusiness = {
       searchValue,
       region,
       skip,
-      take,
+      take
     );
   },
 
@@ -34,8 +34,13 @@ const spotsBusiness = {
   /**
    * @param {SpotDto} data
    */
-  create: (data: SpotDto, profileId: string) => {
-    return spotsRepository.create(data, profileId);
+  create: (
+    data: SpotDto & { pictures: SpotPicturesDto },
+    profileId: string
+  ) => {
+    const { pictures, ...other } = data;
+    const spotData = { ...other };
+    return spotsRepository.create(spotData, pictures, profileId);
   },
 
   /**

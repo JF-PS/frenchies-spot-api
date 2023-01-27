@@ -1,25 +1,26 @@
-import { SpotDto } from "../../dto";
+import { SpotDto, SpotPicturesDto } from "../../dto";
 import { Spot, Profile } from "../../models";
+import SpotPicture from "./../../models/spotPicture";
 
 const spotsRepository = {
   /**
    * Find all Spot
    */
   getAll: (
-    orderBy: 'asc' | 'desc', 
-    isCanPark: boolean, 
-    isCanVisit: boolean, 
+    orderBy: "asc" | "desc",
+    isCanPark: boolean,
+    isCanVisit: boolean,
     isTouristic: boolean,
     searchValue: string,
     region: string,
     skip: number,
-    take: number,
+    take: number
   ) => {
     return Spot.findMany({
       orderBy: {
         name: orderBy,
         // rating: orderBy,
-      }, 
+      },
 
       where: {
         isCanPark: isCanPark,
@@ -29,9 +30,9 @@ const spotsRepository = {
 
         name: {
           contains: searchValue,
-        }
-      },      
-      
+        },
+      },
+
       skip: skip,
       take: take,
 
@@ -50,20 +51,21 @@ const spotsRepository = {
 
   /**
    * @param {SpotDto} data
+   * @param {SpotPicturesDto} pictures
+   * @param {string} profileId
    */
-  create: (data: SpotDto, profileId: string) => {
-    return Profile.update({
-      where: {
-        id: profileId,
-      },
+  create: (data: SpotDto, pictures: SpotPicturesDto, profileId: string) => {
+    return Spot.create({
       data: {
-        spots: {
-          create: {
-            ...data,
-          },
+        ...data,
+        profile: {
+          connect: { id: profileId },
+        },
+        spotPicture: {
+          create: [...pictures],
         },
       },
-      include: { spots: true },
+      include: { spotPicture: true },
     });
   },
 
