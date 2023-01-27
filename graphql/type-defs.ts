@@ -58,8 +58,8 @@ const typeDefs = gql`
     profileId: String
     itinaries: [Itinary]
     spotPicture: [SpotPicture]
-    lat: Int
-    lng: Int
+    lat: Float
+    lng: Float
     region: String
     ratings: [Rating]
   }
@@ -87,16 +87,11 @@ const typeDefs = gql`
     spotId: String
   }
 
-  input CoordinateInput {
-    lat: Int
-    lng: Int
-  }
-
   input SpotInput {
     name: String
     description: String
-    lat: Int
-    lng: Int
+    lat: Float
+    lng: Float
   }
 
   input PictureInput {
@@ -143,8 +138,8 @@ const typeDefs = gql`
     createSpot(
       name: String
       description: String
-      lat: Int
-      lng: Int
+      lat: Float
+      lng: Float
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
@@ -156,8 +151,8 @@ const typeDefs = gql`
       id: String
       name: String
       description: String
-      lat: Int
-      lng: Int
+      lat: Float
+      lng: Float
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
@@ -168,8 +163,8 @@ const typeDefs = gql`
       id: String
       name: String
       description: String
-      lat: Int
-      lng: Int
+      lat: Float
+      lng: Float
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean

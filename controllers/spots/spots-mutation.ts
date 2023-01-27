@@ -16,7 +16,6 @@ export const spotsMutation = {
     const { user } = context;
     const profileId = user?.profile.id;
     if (!profileId) return throwError(UNAUTHENTICATED);
-
     return spotsBusiness.create(data, profileId);
   },
 
