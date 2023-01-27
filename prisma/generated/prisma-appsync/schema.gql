@@ -51,8 +51,8 @@ type Spot {
     profile: Profile!
     profileId: String!
     itinaries: [Itinary]
-    lat: Int!
-    lng: Int!
+    lat: Float!
+    lng: Float!
     region: String!
     spotPicture: [SpotPicture]
     ratings: [Rating]
@@ -784,8 +784,8 @@ input SpotWhereInput {
     profile: ProfileWhereInput
     profileId: StringFilter
     itinaries: ItinaryFilter
-    lat: IntFilter
-    lng: IntFilter
+    lat: FloatFilter
+    lng: FloatFilter
     region: StringFilter
     spotPicture: SpotPictureFilter
     ratings: RatingFilter
@@ -808,8 +808,8 @@ input SpotExtendedWhereUniqueInput {
     profile: ProfileWhereInput
     profileId: StringFilter
     itinaries: ItinaryFilter
-    lat: IntFilter
-    lng: IntFilter
+    lat: FloatFilter
+    lng: FloatFilter
     region: StringFilter
     spotPicture: SpotPictureFilter
     ratings: RatingFilter
@@ -841,8 +841,8 @@ input SpotCreateInput {
     isTouristic: Boolean!
     profile: SpotProfileCreateRelationInput!
     itinaries: SpotItinariesCreateRelationInput
-    lat: Int!
-    lng: Int!
+    lat: Float!
+    lng: Float!
     region: String!
     spotPicture: SpotSpotPictureCreateRelationInput
     ratings: SpotRatingsCreateRelationInput
@@ -855,8 +855,8 @@ input SpotCreateManyInput {
     isCanPark: Boolean!
     isCanVisit: Boolean!
     isTouristic: Boolean!
-    lat: Int!
-    lng: Int!
+    lat: Float!
+    lng: Float!
     region: String!
 }
 
@@ -869,16 +869,16 @@ input SpotUpdateInput {
     isTouristic: Boolean
     profile: SpotProfileUpdateRelationsInput
     itinaries: SpotItinariesUpdateRelationsInput
-    lat: Int
-    lng: Int
+    lat: Float
+    lng: Float
     region: String
     spotPicture: SpotSpotPictureUpdateRelationsInput
     ratings: SpotRatingsUpdateRelationsInput
 }
 
 input SpotOperationInput {
-    lat: IntOperation
-    lng: IntOperation
+    lat: FloatOperation
+    lng: FloatOperation
 }
 
 input SpotUpdateUniqueInput {
