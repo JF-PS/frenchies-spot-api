@@ -57,6 +57,7 @@ const typeDefs = gql`
     profile: Profile
     profileId: String
     itinaries: [Itinary]
+    spotPicture: [SpotPicture]
     lat: Int
     lng: Int
     region: String
@@ -96,6 +97,10 @@ const typeDefs = gql`
     description: String
     lat: Int
     lng: Int
+  }
+
+  input PictureInput {
+    url: String
   }
 
   type Query {
@@ -144,7 +149,8 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
-    ): Profile
+      pictures: [PictureInput]
+    ): Spot
 
     updateSpot(
       id: String
