@@ -98,11 +98,18 @@ const typeDefs = gql`
     url: String
   }
 
+  enum OrderByEnum {
+    asc
+    desc
+  }
+
   type Query {
     users: [User]
     itinaries: [Itinary]
+
     spots(
-      orderBy: String
+      profileId: String
+      orderBy: OrderByEnum
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
@@ -111,6 +118,7 @@ const typeDefs = gql`
       skip: Int
       take: Int
     ): [Spot]
+
     spot(id: String): Spot
     products: [Product]
     authByToken: User
