@@ -35,6 +35,7 @@ model Test {
   text String @unique
 }
 
+
 model User {
   id       String   @id @default(uuid())
   email    String   @unique

@@ -1,4 +1,10 @@
-import { SpotDto, SpotPicturesDto } from "../../dto";
+import {
+  SpotDto,
+  SpotFilterDto,
+  SpotOrderDto,
+  SpotPaginationDto,
+  SpotPicturesDto,
+} from "../../dto";
 import { Spot, Profile } from "../../models";
 import SpotPicture from "./../../models/spotPicture";
 
@@ -7,37 +13,26 @@ const spotsRepository = {
    * Find all Spot
    */
   getAll: (
-    orderBy: "asc" | "desc",
-    isCanPark: boolean,
-    isCanVisit: boolean,
-    isTouristic: boolean,
-    searchValue: string,
-    region: string,
-    skip: number,
-    take: number
+    filterData: SpotFilterDto,
+    paginationData: SpotPaginationDto,
+    orderBy: SpotOrderDto["orderBy"],
+    nameContains: string
   ) => {
     return Spot.findMany({
       orderBy: {
         name: orderBy,
         // rating: orderBy,
       },
-
       where: {
-        isCanPark: isCanPark,
-        isCanVisit: isCanVisit,
-        isTouristic: isTouristic,
-        region: region,
-
+        ...filterData,
         name: {
-          contains: searchValue,
+          contains: nameContains,
         },
       },
-
-      skip: skip,
-      take: take,
-
+      ...paginationData,
       // ADD: par rayon autour de soi
       // ADD: 5 premiers spots autour de soi
+      include: { spotPicture: true },
     });
   },
 

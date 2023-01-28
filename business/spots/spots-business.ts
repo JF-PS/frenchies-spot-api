@@ -1,29 +1,20 @@
 import { spotsRepository } from "../../repositories";
-import { SpotDto, SpotPicturesDto } from "../../dto";
+import { ReadSpotDto, SpotDto, SpotPicturesDto } from "../../dto";
 
 const spotsBusiness = {
   /**
    * Get all itinary
    */
-  getAll: (
-    orderBy: "asc" | "desc",
-    isCanPark: boolean,
-    isCanVisit: boolean,
-    isTouristic: boolean,
-    searchValue: string,
-    region: string,
-    skip: number,
-    take: number
-  ) => {
+  getAll: (data: ReadSpotDto) => {
+    const { searchValue, orderBy, skip, take, ...other } = data;
+    const filterData = { ...other };
+    const paginationData = { take, skip };
+
     return spotsRepository.getAll(
+      filterData,
+      paginationData,
       orderBy,
-      isCanPark,
-      isCanVisit,
-      isTouristic,
-      searchValue,
-      region,
-      skip,
-      take
+      searchValue
     );
   },
 
