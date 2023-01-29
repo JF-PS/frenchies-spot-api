@@ -1,1 +1,1 @@
-export { default as throwError, codeErrors } from "./errors-managment";
+export { default as GenericError, codeErrors } from "./errors-managment";

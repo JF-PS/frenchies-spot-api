@@ -1,7 +1,7 @@
 import { spotsBusiness } from "../../business";
 import { SpotDto, UpdateSpotDto, SpotPicturesDto } from "../../dto/spot-dto";
 import { TContext } from "../../graphql/context";
-import { throwError, codeErrors } from "../../utils";
+import { GenericError, codeErrors } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
 
 export const spotsMutation = {
@@ -15,17 +15,16 @@ export const spotsMutation = {
   ) => {
     const { user } = context;
     const profileId = user?.profile.id;
-    if (!profileId) return throwError(UNAUTHENTICATED);
+    if (!profileId) throw new GenericError(UNAUTHENTICATED);
     return spotsBusiness.create(data, profileId);
   },
 
   updateSpot: (_: undefined, data: UpdateSpotDto, context: TContext) => {
     const { user } = context;
     const profileId = user?.profile.id;
-    if (!profileId) return throwError(UNAUTHENTICATED);
-    const { id: spotId } = data;
+    if (!profileId) throw new GenericError(UNAUTHENTICATED);
 
-    return spotsBusiness.update(data, profileId, spotId);
+    return spotsBusiness.update(data, profileId);
   },
 
   /**
@@ -34,11 +33,11 @@ export const spotsMutation = {
    */
   deleteSpot: (_: undefined, data: UpdateSpotDto, context: TContext) => {
     const { user } = context;
-
     const profileId = user?.profile.id;
-    if (!profileId) return throwError(UNAUTHENTICATED);
-    const { id: spotId } = data;
+    if (!profileId) throw new GenericError(UNAUTHENTICATED);
 
-    return spotsBusiness.delete(profileId, spotId);
+    // const { id: spotId } = data;
+
+    return spotsBusiness.delete(data, profileId);
   },
 };

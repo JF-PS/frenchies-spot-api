@@ -87,6 +87,11 @@ const typeDefs = gql`
     spotId: String
   }
 
+  input CoordinateInput {
+    lat: Int
+    lng: Int
+  }
+
   input SpotInput {
     name: String
     description: String

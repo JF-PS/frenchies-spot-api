@@ -1,5 +1,9 @@
 import { spotsRepository } from "../../repositories";
 import { ReadSpotDto, SpotDto, SpotPicturesDto } from "../../dto";
+import { TContext } from "../../graphql/context";
+import { codeErrors, GenericError } from "../../utils";
+import { UpdateSpotDto } from "../../dto/spot-dto";
+const { SPOT_ID_NOT_MATCH_PROFILE_ID, SPOT_NOT_FOUND } = codeErrors;
 
 const spotsBusiness = {
   /**
@@ -39,17 +43,27 @@ const spotsBusiness = {
    * @param {string} profileId
    * @param {string} spotId
    */
-  update: (data: SpotDto, profileId: string, spotId: string) => {
-    return spotsRepository.update(data, profileId, spotId);
+  update: (data: UpdateSpotDto, currentProfileId: string) => {
+    const { id: spotId } = data;
+    checkCreatedByCurrentUserOrThrow(spotId, currentProfileId);
+    return spotsRepository.update(data, currentProfileId, spotId);
   },
 
   /**
    * @param {string} profileId
    * @param {string} spotId
    */
-  delete: (profileId: string, spotId: string) => {
-    return spotsRepository.delete(profileId, spotId);
+  delete: async (data: UpdateSpotDto, currentProfileId: string) => {
+    const { id: spotId} = data;
+    checkCreatedByCurrentUserOrThrow(spotId, currentProfileId);
+    return spotsRepository.delete(currentProfileId, spotId);
   },
+};
+
+async function checkCreatedByCurrentUserOrThrow(spotId: string, currentProfileId: string) {
+  const spot = await spotsRepository.getById(spotId);
+  if (!spot) throw new GenericError(SPOT_NOT_FOUND, spotId);
+  if (currentProfileId !== spot.profileId) throw new GenericError(SPOT_ID_NOT_MATCH_PROFILE_ID)
 };
 
 export default spotsBusiness;

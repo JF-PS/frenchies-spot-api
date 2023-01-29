@@ -12,6 +12,7 @@ export enum codeErrors {
   INCORRECT_PASSWORD = "INCORRECT_PASSWORD",
   INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
   SPOT_NOT_FOUND = "SPOT_NOT_FOUND",
+  SPOT_ID_NOT_MATCH_PROFILE_ID = "SPOT_ID_NOT_MATCH_PROFILE_ID",
 }
 
 const errorsMessage: Record<keyof typeof codeErrors, TError> = {
@@ -38,19 +39,30 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   SPOT_NOT_FOUND: {
     statusCode: 404,
     errorMessage: { en: "No spot found with id: "}
+  },
+  SPOT_ID_NOT_MATCH_PROFILE_ID: {
+    statusCode: 404,
+    errorMessage: { en: "Spot profile id doesn't match with the current profile id"}
   }
 };
 
-const throwError = (codeError: keyof typeof codeErrors, err: string = "") => {
-  const errorMessage = errorsMessage[codeError].errorMessage["en"];
-  const statusCode = errorsMessage[codeError].statusCode;
 
-  throw new GraphQLError(`${errorMessage}${err}`, {
-    extensions: {
-      code: codeError,
-      http: { status: statusCode },
-    },
-  });
-};
+class GenericError extends GraphQLError {
+  constructor (codeError: keyof typeof codeErrors, err: string = "") {
+    const errorMessage = errorsMessage[codeError].errorMessage["en"];
+    const statusCode = errorsMessage[codeError].statusCode;
+  
+    super(`${errorMessage}${err}`, {
+      extensions: {
+        code: codeError,
+        http: { status: statusCode },
+      },
+    })
+  }
+}
 
-export default throwError;
+// const genericError = (codeError: keyof typeof codeErrors, err: string = "") => {  
+//   return new GenericError(codeError, err);
+// };
+
+export default GenericError;
