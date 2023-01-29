@@ -1,7 +1,7 @@
 import { productsBusiness } from "../../business";
 import { ProductDto, ByProductDto } from "../../dto";
 import { TContext } from "../../graphql/context";
-import { throwError, codeErrors } from "../../utils";
+import { GenericError, codeErrors } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
 
 export const productsMutation = {
@@ -29,7 +29,7 @@ export const productsMutation = {
     const userGamePoint = user?.profile.gamePoint;
 
     if (!profileId || typeof userGamePoint === "undefined")
-      return throwError(UNAUTHENTICATED);
+      throw new GenericError(UNAUTHENTICATED);
 
     return productsBusiness.buy(
       ProductGamePoint,

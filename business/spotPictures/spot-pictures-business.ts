@@ -1,6 +1,6 @@
 import { spotPicturesRepository, spotsRepository } from "../../repositories";
 import { SpotPictureDto } from "../../dto";
-import { codeErrors, throwError } from "../../utils";
+import { codeErrors, GenericError } from "../../utils";
 const { SPOT_NOT_FOUND } = codeErrors;
 
 const spotPicturesBusiness = {
@@ -12,7 +12,7 @@ const spotPicturesBusiness = {
     //verify if spot exist
     const spot = await spotsRepository.getById(spotId);
     if(!spot) {
-      return throwError(SPOT_NOT_FOUND, spotId);
+      throw new GenericError(SPOT_NOT_FOUND, spotId);
     }
 
     return spotPicturesRepository.create(data);

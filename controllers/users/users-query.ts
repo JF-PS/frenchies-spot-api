@@ -1,6 +1,6 @@
 import { usersBusiness } from "../../business";
 import { TContext } from "../../graphql/context";
-import { throwError, codeErrors } from "../../utils";
+import { GenericError, codeErrors } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
 
 export const usersQuery = {
@@ -17,7 +17,7 @@ export const usersQuery = {
    */
   authByToken: (_: undefined, data: undefined, context: TContext) => {
     const { user } = context;
-    if (!user) return throwError(UNAUTHENTICATED);
+    if (!user) throw new GenericError(UNAUTHENTICATED);
     return user;
   },
 };
