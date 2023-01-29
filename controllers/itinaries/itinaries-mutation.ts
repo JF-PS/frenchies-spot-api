@@ -8,14 +8,14 @@ export const itinariesMutation = {
   /**
    * @param {ItinaryDto} data
    */
-  createItinary: (_: undefined, data: CreateItinaryDto, context: TContext) => {
-    const { user } = context;
+  // createItinary: (_: undefined, data: CreateItinaryDto, context: TContext) => {
+  //   const { user } = context;
 
-    const profileId = user?.profile.id;
-    if (!profileId) throw new GenericError(UNAUTHENTICATED);
+  //   const profileId = user?.profile.id;
+  //   if (!profileId) throw new GenericError(UNAUTHENTICATED);
 
-    return itinariesBusiness.create(data, profileId);
-  },
+  //   return itinariesBusiness.create(data, profileId);
+  // },
 
   /**
    * @param {buysItinaryDto} data

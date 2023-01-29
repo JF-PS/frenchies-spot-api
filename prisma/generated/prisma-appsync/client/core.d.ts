@@ -1,5 +1,5 @@
 import type { Options, PrismaAppSyncOptionsType, ResolveParams } from './defs';
-import { Prisma, PrismaClient } from './defs';
+import { PrismaClient, Prisma } from './defs';
 /**
  * ##  Prisma-AppSync Client ʲˢ
  *
