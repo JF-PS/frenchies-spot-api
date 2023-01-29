@@ -1,5 +1,5 @@
 import { spotsBusiness } from "../../business";
-import { SpotDto, UpdateSpotDto } from "../../dto/spot-dto";
+import { SpotDto, UpdateSpotDto, SpotPicturesDto } from "../../dto/spot-dto";
 import { TContext } from "../../graphql/context";
 import { GenericError, codeErrors } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
@@ -8,11 +8,14 @@ export const spotsMutation = {
   /**
    * @param {SpotDto} data
    */
-  createSpot: (_: undefined, data: SpotDto, context: TContext) => {
+  createSpot: (
+    _: undefined,
+    data: SpotDto & { pictures: SpotPicturesDto },
+    context: TContext
+  ) => {
     const { user } = context;
     const profileId = user?.profile.id;
     if (!profileId) throw new GenericError(UNAUTHENTICATED);
-
     return spotsBusiness.create(data, profileId);
   },
 

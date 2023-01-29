@@ -1,5 +1,5 @@
 import { spotsRepository } from "../../repositories";
-import { SpotDto } from "../../dto";
+import { ReadSpotDto, SpotDto, SpotPicturesDto } from "../../dto";
 import { TContext } from "../../graphql/context";
 import { codeErrors, GenericError } from "../../utils";
 import { UpdateSpotDto } from "../../dto/spot-dto";
@@ -9,25 +9,16 @@ const spotsBusiness = {
   /**
    * Get all itinary
    */
-  getAll: (
-    orderBy: 'asc' | 'desc', 
-    isCanPark: boolean, 
-    isCanVisit: boolean, 
-    isTouristic: boolean, 
-    searchValue: string,
-    region: string,
-    skip: number,
-    take: number,
-  ) => {
+  getAll: (data: ReadSpotDto) => {
+    const { searchValue, orderBy, skip, take, ...other } = data;
+    const filterData = { ...other };
+    const paginationData = { take, skip };
+
     return spotsRepository.getAll(
+      filterData,
+      paginationData,
       orderBy,
-      isCanPark,
-      isCanVisit,
-      isTouristic,
-      searchValue,
-      region,
-      skip,
-      take,
+      searchValue
     );
   },
 
@@ -38,8 +29,13 @@ const spotsBusiness = {
   /**
    * @param {SpotDto} data
    */
-  create: (data: SpotDto, profileId: string) => {
-    return spotsRepository.create(data, profileId);
+  create: (
+    data: SpotDto & { pictures: SpotPicturesDto },
+    profileId: string
+  ) => {
+    const { pictures, ...other } = data;
+    const spotData = { ...other };
+    return spotsRepository.create(spotData, pictures, profileId);
   },
 
   /**

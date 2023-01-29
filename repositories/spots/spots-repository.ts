@@ -1,38 +1,38 @@
-import { SpotDto } from "../../dto";
+import {
+  SpotDto,
+  SpotFilterDto,
+  SpotOrderDto,
+  SpotPaginationDto,
+  SpotPicturesDto,
+} from "../../dto";
 import { Spot, Profile } from "../../models";
+import SpotPicture from "./../../models/spotPicture";
 
 const spotsRepository = {
   /**
    * Find all Spot
    */
   getAll: (
-    orderBy: "asc" | "desc", 
-    isCanPark: boolean, 
-    isCanVisit: boolean, 
-    isTouristic: boolean,
-    searchValue: string,
-    region: string,
-    skip: number,
-    take: number,
+    filterData: SpotFilterDto,
+    paginationData: SpotPaginationDto,
+    orderBy: SpotOrderDto["orderBy"],
+    nameContains: string
   ) => {
     return Spot.findMany({
+      orderBy: {
+        name: orderBy,
+        // rating: orderBy,
+      },
       where: {
-        isCanPark: isCanPark,
-        isCanVisit: isCanVisit,
-        isTouristic: isTouristic,
-        region: region,
-
+        ...filterData,
         name: {
-          contains: searchValue,
-        }
-      },      
-      
-      skip: skip,
-      take: take,
-
-
+          contains: nameContains,
+        },
+      },
+      ...paginationData,
       // ADD: par rayon autour de soi
       // ADD: 5 premiers spots autour de soi
+      include: { spotPicture: true },
     });
   },
 
@@ -46,20 +46,21 @@ const spotsRepository = {
 
   /**
    * @param {SpotDto} data
+   * @param {SpotPicturesDto} pictures
+   * @param {string} profileId
    */
-  create: (data: SpotDto, profileId: string) => {
-    return Profile.update({
-      where: {
-        id: profileId,
-      },
+  create: (data: SpotDto, pictures: SpotPicturesDto, profileId: string) => {
+    return Spot.create({
       data: {
-        spots: {
-          create: {
-            ...data,
-          },
+        ...data,
+        profile: {
+          connect: { id: profileId },
+        },
+        spotPicture: {
+          create: [...pictures],
         },
       },
-      include: { spots: true },
+      include: { spotPicture: true },
     });
   },
 
