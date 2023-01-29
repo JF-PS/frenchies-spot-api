@@ -27,20 +27,18 @@ export declare function getShieldAuthorization({ shield, paths, context, options
     paths: string[];
     context: Context;
     options: Options;
-}): Promise<ShieldAuthorization>;
+}): ShieldAuthorization;
 /**
  * #### Returns GraphQL query depth for any given Query.
  *
  * @param {any} options
  * @param {string[]} options.paths
  * @param {Context} options.context
- * @param {any} options.fieldsMapping
  * @returns number
  */
-export declare function getDepth({ paths, context, fieldsMapping }: {
+export declare function getDepth({ paths, context }: {
     paths: string[];
     context: Context;
-    fieldsMapping: any;
 }): number;
 /**
  * #### Execute hooks that apply to a given Query.

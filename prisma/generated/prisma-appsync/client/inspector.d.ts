@@ -7,19 +7,20 @@ declare const errorCodes: {
 };
 export interface ErrorExtensions {
     type: keyof typeof errorCodes;
-    cause?: any;
+    trace?: string[];
+    [key: string]: any;
 }
 export interface ErrorDetails {
     error: string;
     type: ErrorExtensions['type'];
     code: number;
-    cause?: ErrorExtensions['cause'];
+    trace: ErrorExtensions['trace'];
 }
 export declare class CustomError extends Error {
     error: ErrorDetails['error'];
     type: ErrorDetails['type'];
     code: ErrorDetails['code'];
-    cause: ErrorDetails['cause'];
+    trace: ErrorDetails['trace'];
     details: ErrorDetails;
     constructor(message: string, extensions: ErrorExtensions);
 }
