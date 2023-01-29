@@ -57,8 +57,9 @@ const typeDefs = gql`
     profile: Profile
     profileId: String
     itinaries: [Itinary]
-    lat: Int
-    lng: Int
+    spotPicture: [SpotPicture]
+    lat: Float
+    lng: Float
     region: String
     ratings: [Rating]
   }
@@ -69,7 +70,6 @@ const typeDefs = gql`
     spot: Spot
     spotId: String
   }
-
 
   type Product {
     id: String
@@ -85,26 +85,31 @@ const typeDefs = gql`
     profileId: String
     spot: Spot
     spotId: String
-
-  }
-
-  input CoordinateInput {
-    lat: Int
-    lng: Int
   }
 
   input SpotInput {
     name: String
     description: String
-    lat: Int
-    lng: Int
+    lat: Float
+    lng: Float
+  }
+
+  input PictureInput {
+    url: String
+  }
+
+  enum OrderByEnum {
+    asc
+    desc
   }
 
   type Query {
     users: [User]
     itinaries: [Itinary]
+
     spots(
-      orderBy: String
+      profileId: String
+      orderBy: OrderByEnum
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
@@ -113,6 +118,7 @@ const typeDefs = gql`
       skip: Int
       take: Int
     ): [Spot]
+
     spot(id: String): Spot
     products: [Product]
     authByToken: User
@@ -140,20 +146,21 @@ const typeDefs = gql`
     createSpot(
       name: String
       description: String
-      lat: Int
-      lng: Int
+      lat: Float
+      lng: Float
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
-    ): Profile
+      pictures: [PictureInput]
+    ): Spot
 
     updateSpot(
       id: String
       name: String
       description: String
-      lat: Int
-      lng: Int
+      lat: Float
+      lng: Float
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
@@ -164,24 +171,21 @@ const typeDefs = gql`
       id: String
       name: String
       description: String
-      lat: Int
-      lng: Int
+      lat: Float
+      lng: Float
       isCanPark: Boolean
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
     ): Profile
 
-    createItinary(
-      name: String
-      description: String
-      spots: [SpotInput]
-    ): Itinary
+    # createItinary(
+    #   name: String
+    #   description: String
+    #   spots: [SpotInput]
+    # ): Itinary
 
-    createRating(
-      spotId: String
-      rate: Int
-    ): Spot
+    createRating(spotId: String, rate: Int): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 

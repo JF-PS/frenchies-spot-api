@@ -15,18 +15,18 @@ const itinariesRepository = {
   /**
    * @param {CreateItinariesRepositoryDto} data
    */
-  create: (data: CreateItinariesRepositoryDto) => {
-    const { spots } = data;
-    return Itinary.create({
-      data: {
-        ...data,
-        spots: {
-          create: spots,
-        },
-      },
-      include: { spots: true },
-    });
-  },
+  // create: (data: CreateItinariesRepositoryDto) => {
+  //   const { spots } = data;
+  //   return Itinary.create({
+  //     data: {
+  //       ...data,
+  //       spots: {
+  //         create: spots,
+  //       },
+  //     },
+  //     include: { spots: true },
+  //   });
+  // },
 
   /**
    * Connect a user with an itinary
