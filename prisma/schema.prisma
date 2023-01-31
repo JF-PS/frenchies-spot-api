@@ -101,7 +101,7 @@ model Spot {
 model Spot_Picture {
   id     String @id @default(uuid())
   url    String
-  spot   Spot   @relation(fields: [spotId], references: [id])
+  spot   Spot   @relation(fields: [spotId], references: [id], onDelete: Cascade)
   spotId String
 }
 

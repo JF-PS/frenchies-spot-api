@@ -11,7 +11,7 @@ const spotPicturesBusiness = {
     const { spotId } = data;
     //verify if spot exist
     const spot = await spotsRepository.getById(spotId);
-    if(!spot) {
+    if (!spot) {
       throw new GenericError(SPOT_NOT_FOUND, spotId);
     }
 

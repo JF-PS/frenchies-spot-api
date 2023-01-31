@@ -64,24 +64,15 @@ const spotsRepository = {
     });
   },
 
-  update: (data: SpotDto, profileId: string, spotId: string) => {
-    return Profile.update({
+  update: (data: SpotDto, spotId: string) => {
+    return Spot.update({
       where: {
-        id: profileId,
+        id: spotId,
       },
       data: {
-        spots: {
-          update: {
-            data: {
-              ...data,
-            },
-            where: {
-              id: spotId,
-            },
-          },
-        },
+        ...data,
       },
-      include: { spots: true },
+      include: { spotPicture: true },
     });
   },
 
@@ -101,8 +92,9 @@ const spotsRepository = {
           },
         },
       },
-      include: { spots: true },
-    });
+    })
+      .then(() => true)
+      .catch(() => false);
   },
 };
 

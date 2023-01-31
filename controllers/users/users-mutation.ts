@@ -21,9 +21,6 @@ export const usersMutation = {
    * @param {TContext} context
    */
   signIn: (_: undefined, data: SignInDto, context: TContext) => {
-    console.log("==================================");
-    console.log("SIGNIN");
-    console.log("==================================");
     return usersBusiness.signIn(data);
   },
 

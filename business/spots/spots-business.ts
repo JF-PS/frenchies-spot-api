@@ -1,8 +1,9 @@
 import { spotsRepository } from "../../repositories";
 import { ReadSpotDto, SpotDto, SpotPicturesDto } from "../../dto";
 import { TContext } from "../../graphql/context";
-import { codeErrors, GenericError } from "../../utils";
+import { codeErrors, GenericError, throwError } from "../../utils";
 import { UpdateSpotDto } from "../../dto/spot-dto";
+import { GraphQLError } from "graphql";
 const { SPOT_ID_NOT_MATCH_PROFILE_ID, SPOT_NOT_FOUND } = codeErrors;
 
 const spotsBusiness = {
@@ -40,13 +41,12 @@ const spotsBusiness = {
 
   /**
    * @param {SpotDto} data
-   * @param {string} profileId
-   * @param {string} spotId
+   * @param {string} currentProfileId
    */
-  update: (data: UpdateSpotDto, currentProfileId: string) => {
+  update: async (data: UpdateSpotDto, currentProfileId: string) => {
     const { id: spotId } = data;
-    checkCreatedByCurrentUserOrThrow(spotId, currentProfileId);
-    return spotsRepository.update(data, currentProfileId, spotId);
+    await checkCreatedByCurrentUserOrThrow(spotId, currentProfileId);
+    return spotsRepository.update(data, spotId);
   },
 
   /**
@@ -54,16 +54,22 @@ const spotsBusiness = {
    * @param {string} spotId
    */
   delete: async (data: UpdateSpotDto, currentProfileId: string) => {
-    const { id: spotId} = data;
-    checkCreatedByCurrentUserOrThrow(spotId, currentProfileId);
+    const { id: spotId } = data;
+    await checkCreatedByCurrentUserOrThrow(spotId, currentProfileId);
     return spotsRepository.delete(currentProfileId, spotId);
   },
 };
 
-async function checkCreatedByCurrentUserOrThrow(spotId: string, currentProfileId: string) {
+async function checkCreatedByCurrentUserOrThrow(
+  spotId: string,
+  currentProfileId: string
+) {
   const spot = await spotsRepository.getById(spotId);
+
   if (!spot) throw new GenericError(SPOT_NOT_FOUND, spotId);
-  if (currentProfileId !== spot.profileId) throw new GenericError(SPOT_ID_NOT_MATCH_PROFILE_ID)
-};
+
+  if (currentProfileId !== spot.profileId)
+    throw new GenericError(SPOT_ID_NOT_MATCH_PROFILE_ID);
+}
 
 export default spotsBusiness;
