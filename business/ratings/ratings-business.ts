@@ -39,7 +39,7 @@ const ratingsBusiness = {
     const newAverage = average._avg.rate;
     await spotsRepository.updateAverageRatingBySpotId(spotId, newAverage);
 
-    return userRating;
+    return { currentRating: userRating, avg: newAverage };
   },
 };
 

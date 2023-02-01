@@ -13,7 +13,6 @@ const spotsRepository = {
     spotId: string,
     avg: SpotDto["averageRating"]
   ) => {
-    console.log("updateAverageSpotRepo", avg);
     return Spot.update({
       where: {
         id: spotId,

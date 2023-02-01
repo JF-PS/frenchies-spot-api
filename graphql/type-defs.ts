@@ -97,6 +97,11 @@ const typeDefs = gql`
     spotId: String
   }
 
+  type AverageRating {
+    currentRating: Rating
+    avg: Float
+  }
+
   input CoordinateInput {
     lat: Int
     lng: Int
@@ -215,7 +220,11 @@ const typeDefs = gql`
     #   spots: [SpotInput]
     # ): Itinary
 
-    createOrUpdateRating(ratingId: String, spotId: String, rate: Int): Rating
+    createOrUpdateRating(
+      ratingId: String
+      spotId: String
+      rate: Int
+    ): AverageRating
 
     createOrUpdateFavorite(FavoriteId: String, spotId: String): Spot
 
