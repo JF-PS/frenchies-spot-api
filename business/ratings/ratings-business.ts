@@ -24,9 +24,9 @@ const ratingsBusiness = {
   ) => {
     const spot = await spotsRepository.getById(spotId);
 
-    // if (!spot) throw new GenericError(SPOT_NOT_FOUND, spotId);
-    // if (profileId === spot.profileId)
-    //   throw new GenericError(SPOT_ID_MATCH_PROFILE_ID);
+    if (!spot) throw new GenericError(SPOT_NOT_FOUND, spotId);
+    if (profileId === spot.profileId)
+      throw new GenericError(SPOT_ID_MATCH_PROFILE_ID);
 
     const userRating = await ratingsRepository.createOrUpdate(
       rate,
