@@ -4,6 +4,7 @@ import {
   SpotOrderDto,
   SpotPaginationDto,
   SpotPicturesDto,
+  UpdateSpotPicturesDto,
 } from "../../dto";
 import { Spot, Profile } from "../../models";
 import SpotPicture from "./../../models/spotPicture";
@@ -41,6 +42,7 @@ const spotsRepository = {
       where: {
         id,
       },
+      include: { spotPicture: true },
     });
   },
 
@@ -64,14 +66,23 @@ const spotsRepository = {
     });
   },
 
-  update: (data: SpotDto, spotId: string) => {
+  update: (
+    data: SpotDto,
+    spotId: string,
+    pictures: UpdateSpotPicturesDto = []
+  ) => {
+    const spotPicture = {
+      upsert: pictures.map((picture) => {
+        const { id = undefined, url } = picture;
+        return { where: { id }, update: { url }, create: { url } };
+      }),
+    };
+
     return Spot.update({
       where: {
         id: spotId,
       },
-      data: {
-        ...data,
-      },
+      data: pictures ? { ...data, spotPicture } : data,
       include: { spotPicture: true },
     });
   },

@@ -1,8 +1,8 @@
 import { spotsRepository } from "../../repositories";
 import { ReadSpotDto, SpotDto, SpotPicturesDto } from "../../dto";
 import { TContext } from "../../graphql/context";
-import { codeErrors, GenericError, throwError } from "../../utils";
-import { UpdateSpotDto } from "../../dto/spot-dto";
+import { codeErrors, GenericError } from "../../utils";
+import { UpdateSpotDto, UpdateSpotPicturesDto } from "../../dto/spot-dto";
 import { GraphQLError } from "graphql";
 const { SPOT_ID_NOT_MATCH_PROFILE_ID, SPOT_NOT_FOUND } = codeErrors;
 
@@ -43,10 +43,14 @@ const spotsBusiness = {
    * @param {SpotDto} data
    * @param {string} currentProfileId
    */
-  update: async (data: UpdateSpotDto, currentProfileId: string) => {
-    const { id: spotId } = data;
+  update: async (
+    data: UpdateSpotDto & { pictures: UpdateSpotPicturesDto },
+    currentProfileId: string
+  ) => {
+    const { id: spotId, pictures, ...other } = data;
+    const updateData = { ...other };
     await checkCreatedByCurrentUserOrThrow(spotId, currentProfileId);
-    return spotsRepository.update(data, spotId);
+    return spotsRepository.update(updateData, spotId, pictures);
   },
 
   /**
