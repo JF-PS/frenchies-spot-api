@@ -19,7 +19,6 @@ const spotsRepository = {
       },
       include: { spotPicture: true },
     });
-
   },
 
   /**

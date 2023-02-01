@@ -1,7 +1,8 @@
+import { throws } from "assert";
 import { spotsRepository , ratingsRepository} from "../../repositories";
 import { codeErrors, GenericError } from "../../utils";
 
-const { SPOT_NOT_FOUND, SPOT_ID_MATCH_PROFILE_ID } = codeErrors;
+const { SPOT_NOT_FOUND, SPOT_ID_MATCH_PROFILE_ID, RATING_OUT_OF_RANGE } = codeErrors;
 
 const ratingsBusiness = {
   getAll: () => {
@@ -17,6 +18,9 @@ const ratingsBusiness = {
   },
 
   createOrUpdate: async (rate: number, ratingId: string | undefined = undefined, spotId: string, profileId: string) => {
+    console.log("rate", rate)
+    if(rate < 1 || rate > 5) throw new GenericError(RATING_OUT_OF_RANGE)
+
     const spot = await spotsRepository.getById(spotId);
     let createOrUpdateRating
 
