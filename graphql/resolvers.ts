@@ -7,7 +7,7 @@ import {
 } from "../controllers";
 import { PrismaClient } from "@prisma/client";
 import { ratingsController } from "../controllers/ratings";
-const prisma = new PrismaClient();
+import prisma from "../prisma";
 
 const Query = {
   ...usersController.query,

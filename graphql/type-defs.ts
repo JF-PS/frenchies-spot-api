@@ -215,16 +215,9 @@ const typeDefs = gql`
     #   spots: [SpotInput]
     # ): Itinary
 
-    createOrUpdateRating(
-      ratingId: String
-      spotId: String
-      rate: Int
-    ): Spot
-    
-    createOrUpdateFavorite(
-      FavoriteId: String
-      spotId: String
-    ): Spot
+    createOrUpdateRating(ratingId: String, spotId: String, rate: Int): Rating
+
+    createOrUpdateFavorite(FavoriteId: String, spotId: String): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 

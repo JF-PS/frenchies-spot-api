@@ -9,7 +9,10 @@ import {
 import { Spot, Profile } from "../../models";
 
 const spotsRepository = {
-  updateAverageRatingBySpotId: (spotId: string, avg: SpotDto["averageRating"]) => {
+  updateAverageRatingBySpotId: (
+    spotId: string,
+    avg: SpotDto["averageRating"]
+  ) => {
     console.log("updateAverageSpotRepo", avg);
     return Spot.update({
       where: {
@@ -20,7 +23,6 @@ const spotsRepository = {
       },
       include: { spotPicture: true },
     });
-
   },
 
   /**
@@ -30,7 +32,7 @@ const spotsRepository = {
     filterData: SpotFilterDto,
     paginationData: SpotPaginationDto,
     orderBy: SpotOrderDto["orderBy"],
-    nameContains: string,
+    nameContains: string
   ) => {
     return Spot.findMany({
       orderBy: {
@@ -42,7 +44,6 @@ const spotsRepository = {
         name: {
           contains: nameContains,
         },
-
       },
 
       ...paginationData,

@@ -1,4 +1,4 @@
-import { spotsRepository , ratingsRepository} from "../../repositories";
+import { spotsRepository, ratingsRepository } from "../../repositories";
 import { codeErrors, GenericError } from "../../utils";
 
 const { SPOT_NOT_FOUND, SPOT_ID_MATCH_PROFILE_ID } = codeErrors;
@@ -16,33 +16,30 @@ const ratingsBusiness = {
     return ratingsRepository.getById(ratingId);
   },
 
-  createOrUpdate: async (rate: number, ratingId: string | undefined = undefined, spotId: string, profileId: string) => {
+  createOrUpdate: async (
+    rate: number,
+    ratingId: string | undefined = undefined,
+    spotId: string,
+    profileId: string
+  ) => {
     const spot = await spotsRepository.getById(spotId);
-    let createOrUpdateRating
 
     if (!spot) throw new GenericError(SPOT_NOT_FOUND, spotId);
-    if (profileId === spot.profileId) throw new GenericError(SPOT_ID_MATCH_PROFILE_ID);
+    if (profileId === spot.profileId)
+      throw new GenericError(SPOT_ID_MATCH_PROFILE_ID);
 
-    console.log("ratingId", ratingId)
-    console.log("spotId", spotId)
+    const userRating = await ratingsRepository.createOrUpdate(
+      rate,
+      ratingId,
+      spotId,
+      profileId
+    );
 
-    if (ratingId === undefined) {
-      createOrUpdateRating = ratingsRepository.create(rate, spotId, profileId);
-    } 
-    
-    if (ratingId !== undefined) {
-      const rating = await ratingsRepository.getById(ratingId);
+    const average = await ratingsRepository.getSpotAverageRating(spotId);
+    const newAverage = average._avg.rate;
+    await spotsRepository.updateAverageRatingBySpotId(spotId, newAverage);
 
-      if (profileId === rating?.profileId) {
-        createOrUpdateRating = ratingsRepository.update(rate, ratingId, spotId, profileId);
-      }
-    }
-
-    const newAverage = await ratingsRepository.getAverageRatingBySpotId(spotId);
-    console.log("newAverage Business Rating", newAverage);
-    spotsRepository.updateAverageRatingBySpotId(spotId, newAverage);
-
-    return createOrUpdateRating
+    return userRating;
   },
 };
 
