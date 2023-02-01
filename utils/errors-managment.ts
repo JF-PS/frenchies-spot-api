@@ -18,6 +18,7 @@ export enum codeErrors {
   FAVORITE_ID_NOT_MATCH_PROFILE_ID = "FAVORITE_ID_NOT_MATCH_PROFILE_ID",
   RATING_NOT_FOUND = "RATING_NOT_FOUND",
   RATING_ID_NOT_MATCH_PROFILE_ID = "RATING_ID_NOT_MATCH_PROFILE_ID",
+  RATING_OUT_OF_RANGE = "RATING_OUT_OF_RANGE",
 }
 
 const errorsMessage: Record<keyof typeof codeErrors, TError> = {
@@ -60,6 +61,10 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   RATING_ID_NOT_MATCH_PROFILE_ID: {
     statusCode: 404,
     errorMessage: { en: "Rating profile id doesn't match already with the current profile id"}
+  },
+  RATING_OUT_OF_RANGE: {
+    statusCode: 404,
+    errorMessage: { en: "Rate is not include between 1 and 5"}
   },
   FAVORITE_NOT_FOUND: {
     statusCode: 404,

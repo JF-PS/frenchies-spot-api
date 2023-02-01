@@ -20,7 +20,6 @@ const spotsRepository = {
       data: {
         averageRating: avg,
       },
-      include: { spotPicture: true },
     });
   },
 
