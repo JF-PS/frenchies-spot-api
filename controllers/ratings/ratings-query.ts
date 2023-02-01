@@ -1,17 +1,16 @@
 import { ratingsBusiness } from "../../business/ratings";
 
 export const ratingsQuery = {
+  ratings: () => {
+    return ratingsBusiness.getAll();
+  },
 
-//   ratings: (_: undefined, data: {
-//     orderBy: 'asc' | 'desc',
-//   }) => {
-//     return ratingsBusiness.getAll(
-//       data.orderBy,
-//     );
-//   },
+  // ratingsAverage: (_: undefined, spotId: string) => {
+  //   return ratingsBusiness.getSpotRatingAverage(spotId);
+  // },
 
-//   rating: (_: undefined, data: { id: string }) => {
-//     const { id: ratingId } = data;
-//     return ratingsBusiness.getById(ratingId);
-//   },
+  rating: (_: undefined, data: { id: string }) => {
+      const { id: ratingId } = data;
+      return ratingsBusiness.getById(ratingId);
+    },
 };

@@ -16,6 +16,8 @@ export enum codeErrors {
   SPOT_ID_MATCH_PROFILE_ID = "SPOT_ID_MATCH_PROFILE_ID",
   FAVORITE_NOT_FOUND = "FAVORITE_NOT_FOUND",
   FAVORITE_ID_NOT_MATCH_PROFILE_ID = "FAVORITE_ID_NOT_MATCH_PROFILE_ID",
+  RATING_NOT_FOUND = "RATING_NOT_FOUND",
+  RATING_ID_NOT_MATCH_PROFILE_ID = "RATING_ID_NOT_MATCH_PROFILE_ID",
 }
 
 const errorsMessage: Record<keyof typeof codeErrors, TError> = {
@@ -45,13 +47,19 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   },
   SPOT_ID_NOT_MATCH_PROFILE_ID: {
     statusCode: 404,
-    errorMessage: {
-      en: "Spot profile id doesn't match with the current profile id",
-    },
+    errorMessage: { en: "Spot profile id doesn't match with the current profile id"}
   },
   SPOT_ID_MATCH_PROFILE_ID: {
     statusCode: 404,
     errorMessage: { en: "Spot ProfileId is the same that your profileId. You can't rate your own spot."}
+  },
+  RATING_NOT_FOUND: {
+    statusCode: 404,
+    errorMessage: { en: "No rating found with id: "}
+  },
+  RATING_ID_NOT_MATCH_PROFILE_ID: {
+    statusCode: 404,
+    errorMessage: { en: "Rating profile id doesn't match already with the current profile id"}
   },
   FAVORITE_NOT_FOUND: {
     statusCode: 404,

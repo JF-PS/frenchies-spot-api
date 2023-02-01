@@ -17,7 +17,7 @@ const spotsBusiness = {
       filterData,
       paginationData,
       orderBy,
-      searchValue
+      searchValue,
     );
   },
 

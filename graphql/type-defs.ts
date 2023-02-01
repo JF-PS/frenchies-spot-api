@@ -136,8 +136,11 @@ const typeDefs = gql`
     products: [Product]
     authByToken: User
     getBuyProductRequest(amount: Int): String
-    # favorites: [Favorite]
-    # favorite(id: String): Favorite
+    favorites: [Favorite]
+    favorite(id: String): Favorite
+    ratings: [Rating]
+    rating(id: String): Rating
+    ratingsAverage: Rating
   }
 
   type Mutation {
@@ -201,7 +204,11 @@ const typeDefs = gql`
     #   spots: [SpotInput]
     # ): Itinary
 
-    createRating(spotId: String, rate: Int): Spot
+    createOrUpdateRating(
+      ratingId: String
+      spotId: String
+      rate: Int
+    ): Spot
     
     createOrUpdateFavorite(
       FavoriteId: String

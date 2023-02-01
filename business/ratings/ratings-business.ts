@@ -2,36 +2,39 @@ import { spotsRepository } from "../../repositories";
 import ratingsRepository from "../../repositories/ratings/ratings-repository";
 import { codeErrors, GenericError } from "../../utils";
 
-const { SPOT_NOT_FOUND } = codeErrors;
+const { SPOT_NOT_FOUND, SPOT_ID_MATCH_PROFILE_ID } = codeErrors;
 
 const ratingsBusiness = {
-  //   getAll: (
-  //     orderBy: 'asc' | 'desc',
-  //   ) => {
-  //     return ratingsRepository.getAll(
-  //       orderBy,
-  //     );
-  //   },
-
-  //   getById: (ratingId: string) => {
-  //     return ratingsRepository.getById(ratingId);
-  //   },
-
-  create: async (rate: number, spotId: string, profileId: string) => {
-    const spot = await spotsRepository.getById(spotId);
-    if (!spot) {
-      throw new GenericError(SPOT_NOT_FOUND, spotId);
-    }
-    return ratingsRepository.create(rate, spotId, profileId);
+  getAll: () => {
+    return ratingsRepository.getAll();
   },
 
-  //   update: (data: RatingDto, userId: string, spotId: string) => {
-  //     return ratingsRepository.update(data, userId, spotId);
-  //   },
+  // getSpotRatingAverage: (spotId: string) => {
+  //   return ratingsRepository.getSpotRatingAverage(spotId);
+  // },
 
-  //   delete: (ratingId: string) => {
-  //     return ratingsRepository.delete(ratingId);
-  //   },
+  getById: (ratingId: string) => {
+    return ratingsRepository.getById(ratingId);
+  },
+
+  createOrUpdate: async (rate: number, ratingId: string | undefined = undefined, spotId: string, profileId: string) => {
+    const spot = await spotsRepository.getById(spotId);
+    
+    if (!spot) throw new GenericError(SPOT_NOT_FOUND, spotId);
+    if (profileId === spot.profileId) throw new GenericError(SPOT_ID_MATCH_PROFILE_ID);
+    
+    if (ratingId === undefined) {
+      return ratingsRepository.create(rate, spotId, profileId);
+    } 
+    
+    if (ratingId !== undefined) {
+      const rating = await ratingsRepository.getById(ratingId);
+
+      if (profileId === rating?.profileId) {
+        return ratingsRepository.update(rate, ratingId, spotId, profileId);
+      }
+    }
+  },
 };
 
 export default ratingsBusiness;
