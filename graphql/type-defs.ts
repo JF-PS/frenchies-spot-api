@@ -97,6 +97,11 @@ const typeDefs = gql`
     spotId: String
   }
 
+  type AverageRating {
+    currentRating: Rating
+    avg: Float
+  }
+
   input CoordinateInput {
     lat: Int
     lng: Int
@@ -110,6 +115,11 @@ const typeDefs = gql`
   }
 
   input PictureInput {
+    url: String
+  }
+
+  input UpdatePictureInput {
+    id: String
     url: String
   }
 
@@ -186,8 +196,8 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
+      pictures: [UpdatePictureInput]
       averageRating: Float
-      pictures: [PictureInput]
     ): Spot
 
     deleteSpot(
@@ -214,12 +224,9 @@ const typeDefs = gql`
       ratingId: String
       spotId: String
       rate: Int
-    ): Spot
-    
-    createOrUpdateFavorite(
-      FavoriteId: String
-      spotId: String
-    ): Spot
+    ): AverageRating
+
+    createOrUpdateFavorite(FavoriteId: String, spotId: String): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 

@@ -4,13 +4,16 @@ import {
   SpotOrderDto,
   SpotPaginationDto,
   SpotPicturesDto,
+  UpdateSpotPicturesDto,
 } from "../../dto";
 import { Spot, Profile } from "../../models";
 
 const spotsRepository = {
-  updateAverageRatingBySpotId: async (spotId: string, avg: SpotDto["averageRating"]) => {
-    console.log("updateAverageSpotRepo", avg);
-    return await Spot.update({
+  updateAverageRatingBySpotId: (
+    spotId: string,
+    avg: SpotDto["averageRating"]
+  ) => {
+    return Spot.update({
       where: {
         id: spotId,
       },
@@ -27,7 +30,7 @@ const spotsRepository = {
     filterData: SpotFilterDto,
     paginationData: SpotPaginationDto,
     orderBy: SpotOrderDto["orderBy"],
-    nameContains: string,
+    nameContains: string
   ) => {
     return Spot.findMany({
       orderBy: {
@@ -39,7 +42,6 @@ const spotsRepository = {
         name: {
           contains: nameContains,
         },
-
       },
 
       ...paginationData,
@@ -53,6 +55,7 @@ const spotsRepository = {
       where: {
         id,
       },
+      include: { spotPicture: true },
     });
   },
 
@@ -76,14 +79,23 @@ const spotsRepository = {
     });
   },
 
-  update: (data: SpotDto, spotId: string) => {
+  update: (
+    data: SpotDto,
+    spotId: string,
+    pictures: UpdateSpotPicturesDto = []
+  ) => {
+    const spotPicture = {
+      upsert: pictures.map((picture) => {
+        const { id = undefined, url } = picture;
+        return { where: { id }, update: { url }, create: { url } };
+      }),
+    };
+
     return Spot.update({
       where: {
         id: spotId,
       },
-      data: {
-        ...data,
-      },
+      data: pictures ? { ...data, spotPicture } : data,
       include: { spotPicture: true },
     });
   },
