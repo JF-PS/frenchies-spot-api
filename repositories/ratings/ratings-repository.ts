@@ -20,6 +20,9 @@ const ratingsRepository = {
       _avg: {
         rate: true,
       },
+      _count: {
+        rate: true,
+      },
     });
   },
 

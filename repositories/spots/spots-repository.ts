@@ -56,7 +56,7 @@ const spotsRepository = {
       where: {
         id,
       },
-      include: { spotPicture: true },
+      include: { spotPicture: true, ratings: true },
     });
   },
 

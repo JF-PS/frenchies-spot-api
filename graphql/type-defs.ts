@@ -100,6 +100,7 @@ const typeDefs = gql`
   type AverageRating {
     currentRating: Rating
     avg: Float
+    maxVote: Int
   }
 
   input CoordinateInput {
