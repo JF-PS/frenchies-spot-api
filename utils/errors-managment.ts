@@ -46,7 +46,7 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   SPOT_ID_NOT_MATCH_PROFILE_ID: {
     statusCode: 404,
     errorMessage: { en: "Spot profile id doesn't match with the current profile id"}
-  }
+  },
   SPOT_ID_MATCH_PROFILE_ID: {
     statusCode: 404,
     errorMessage: { en: "Spot ProfileId is the same that your profileId. You can't rate your own spot."}

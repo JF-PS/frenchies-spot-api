@@ -114,7 +114,7 @@ model Product {
 
 model Rating {
   id        String  @id @default(uuid())
-  rate      Int[]   @default([1, 2, 3, 4, 5])     
+  rate      Int 
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String
   spot      Spot    @relation(fields: [spotId], references: [id])

@@ -93,7 +93,7 @@ CREATE TABLE "Product" (
 -- CreateTable
 CREATE TABLE "Rating" (
     "id" TEXT NOT NULL,
-    "rate" INTEGER[] DEFAULT ARRAY[1, 2, 3, 4, 5]::INTEGER[],
+    "rate" INTEGER NOT NULL,
     "profileId" TEXT NOT NULL,
     "spotId" TEXT NOT NULL,
 
