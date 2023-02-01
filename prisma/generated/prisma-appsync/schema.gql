@@ -55,6 +55,7 @@ type Spot {
     lat: Float!
     lng: Float!
     region: String!
+    averageRating: Float
     spotPicture: [SpotPicture]
     ratings: [Rating]
     favorites: [Favorite]
@@ -820,6 +821,7 @@ input SpotWhereInput {
     lat: FloatFilter
     lng: FloatFilter
     region: StringFilter
+    averageRating: FloatFilter
     spotPicture: SpotPictureFilter
     ratings: RatingFilter
     favorites: FavoriteFilter
@@ -845,6 +847,7 @@ input SpotExtendedWhereUniqueInput {
     lat: FloatFilter
     lng: FloatFilter
     region: StringFilter
+    averageRating: FloatFilter
     spotPicture: SpotPictureFilter
     ratings: RatingFilter
     favorites: FavoriteFilter
@@ -863,6 +866,7 @@ input SpotOrderByInput {
     lat: OrderByArg
     lng: OrderByArg
     region: OrderByArg
+    averageRating: OrderByArg
     spotPicture: SpotPictureOrderByInput
     ratings: RatingOrderByInput
     favorites: FavoriteOrderByInput
@@ -880,6 +884,7 @@ input SpotCreateInput {
     lat: Float!
     lng: Float!
     region: String!
+    averageRating: Float
     spotPicture: SpotSpotPictureCreateRelationInput
     ratings: SpotRatingsCreateRelationInput
     favorites: SpotFavoritesCreateRelationInput
@@ -895,6 +900,7 @@ input SpotCreateManyInput {
     lat: Float!
     lng: Float!
     region: String!
+    averageRating: Float
 }
 
 input SpotUpdateInput {
@@ -909,6 +915,7 @@ input SpotUpdateInput {
     lat: Float
     lng: Float
     region: String
+    averageRating: Float
     spotPicture: SpotSpotPictureUpdateRelationsInput
     ratings: SpotRatingsUpdateRelationsInput
     favorites: SpotFavoritesUpdateRelationsInput
@@ -917,6 +924,7 @@ input SpotUpdateInput {
 input SpotOperationInput {
     lat: FloatOperation
     lng: FloatOperation
+    averageRating: FloatOperation
 }
 
 input SpotUpdateUniqueInput {

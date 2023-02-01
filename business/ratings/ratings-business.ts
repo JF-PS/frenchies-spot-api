@@ -1,5 +1,4 @@
-import { spotsRepository } from "../../repositories";
-import ratingsRepository from "../../repositories/ratings/ratings-repository";
+import { spotsRepository , ratingsRepository} from "../../repositories";
 import { codeErrors, GenericError } from "../../utils";
 
 const { SPOT_NOT_FOUND, SPOT_ID_MATCH_PROFILE_ID } = codeErrors;
@@ -34,6 +33,10 @@ const ratingsBusiness = {
         return ratingsRepository.update(rate, ratingId, spotId, profileId);
       }
     }
+
+    const newAverage = await ratingsRepository.getAverageRaitingBySpotId(spotId);
+
+    spotsRepository.updateAverageRatingBySpotId(spotId, newAverage);
   },
 };
 

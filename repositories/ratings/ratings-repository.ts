@@ -1,35 +1,32 @@
-import { AverageRatingDto } from "../../dto";
+import prisma from "../../prisma";
 import { Rating, Spot } from "../../models";
 
 const ratingsRepository = {
+  //   getAll: (
+  //     orderBy: 'asc' | 'desc',
+  //   ) => {
+  //     return Rating.findMany({
+  //       orderBy: {
+  //         rate: orderBy,
+  //       },
+  //     }),
+  //// },    
+
   getAll: () => {
     return Rating.findMany();
   },
 
-  // getSpotRatingAverage: (spotId: string) => {
-
-  //   return 3
-    // return Rating.groupBy({
-    //   by: ["spotId"],
-    //   _avg: {
-    //     rate: true,
-    //   }, 
-    //   orderBy: {
-    //     _avg: {
-    //       rate: 'asc',
-    //     }
-    //   }
-    // })
-
-    // return Rating.aggregate({
-    //   where: {
-    //     spotId,
-    //   },
-    //   _avg: {
-    //     rate: true,
-    //   }, 
-    // })
-  // },
+  getAverageRaitingBySpotId: async (spotId: string): Promise<number> => {
+    const newSpotAverage: number = await prisma.$queryRaw`
+      SELECT 
+        avg(r.rate)
+      FROM "Spot" s
+      LEFT JOIN "Rating" r
+        ON r."spotId" = s."id"
+        WHERE s.id = ${spotId}
+    `
+    return newSpotAverage
+  }, 
 
   getById: (id: string) => {
     return Rating.findUnique({
@@ -48,7 +45,6 @@ const ratingsRepository = {
         ratings: {
           create: {
             rate,
-            // : Buffer.from([1, 2, 3, 4, 5]),
             profileId,
           },
         },
@@ -78,6 +74,7 @@ const ratingsRepository = {
       include: { ratings: true },
     });
   },
+
 };
 
 export default ratingsRepository;

@@ -61,7 +61,9 @@ const typeDefs = gql`
     lat: Float
     lng: Float
     region: String
+    averageRating: Float
     ratings: [Rating]
+    favorites: [Favorite]
   }
 
   type SpotPicture {
@@ -170,6 +172,7 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
+      averageRating: Float
       pictures: [PictureInput]
     ): Spot
 
@@ -183,6 +186,7 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
+      averageRating: Float
       pictures: [PictureInput]
     ): Spot
 
@@ -196,6 +200,8 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
+      averageRating: Float
+      pictures: [PictureInput]
     ): Boolean
 
     # createItinary(

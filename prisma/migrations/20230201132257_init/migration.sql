@@ -67,6 +67,7 @@ CREATE TABLE "Spot" (
     "lat" DOUBLE PRECISION NOT NULL,
     "lng" DOUBLE PRECISION NOT NULL,
     "region" TEXT NOT NULL,
+    "averageRating" DOUBLE PRECISION,
 
     CONSTRAINT "Spot_pkey" PRIMARY KEY ("id")
 );

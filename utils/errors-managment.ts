@@ -69,8 +69,6 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
     statusCode: 404,
     errorMessage: { en: "Favorite profile id doesn't match already with the current profile id"}
   },
-
-
 };
 
 class GenericError extends GraphQLError {

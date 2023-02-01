@@ -80,26 +80,27 @@ model Itinary {
 }
 
 model Spot {
-  id          String         @id @default(uuid())
-  name        String
-  description String
-  isCanPark   Boolean        @default(false)
-  isCanVisit  Boolean        @default(false)
-  isTouristic Boolean        @default(false)
+  id            String         @id @default(uuid())
+  name          String
+  description   String
+  isCanPark     Boolean        @default(false)
+  isCanVisit    Boolean        @default(false)
+  isTouristic   Boolean        @default(false)
   // Relations one to many with profile
-  profile     Profile        @relation(fields: [profileId], references: [id])
-  profileId   String
+  profile       Profile        @relation(fields: [profileId], references: [id])
+  profileId     String
   // Implicit relations many to many with itinary
-  itinaries   Itinary[]
-  lat         Float
-  lng         Float
-  region      String
+  itinaries     Itinary[]
+  lat           Float
+  lng           Float
+  region        String
+  averageRating Float?
   // Relations one to many with spot_pictures
-  spotPicture Spot_Picture[]
+  spotPicture   Spot_Picture[]
   // Relations one to many with rating
-  ratings     Rating[]
+  ratings       Rating[]
   // Relations one to many with favorite
-  favorites   Favorite[]
+  favorites     Favorite[]
 }
 
 model Spot_Picture {
