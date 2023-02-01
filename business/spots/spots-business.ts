@@ -1,4 +1,4 @@
-import { spotsRepository } from "../../repositories";
+import { ratingsRepository, spotsRepository } from "../../repositories";
 import { ReadSpotDto, SpotDto, SpotPicturesDto } from "../../dto";
 import { codeErrors, GenericError } from "../../utils";
 import { UpdateSpotDto } from "../../dto/spot-dto";
@@ -17,7 +17,7 @@ const spotsBusiness = {
       filterData,
       paginationData,
       orderBy,
-      searchValue
+      searchValue,
     );
   },
 

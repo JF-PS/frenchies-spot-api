@@ -1,9 +1,35 @@
+import { AverageRatingDto } from "../../dto";
 import { Rating, Spot } from "../../models";
 
 const ratingsRepository = {
   getAll: () => {
     return Rating.findMany();
   },
+
+  // getSpotRatingAverage: (spotId: string) => {
+
+  //   return 3
+    // return Rating.groupBy({
+    //   by: ["spotId"],
+    //   _avg: {
+    //     rate: true,
+    //   }, 
+    //   orderBy: {
+    //     _avg: {
+    //       rate: 'asc',
+    //     }
+    //   }
+    // })
+
+    // return Rating.aggregate({
+    //   where: {
+    //     spotId,
+    //   },
+    //   _avg: {
+    //     rate: true,
+    //   }, 
+    // })
+  // },
 
   getById: (id: string) => {
     return Rating.findUnique({
@@ -22,6 +48,7 @@ const ratingsRepository = {
         ratings: {
           create: {
             rate,
+            // : Buffer.from([1, 2, 3, 4, 5]),
             profileId,
           },
         },

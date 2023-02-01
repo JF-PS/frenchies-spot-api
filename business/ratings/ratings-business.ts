@@ -9,6 +9,10 @@ const ratingsBusiness = {
     return ratingsRepository.getAll();
   },
 
+  // getSpotRatingAverage: (spotId: string) => {
+  //   return ratingsRepository.getSpotRatingAverage(spotId);
+  // },
+
   getById: (ratingId: string) => {
     return ratingsRepository.getById(ratingId);
   },

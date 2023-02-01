@@ -130,6 +130,7 @@ const typeDefs = gql`
     getBuyProductRequest(amount: Int): String
     ratings: [Rating]
     rating(id: String): Rating
+    ratingsAverage: Rating
   }
 
   type Mutation {
