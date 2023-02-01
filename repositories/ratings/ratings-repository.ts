@@ -1,4 +1,3 @@
-import prisma from "../../prisma";
 import { Rating, Spot } from "../../models";
 
 const ratingsRepository = {

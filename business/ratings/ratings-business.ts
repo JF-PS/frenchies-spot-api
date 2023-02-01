@@ -1,4 +1,3 @@
-import { throws } from "assert";
 import { spotsRepository, ratingsRepository } from "../../repositories";
 import { codeErrors, GenericError } from "../../utils";
 
@@ -8,10 +7,6 @@ const ratingsBusiness = {
   getAll: () => {
     return ratingsRepository.getAll();
   },
-
-  // getSpotRatingAverage: (spotId: string) => {
-  //   return ratingsRepository.getSpotRatingAverage(spotId);
-  // },
 
   getById: (ratingId: string) => {
     return ratingsRepository.getById(ratingId);
@@ -23,7 +18,6 @@ const ratingsBusiness = {
     spotId: string,
     profileId: string
   ) => {
-    console.log("rate", rate)
     if(rate < 1 || rate > 5) throw new GenericError(RATING_OUT_OF_RANGE)
 
     const spot = await spotsRepository.getById(spotId);
