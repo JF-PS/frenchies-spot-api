@@ -6,7 +6,7 @@ export interface ProfileSpotDto
 }
 
 export type SpotPicturesDto = Pick<Spot_Picture, "url">[];
-export type UpdateSpotPicturesDto = Pick<Spot_Picture, "url" | "id">[];
+export type UpdateSpotPicturesDto = Omit<Spot_Picture, "spotId">[];
 
 export type SpotDto = Omit<Spot, "profileId" | "id">;
 

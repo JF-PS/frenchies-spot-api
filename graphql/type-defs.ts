@@ -103,6 +103,11 @@ const typeDefs = gql`
     url: String
   }
 
+  input UpdatePictureInput {
+    id: String
+    url: String
+  }
+
   enum OrderByEnum {
     asc
     desc
@@ -173,7 +178,7 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
-      pictures: [PictureInput]
+      pictures: [UpdatePictureInput]
     ): Spot
 
     deleteSpot(

@@ -50,6 +50,7 @@ enum Role {
   USER_ADMIN
 }
 
+
 model Profile {
   id        String    @id @default(uuid())
   pseudo    String    @unique
