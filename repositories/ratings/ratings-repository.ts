@@ -15,8 +15,8 @@ const ratingsRepository = {
   //   }) 
   // },
 
-  getAverageRatingBySpotId: (spotId: string): Promise<number> => {
-    const newSpotAverage: Promise<number> = prisma.$queryRaw`
+  getAverageRatingBySpotId: async (spotId: string) => {
+    const newSpotAverage: {avg: number}[] = await prisma.$queryRaw`
       SELECT 
         avg(r.rate)
       FROM "Spot" s
@@ -24,8 +24,8 @@ const ratingsRepository = {
         ON r."spotId" = s."id"
         WHERE s.id = ${spotId}
     `
-    console.log("getAverage ratingRepo", newSpotAverage)
-    return newSpotAverage
+    console.log("getAverage ratingRepo", newSpotAverage[0].avg)
+    return newSpotAverage[0].avg
   }, 
 
   getById: (id: string) => {

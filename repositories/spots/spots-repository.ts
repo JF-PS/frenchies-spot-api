@@ -8,16 +8,15 @@ import {
 import { Spot, Profile } from "../../models";
 
 const spotsRepository = {
-  updateAverageRatingBySpotId: (spotId: string, avg: SpotDto["averageRating"]) => {
+  updateAverageRatingBySpotId: async (spotId: string, avg: SpotDto["averageRating"]) => {
     console.log("updateAverageSpotRepo", avg);
-    return Spot.update({
+    return await Spot.update({
       where: {
         id: spotId,
       },
       data: {
         averageRating: avg,
       },
-      include: { spotPicture: true },
     });
   },
 

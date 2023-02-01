@@ -44,7 +44,7 @@ const ratingsBusiness = {
 
     const newAverage = await ratingsRepository.getAverageRatingBySpotId(spotId);
     console.log("newAverage Business Rating", newAverage);
-    spotsRepository.updateAverageRatingBySpotId(spotId, newAverage);
+    await spotsRepository.updateAverageRatingBySpotId(spotId, newAverage);
 
     return createOrUpdateRating
   },
