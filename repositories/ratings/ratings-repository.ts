@@ -2,22 +2,21 @@ import prisma from "../../prisma";
 import { Rating, Spot } from "../../models";
 
 const ratingsRepository = {
-  //   getAll: (
-  //     orderBy: 'asc' | 'desc',
-  //   ) => {
-  //     return Rating.findMany({
-  //       orderBy: {
-  //         rate: orderBy,
-  //       },
-  //     }),
-  //// },    
-
   getAll: () => {
     return Rating.findMany();
   },
 
-  getAverageRaitingBySpotId: async (spotId: string): Promise<number> => {
-    const newSpotAverage: number = await prisma.$queryRaw`
+  // getAverageRating: (spotId: string) => {
+  //   return Rating.groupBy({
+  //     by: [${spotId}],
+  //     _avg: {
+  //       rate: true,
+  //     },
+  //   }) 
+  // },
+
+  getAverageRatingBySpotId: (spotId: string): Promise<number> => {
+    const newSpotAverage: Promise<number> = prisma.$queryRaw`
       SELECT 
         avg(r.rate)
       FROM "Spot" s
@@ -25,6 +24,7 @@ const ratingsRepository = {
         ON r."spotId" = s."id"
         WHERE s.id = ${spotId}
     `
+    console.log("getAverage ratingRepo", newSpotAverage)
     return newSpotAverage
   }, 
 
