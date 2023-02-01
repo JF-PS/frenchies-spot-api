@@ -6,3 +6,4 @@ export * from "./spotPictures";
 export * from "./stripe";
 export * from "./spotPictures";
 export * from "./ratings";
+export * from "./favorites";

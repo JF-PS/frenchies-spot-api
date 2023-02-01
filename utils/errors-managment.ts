@@ -14,6 +14,8 @@ export enum codeErrors {
   SPOT_NOT_FOUND = "SPOT_NOT_FOUND",
   SPOT_ID_NOT_MATCH_PROFILE_ID = "SPOT_ID_NOT_MATCH_PROFILE_ID",
   SPOT_ID_MATCH_PROFILE_ID = "SPOT_ID_MATCH_PROFILE_ID",
+  FAVORITE_NOT_FOUND = "FAVORITE_NOT_FOUND",
+  FAVORITE_ID_NOT_MATCH_PROFILE_ID = "FAVORITE_ID_NOT_MATCH_PROFILE_ID",
   RATING_NOT_FOUND = "RATING_NOT_FOUND",
   RATING_ID_NOT_MATCH_PROFILE_ID = "RATING_ID_NOT_MATCH_PROFILE_ID",
 }
@@ -58,6 +60,14 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
   RATING_ID_NOT_MATCH_PROFILE_ID: {
     statusCode: 404,
     errorMessage: { en: "Rating profile id doesn't match already with the current profile id"}
+  },
+  FAVORITE_NOT_FOUND: {
+    statusCode: 404,
+    errorMessage: { en: "No favorite found with id: "}
+  },
+  FAVORITE_ID_NOT_MATCH_PROFILE_ID: {
+    statusCode: 404,
+    errorMessage: { en: "Favorite profile id doesn't match already with the current profile id"}
   },
 };
 

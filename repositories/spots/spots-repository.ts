@@ -7,67 +7,48 @@ import {
   UpdateSpotPicturesDto,
 } from "../../dto";
 import { Spot, Profile } from "../../models";
-import { ratingsRepository } from "../ratings";
-import SpotPicture from "./../../models/spotPicture";
-import prisma from "../../prisma";
 
 const spotsRepository = {
+  updateAverageRatingBySpotId: (spotId: string, avg: SpotDto["averageRating"]) => {
+    console.log("updateAverageSpotRepo", avg);
+    return Spot.update({
+      where: {
+        id: spotId,
+      },
+      data: {
+        averageRating: avg,
+      },
+      include: { spotPicture: true },
+    });
+
+  },
+
   /**
    * Find all Spot
    */
-  getAll: async (
+  getAll: (
     filterData: SpotFilterDto,
     paginationData: SpotPaginationDto,
     orderBy: SpotOrderDto["orderBy"],
     nameContains: string,
   ) => {
-    
-    const result = await prisma.$queryRaw`
-      SELECT 
-        s."id" as SpotId,
-        s."name",
-        s."description",
-        s."isCanPark",
-        s."isCanVisit",
-        s."isTouristic",
-        s."profileId",
-        s."lat",
-        s."lng",
-        s."region",
-        avg(r.rate) as "averageRating"
-      FROM "Spot" s
-      LEFT JOIN "Rating" r
-        ON r."spotId" = s."id"
-      GROUP BY
-        s."id"
-      ORDER BY "averageRating" desc   
-    `
-    // let spot = await Spot.findMany({
-    //   orderBy: {
-    //     // name: orderBy,
-    //     // rating: orderBy,
-    //   },
+    return Spot.findMany({
+      orderBy: {
+        averageRating: orderBy,
+      },
 
-    //   where: {
-    //     ...filterData,
-    //     name: {
-    //       contains: nameContains,
-    //     },
-    //   },
+      where: {
+        ...filterData,
+        name: {
+          contains: nameContains,
+        },
 
-    //   ...paginationData,
+      },
 
-    //   include: { spotPicture: true },
-    // });
+      ...paginationData,
 
-    // const avg = ratingsRepository.getSpotRatingAverage(spot.id)
-
-    // spot = {
-    //   ...spot,
-    //   avgRating: avg,
-    // }
-
-    return result
+      include: { spotPicture: true },
+    });
   },
 
   getById: (id: string) => {

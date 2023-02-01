@@ -12,9 +12,11 @@ export type SpotDto = Omit<Spot, "profileId" | "id">;
 
 export type UpdateSpotDto = Omit<Spot, "profileId">;
 
-export type SpotFilterDto = Omit<Spot, "id" | "name" | "description"> & { 
-  averageRating: number
-};
+// export type SpotFilterDto = Omit<Spot, "id" | "name" | "description"> & { 
+//   averageRating: number
+// };
+
+export type SpotFilterDto = Omit<Spot, "id" | "name" | "description">
 
 export type SpotPaginationDto = { take: number; skip: number };
 

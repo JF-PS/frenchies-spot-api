@@ -61,7 +61,9 @@ const typeDefs = gql`
     lat: Float
     lng: Float
     region: String
+    averageRating: Float
     ratings: [Rating]
+    favorites: [Favorite]
   }
 
   type SpotPicture {
@@ -81,6 +83,14 @@ const typeDefs = gql`
   type Rating {
     id: String
     rate: Int
+    profile: Profile
+    profileId: String
+    spot: Spot
+    spotId: String
+  }
+
+  type Favorite {
+    id: String
     profile: Profile
     profileId: String
     spot: Spot
@@ -133,6 +143,8 @@ const typeDefs = gql`
     products: [Product]
     authByToken: User
     getBuyProductRequest(amount: Int): String
+    favorites: [Favorite]
+    favorite(id: String): Favorite
     ratings: [Rating]
     rating(id: String): Rating
     ratingsAverage: Rating
@@ -165,6 +177,7 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
+      averageRating: Float
       pictures: [PictureInput]
     ): Spot
 
@@ -179,6 +192,7 @@ const typeDefs = gql`
       isTouristic: Boolean
       region: String
       pictures: [UpdatePictureInput]
+      averageRating: Float
     ): Spot
 
     deleteSpot(
@@ -191,6 +205,8 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
+      averageRating: Float
+      pictures: [PictureInput]
     ): Boolean
 
     # createItinary(
@@ -203,6 +219,11 @@ const typeDefs = gql`
       ratingId: String
       spotId: String
       rate: Int
+    ): Spot
+    
+    createOrUpdateFavorite(
+      FavoriteId: String
+      spotId: String
     ): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
