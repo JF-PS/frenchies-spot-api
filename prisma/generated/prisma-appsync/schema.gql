@@ -74,7 +74,7 @@ type Product {
 
 type Rating {
     id: String!
-    rate: Int!
+    rate: [Int]
     profile: Profile!
     profileId: String!
     spot: Spot!
@@ -1197,7 +1197,7 @@ input RatingWhereInput {
     NOT: [RatingWhereInput]
     AND: [RatingWhereInput]
     id: StringFilter
-    rate: IntFilter
+    rate: IntListFilter
     profile: ProfileWhereInput
     profileId: StringFilter
     spot: SpotWhereInput
@@ -1213,7 +1213,7 @@ input RatingExtendedWhereUniqueInput {
     NOT: [RatingWhereInput]
     AND: [RatingWhereInput]
     id: String
-    rate: IntFilter
+    rate: IntListFilter
     profile: ProfileWhereInput
     profileId: StringFilter
     spot: SpotWhereInput
@@ -1231,19 +1231,19 @@ input RatingOrderByInput {
 
 input RatingCreateInput {
     id: String
-    rate: Int!
+    rate: [Int]
     profile: RatingProfileCreateRelationInput!
     spot: RatingSpotCreateRelationInput!
 }
 
 input RatingCreateManyInput {
     id: String
-    rate: Int!
+    rate: [Int]
 }
 
 input RatingUpdateInput {
     id: String
-    rate: Int
+    rate: [Int]
     profile: RatingProfileUpdateRelationsInput
     spot: RatingSpotUpdateRelationsInput
 }

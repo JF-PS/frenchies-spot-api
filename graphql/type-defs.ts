@@ -173,7 +173,8 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
-    ): Profile
+      pictures: [PictureInput]
+    ): Spot
 
     deleteSpot(
       id: String
@@ -185,7 +186,7 @@ const typeDefs = gql`
       isCanVisit: Boolean
       isTouristic: Boolean
       region: String
-    ): Profile
+    ): Boolean
 
     # createItinary(
     #   name: String

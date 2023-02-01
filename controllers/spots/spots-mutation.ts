@@ -23,7 +23,6 @@ export const spotsMutation = {
     const { user } = context;
     const profileId = user?.profile.id;
     if (!profileId) throw new GenericError(UNAUTHENTICATED);
-
     return spotsBusiness.update(data, profileId);
   },
 
@@ -35,9 +34,6 @@ export const spotsMutation = {
     const { user } = context;
     const profileId = user?.profile.id;
     if (!profileId) throw new GenericError(UNAUTHENTICATED);
-
-    // const { id: spotId } = data;
-
     return spotsBusiness.delete(data, profileId);
   },
 };

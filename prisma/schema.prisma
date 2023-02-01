@@ -101,7 +101,7 @@ model Spot {
 model Spot_Picture {
   id     String @id @default(uuid())
   url    String
-  spot   Spot   @relation(fields: [spotId], references: [id])
+  spot   Spot   @relation(fields: [spotId], references: [id], onDelete: Cascade)
   spotId String
 }
 
@@ -114,9 +114,9 @@ model Product {
 
 model Rating {
   id        String  @id @default(uuid())
-  rate      Int     
+  rate      Int[]   @default([1, 2, 3, 4, 5])     
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String
-  spot      Spot   @relation(fields: [spotId], references: [id])
+  spot      Spot    @relation(fields: [spotId], references: [id])
   spotId    String
 }

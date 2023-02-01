@@ -1,18 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import { PrismaClient } from "@prisma/client";
 import styles from "../styles/Home.module.css";
 
-const prisma = new PrismaClient();
-
-interface HomeProps {
-  data: any[];
-}
-
-export default function Home(props: HomeProps) {
-  const { data } = props;
-
+export default function Home() {
   return (
     <>
       <Head>
@@ -22,26 +12,10 @@ export default function Home(props: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <ul>
-          {data.map((item) => {
-            const { id, message, level } = item;
-            return (
-              <li key={id}>
-                <span>{level}</span> - <span>{message}</span>
-              </li>
-            );
-          })}
-        </ul>
+        <a href="api/graphql">
+          <h1>Go to Api</h1>
+        </a>
       </main>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const logs = await prisma.log.findMany();
-  return {
-    props: {
-      data: logs,
-    },
-  };
 }

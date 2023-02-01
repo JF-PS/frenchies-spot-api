@@ -21,16 +21,16 @@ const usersBusiness = {
    */
   update: (data: UserDto, userId: string) => {
     const { email, password, pseudo, photoUrl } = data;
-    const user = { email, password};
-    const profile = { pseudo, photoUrl};
+    const user = { email, password };
+    const profile = { pseudo, photoUrl };
     return usersRepository.update(user, profile, userId);
   },
 
-  delete: async(userId: string, profileId: string) => {
+  delete: async (userId: string, profileId: string) => {
     const isProfileDeleted = await usersRepository.deleteProfile(profileId);
     const isUserDeleted = await usersRepository.deleteUser(userId);
 
-    if(isProfileDeleted && isUserDeleted) return true;
+    if (isProfileDeleted && isUserDeleted) return true;
     return false;
   },
 
