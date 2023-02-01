@@ -13,6 +13,9 @@ export enum codeErrors {
   INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
   SPOT_NOT_FOUND = "SPOT_NOT_FOUND",
   SPOT_ID_NOT_MATCH_PROFILE_ID = "SPOT_ID_NOT_MATCH_PROFILE_ID",
+  SPOT_ID_MATCH_PROFILE_ID = "SPOT_ID_MATCH_PROFILE_ID",
+  FAVORITE_NOT_FOUND = "FAVORITE_NOT_FOUND",
+  FAVORITE_ID_NOT_MATCH_PROFILE_ID = "FAVORITE_ID_NOT_MATCH_PROFILE_ID",
 }
 
 const errorsMessage: Record<keyof typeof codeErrors, TError> = {
@@ -46,6 +49,20 @@ const errorsMessage: Record<keyof typeof codeErrors, TError> = {
       en: "Spot profile id doesn't match with the current profile id",
     },
   },
+  SPOT_ID_MATCH_PROFILE_ID: {
+    statusCode: 404,
+    errorMessage: { en: "Spot ProfileId is the same that your profileId. You can't rate your own spot."}
+  },
+  FAVORITE_NOT_FOUND: {
+    statusCode: 404,
+    errorMessage: { en: "No favorite found with id: "}
+  },
+  FAVORITE_ID_NOT_MATCH_PROFILE_ID: {
+    statusCode: 404,
+    errorMessage: { en: "Favorite profile id doesn't match already with the current profile id"}
+  },
+
+
 };
 
 class GenericError extends GraphQLError {

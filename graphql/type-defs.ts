@@ -87,6 +87,14 @@ const typeDefs = gql`
     spotId: String
   }
 
+  type Favorite {
+    id: String
+    profile: Profile
+    profileId: String
+    spot: Spot
+    spotId: String
+  }
+
   input CoordinateInput {
     lat: Int
     lng: Int
@@ -128,6 +136,8 @@ const typeDefs = gql`
     products: [Product]
     authByToken: User
     getBuyProductRequest(amount: Int): String
+    # favorites: [Favorite]
+    # favorite(id: String): Favorite
   }
 
   type Mutation {
@@ -192,6 +202,11 @@ const typeDefs = gql`
     # ): Itinary
 
     createRating(spotId: String, rate: Int): Spot
+    
+    createOrUpdateFavorite(
+      FavoriteId: String
+      spotId: String
+    ): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 

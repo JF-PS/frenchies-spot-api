@@ -268,3 +268,33 @@
 - typeName: Mutation
   fieldName: deleteManyRatings
   dataSource: prisma-appsync
+- typeName: Query
+  fieldName: getFavorite
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: listFavorites
+  dataSource: prisma-appsync
+- typeName: Query
+  fieldName: countFavorites
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createFavorite
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateFavorite
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: upsertFavorite
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteFavorite
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: createManyFavorites
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: updateManyFavorites
+  dataSource: prisma-appsync
+- typeName: Mutation
+  fieldName: deleteManyFavorites
+  dataSource: prisma-appsync

@@ -29,6 +29,7 @@ type Profile {
     itinaries: [Itinary]
     spots: [Spot]
     ratings: [Rating]
+    favorites: [Favorite]
 }
 
 type Itinary {
@@ -56,6 +57,7 @@ type Spot {
     region: String!
     spotPicture: [SpotPicture]
     ratings: [Rating]
+    favorites: [Favorite]
 }
 
 type SpotPicture {
@@ -75,6 +77,14 @@ type Product {
 type Rating {
     id: String!
     rate: Int!
+    profile: Profile!
+    profileId: String!
+    spot: Spot!
+    spotId: String!
+}
+
+type Favorite {
+    id: String!
     profile: Profile!
     profileId: String!
     spot: Spot!
@@ -444,6 +454,7 @@ input ProfileWhereInput {
     itinaries: ItinaryFilter
     spots: SpotFilter
     ratings: RatingFilter
+    favorites: FavoriteFilter
 }
 
 input ProfileWhereUniqueInput {
@@ -465,6 +476,7 @@ input ProfileExtendedWhereUniqueInput {
     itinaries: ItinaryFilter
     spots: SpotFilter
     ratings: RatingFilter
+    favorites: FavoriteFilter
 }
 
 input ProfileOrderByInput {
@@ -477,6 +489,7 @@ input ProfileOrderByInput {
     itinaries: ItinaryOrderByInput
     spots: SpotOrderByInput
     ratings: RatingOrderByInput
+    favorites: FavoriteOrderByInput
 }
 
 input ProfileCreateInput {
@@ -488,6 +501,7 @@ input ProfileCreateInput {
     itinaries: ProfileItinariesCreateRelationInput
     spots: ProfileSpotsCreateRelationInput
     ratings: ProfileRatingsCreateRelationInput
+    favorites: ProfileFavoritesCreateRelationInput
 }
 
 input ProfileCreateManyInput {
@@ -506,6 +520,7 @@ input ProfileUpdateInput {
     itinaries: ProfileItinariesUpdateRelationsInput
     spots: ProfileSpotsUpdateRelationsInput
     ratings: ProfileRatingsUpdateRelationsInput
+    favorites: ProfileFavoritesUpdateRelationsInput
 }
 
 input ProfileOperationInput {
@@ -614,6 +629,24 @@ input ProfileRatingsUpdateRelationsInput {
     set: [RatingWhereUniqueInput]
     updateMany: [RatingUpdateManyInput]
     deleteMany: [RatingDeleteManyInput]
+}
+input ProfileFavoritesCreateRelationInput {
+    create: [FavoriteCreateInput]
+    connect: [FavoriteWhereUniqueInput]
+    connectOrCreate: [FavoriteConnectOrCreateInput]
+}
+
+input ProfileFavoritesUpdateRelationsInput {
+    connect: [FavoriteWhereUniqueInput]
+    create: [FavoriteCreateInput]
+    connectOrCreate: [FavoriteConnectOrCreateInput]
+    update: [FavoriteUpdateUniqueInput]
+    upsert: [FavoriteUpsertUniqueInput]
+    delete: [FavoriteDeleteUniqueInput]
+    disconnect: [FavoriteWhereUniqueInput]
+    set: [FavoriteWhereUniqueInput]
+    updateMany: [FavoriteUpdateManyInput]
+    deleteMany: [FavoriteDeleteManyInput]
 }
 
 input ItinaryFilter {
@@ -789,6 +822,7 @@ input SpotWhereInput {
     region: StringFilter
     spotPicture: SpotPictureFilter
     ratings: RatingFilter
+    favorites: FavoriteFilter
 }
 
 input SpotWhereUniqueInput {
@@ -813,6 +847,7 @@ input SpotExtendedWhereUniqueInput {
     region: StringFilter
     spotPicture: SpotPictureFilter
     ratings: RatingFilter
+    favorites: FavoriteFilter
 }
 
 input SpotOrderByInput {
@@ -830,6 +865,7 @@ input SpotOrderByInput {
     region: OrderByArg
     spotPicture: SpotPictureOrderByInput
     ratings: RatingOrderByInput
+    favorites: FavoriteOrderByInput
 }
 
 input SpotCreateInput {
@@ -846,6 +882,7 @@ input SpotCreateInput {
     region: String!
     spotPicture: SpotSpotPictureCreateRelationInput
     ratings: SpotRatingsCreateRelationInput
+    favorites: SpotFavoritesCreateRelationInput
 }
 
 input SpotCreateManyInput {
@@ -874,6 +911,7 @@ input SpotUpdateInput {
     region: String
     spotPicture: SpotSpotPictureUpdateRelationsInput
     ratings: SpotRatingsUpdateRelationsInput
+    favorites: SpotFavoritesUpdateRelationsInput
 }
 
 input SpotOperationInput {
@@ -983,6 +1021,24 @@ input SpotRatingsUpdateRelationsInput {
     set: [RatingWhereUniqueInput]
     updateMany: [RatingUpdateManyInput]
     deleteMany: [RatingDeleteManyInput]
+}
+input SpotFavoritesCreateRelationInput {
+    create: [FavoriteCreateInput]
+    connect: [FavoriteWhereUniqueInput]
+    connectOrCreate: [FavoriteConnectOrCreateInput]
+}
+
+input SpotFavoritesUpdateRelationsInput {
+    connect: [FavoriteWhereUniqueInput]
+    create: [FavoriteCreateInput]
+    connectOrCreate: [FavoriteConnectOrCreateInput]
+    update: [FavoriteUpdateUniqueInput]
+    upsert: [FavoriteUpsertUniqueInput]
+    delete: [FavoriteDeleteUniqueInput]
+    disconnect: [FavoriteWhereUniqueInput]
+    set: [FavoriteWhereUniqueInput]
+    updateMany: [FavoriteUpdateManyInput]
+    deleteMany: [FavoriteDeleteManyInput]
 }
 
 input SpotPictureFilter {
@@ -1308,6 +1364,127 @@ input RatingSpotCreateRelationInput {
 }
 
 input RatingSpotUpdateRelationsInput {
+    connect: SpotWhereUniqueInput
+    create: SpotCreateInput
+    connectOrCreate: SpotConnectOrCreateInput
+    update: SpotUpdateInput
+    upsert: SpotUpsertInput
+    delete: Boolean
+    disconnect: Boolean
+}
+
+input FavoriteFilter {
+    some: FavoriteWhereInput
+    every: FavoriteWhereInput
+    none: FavoriteWhereInput
+}
+
+input FavoriteWhereInput {
+    OR: [FavoriteWhereInput]
+    NOT: [FavoriteWhereInput]
+    AND: [FavoriteWhereInput]
+    id: StringFilter
+    profile: ProfileWhereInput
+    profileId: StringFilter
+    spot: SpotWhereInput
+    spotId: StringFilter
+}
+
+input FavoriteWhereUniqueInput {
+    id: String
+}
+
+input FavoriteExtendedWhereUniqueInput {
+    OR: [FavoriteWhereInput]
+    NOT: [FavoriteWhereInput]
+    AND: [FavoriteWhereInput]
+    id: String
+    profile: ProfileWhereInput
+    profileId: StringFilter
+    spot: SpotWhereInput
+    spotId: StringFilter
+}
+
+input FavoriteOrderByInput {
+    id: OrderByArg
+    profile: ProfileOrderByInput
+    profileId: OrderByArg
+    spot: SpotOrderByInput
+    spotId: OrderByArg
+}
+
+input FavoriteCreateInput {
+    id: String
+    profile: FavoriteProfileCreateRelationInput!
+    spot: FavoriteSpotCreateRelationInput!
+}
+
+input FavoriteCreateManyInput {
+    id: String
+}
+
+input FavoriteUpdateInput {
+    id: String
+    profile: FavoriteProfileUpdateRelationsInput
+    spot: FavoriteSpotUpdateRelationsInput
+}
+
+input FavoriteUpdateUniqueInput {
+    data: FavoriteUpdateInput!
+    where: FavoriteWhereUniqueInput!
+}
+
+input FavoriteUpdateManyInput {
+    where: FavoriteWhereInput!
+    data: FavoriteUpdateInput!
+}
+
+input FavoriteUpsertInput {
+    create: FavoriteCreateInput!
+    update: FavoriteUpdateInput!
+}
+
+input FavoriteUpsertUniqueInput {
+    where: FavoriteWhereUniqueInput!
+    create: FavoriteCreateInput!
+    update: FavoriteUpdateInput!
+}
+
+input FavoriteConnectOrCreateInput {
+    where: FavoriteWhereUniqueInput!
+    create: FavoriteCreateInput!
+}
+
+input FavoriteDeleteUniqueInput {
+    where: FavoriteWhereUniqueInput!
+}
+
+input FavoriteDeleteManyInput {
+    where: FavoriteWhereInput!
+}
+
+input FavoriteProfileCreateRelationInput {
+    create: ProfileCreateInput
+    connect: ProfileWhereUniqueInput
+    connectOrCreate: ProfileConnectOrCreateInput
+}
+
+input FavoriteProfileUpdateRelationsInput {
+    connect: ProfileWhereUniqueInput
+    create: ProfileCreateInput
+    connectOrCreate: ProfileConnectOrCreateInput
+    update: ProfileUpdateInput
+    upsert: ProfileUpsertInput
+    delete: Boolean
+    disconnect: Boolean
+}
+input FavoriteSpotCreateRelationInput {
+    create: SpotCreateInput
+    connect: SpotWhereUniqueInput
+    connectOrCreate: SpotConnectOrCreateInput
+}
+
+input FavoriteSpotUpdateRelationsInput {
     connect: SpotWhereUniqueInput
     create: SpotCreateInput
     connectOrCreate: SpotConnectOrCreateInput
@@ -1922,6 +2099,57 @@ type Mutation {
     deleteManyRatings(
         where: RatingWhereInput!
     ): BatchPayload
+
+    """
+    Create a new single Favorite record.
+    """
+    createFavorite(data: FavoriteCreateInput!): Favorite
+
+    """
+    Create multiple new Favorite records.
+    """
+    createManyFavorites(
+        data: [FavoriteCreateManyInput!]
+        skipDuplicates: Boolean
+    ): BatchPayload
+
+    """
+    Update an existing single Favorite record.
+    """
+    updateFavorite(
+        where: FavoriteWhereUniqueInput!
+        data: FavoriteUpdateInput
+    ): Favorite
+
+    """
+    Update multiple existing Favorite records.
+    """
+    updateManyFavorites(
+        where: FavoriteWhereInput!
+        data: FavoriteUpdateInput
+    ): BatchPayload
+
+    """
+    Update an existing or create a new single Favorite record.
+    """
+    upsertFavorite(
+        data: FavoriteUpdateInput!
+        where: FavoriteWhereUniqueInput!
+    ): Favorite
+
+    """
+    Delete a single Favorite record.
+    """
+    deleteFavorite(
+        where: FavoriteWhereUniqueInput!
+    ): Favorite
+
+    """
+    Delete multiple Favorite records.
+    """
+    deleteManyFavorites(
+        where: FavoriteWhereInput!
+    ): BatchPayload
 }
 type Query {
     """
@@ -2147,6 +2375,31 @@ type Query {
     countRatings(
         where: RatingWhereInput
         orderBy: [RatingOrderByInput]
+        skip: Int
+        take: Int
+    ): Int
+
+    """
+    Find a single Favorite record by unique identifier.
+    """
+    getFavorite(where: FavoriteWhereUniqueInput!): Favorite
+
+    """
+    Find many Favorite records (optional query filters).
+    """
+    listFavorites(
+        where: FavoriteWhereInput
+        orderBy: [FavoriteOrderByInput]
+        skip: Int
+        take: Int
+    ): [Favorite]
+
+    """
+    Count all Favorite records (optional query filters).
+    """
+    countFavorites(
+        where: FavoriteWhereInput
+        orderBy: [FavoriteOrderByInput]
         skip: Int
         take: Int
     ): Int
@@ -2792,4 +3045,71 @@ type Subscription {
     """
     onDeletedManyRatings: BatchPayload
         @aws_subscribe(mutations: ["deleteManyRatings"])
+
+    """
+    Triggered from `createFavorite` mutation (excl. `createManyFavorites` and `upsertFavorite`).
+    """
+    onCreatedFavorite(id: String): Favorite
+        @aws_subscribe(mutations: ["createFavorite"])
+
+    """
+    Triggered from `updateFavorite` mutation (excl. `updateManyFavorites` and `upsertFavorite`).
+    """
+    onUpdatedFavorite(id: String): Favorite
+        @aws_subscribe(mutations: ["updateFavorite"])
+
+    """
+    Triggered from `upsertFavorite` mutation.
+    """
+    onUpsertedFavorite(id: String): Favorite
+        @aws_subscribe(mutations: ["upsertFavorite"])
+
+    """
+    Triggered from `deleteFavorite` mutation (excl. `deleteManyFavorites`).
+    """
+    onDeletedFavorite(id: String): Favorite
+        @aws_subscribe(mutations: ["deleteFavorite"])
+
+    """
+    Triggered from ANY SINGLE record mutation.
+    """
+    onMutatedFavorite(id: String): Favorite
+        @aws_subscribe(
+            mutations: [
+                "createFavorite"
+                "updateFavorite"
+                "upsertFavorite"
+                "deleteFavorite"
+            ]
+        )
+
+    """
+    Triggered from `createManyFavorites` mutation.
+    """
+    onCreatedManyFavorites: BatchPayload
+        @aws_subscribe(mutations: ["createManyFavorites"])
+
+    """
+    Triggered from `updateManyFavorites` mutation.
+    """
+    onUpdatedManyFavorites: BatchPayload
+        @aws_subscribe(mutations: ["updateManyFavorites"])
+
+    """
+    Triggered from ANY MULTIPLE records mutation.
+    """
+    onMutatedManyFavorites: BatchPayload
+        @aws_subscribe(
+            mutations: [
+                "createManyFavorites"
+                "updateManyFavorites"
+                "deleteManyFavorites"
+            ]
+        )
+
+    """
+    Triggered from `deleteManyFavorites` mutation.
+    """
+    onDeletedManyFavorites: BatchPayload
+        @aws_subscribe(mutations: ["deleteManyFavorites"])
 }

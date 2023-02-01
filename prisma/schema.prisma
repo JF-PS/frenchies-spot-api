@@ -63,6 +63,8 @@ model Profile {
   spots     Spot[]
   // Relations one to many with rating
   ratings   Rating[]
+  // Relations one to many with favorite
+  favorites Favorite[]
 }
 
 model Itinary {
@@ -96,6 +98,8 @@ model Spot {
   spotPicture Spot_Picture[]
   // Relations one to many with rating
   ratings     Rating[]
+  // Relations one to many with favorite
+  favorites   Favorite[]
 }
 
 model Spot_Picture {
@@ -115,6 +119,14 @@ model Product {
 model Rating {
   id        String  @id @default(uuid())
   rate      Int     
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String
+  spot      Spot   @relation(fields: [spotId], references: [id])
+  spotId    String
+}
+
+model Favorite {
+  id        String  @id @default(uuid())
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String
   spot      Spot   @relation(fields: [spotId], references: [id])
