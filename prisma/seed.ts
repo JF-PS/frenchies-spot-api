@@ -9,25 +9,10 @@ const userData: Prisma.UserCreateInput[] = [
     role: "USER_ADMIN",
     profile: {
       create: {
+        id: "id-alicemerveille",
         pseudo: "AliceMerveille",
         photoUrl: "url",
         gamePoint: 0,
-        ratings: {
-          create: [
-            {
-              spotId: "id4-de-falaisesmeschers",
-              rate: 4,
-            },
-            {
-              spotId: "id24-de-montblanc",
-              rate: 3,
-            },
-            {
-              spotId: "id16-de-guethary",
-              rate: 5,
-            },
-          ]
-        },
         spots: {
           create: [
             {
@@ -97,21 +82,10 @@ const userData: Prisma.UserCreateInput[] = [
     role: "SIMPLE_USER",
     profile: {
       create: {
+        id: "id-pierrepresent",
         pseudo: "PierrePrésent",
         photoUrl: "url",
         gamePoint: 0,
-        ratings: {
-          create: [
-            {
-              spotId: "id24-de-montblanc",
-              rate: 5,
-            },
-            {
-              spotId: "id30-de-etangdetremelin",
-              rate: 2,
-            },
-          ]
-        },
         spots: {
           create: [
             {
@@ -181,21 +155,10 @@ const userData: Prisma.UserCreateInput[] = [
     role: "SIMPLE_USER",
     profile: {
       create: {
+        id: "id-jeromedeladrome",
         pseudo: "JeromeDeLaDrome",
         photoUrl: "url",
         gamePoint: 0,
-        ratings: {
-          create: [
-            {
-              spotId: "id30-de-etangdetremelin",
-              rate: 3,
-            },
-            {
-              spotId: "id1-de-dunedupilat",
-              rate: 3,
-            },
-          ]
-        },
         spots: {
           create: [
             {
@@ -301,29 +264,10 @@ const userData: Prisma.UserCreateInput[] = [
     role: "USER_ADMIN",
     profile: {
       create: {
+        id: "id-bricedenice",
         pseudo: "BriceDeNice",
         photoUrl: "url",
         gamePoint: 0,
-        ratings: {
-          create: [
-            {
-              spotId: "id10-de-foretdebroceliande",
-              rate: 5,
-            },
-            {
-              spotId: "id24-de-montblanc",
-              rate: 2,
-            },
-            {
-              spotId: "id30-de-etangdetremelin",
-              rate: 4,
-            },
-            {
-              spotId: "id1-de-dunedupilat",
-              rate: 5,
-            },
-          ]
-        },
         spots: {
           create: [
             {
@@ -429,29 +373,10 @@ const userData: Prisma.UserCreateInput[] = [
     role: "USER_ADMIN",
     profile: {
       create: {
+        id: "id-ludoviccruchot",
         pseudo: "LudovicCruchot",
         photoUrl: "url",
         gamePoint: 0,
-        ratings: {
-          create: [
-            {
-              spotId: "id1-de-dunedupilat",
-              rate: 3,
-            },
-            {
-              spotId: "id6-de-foretdeslandes",
-              rate: 3,
-            },
-            {
-              spotId: "id10-de-foretdebroceliande",
-              rate: 5,
-            },
-            {
-              spotId: "id16-de-guethary",
-              rate: 2,
-            },
-          ]
-        },
         spots: {
           create: [
             {
@@ -538,33 +463,10 @@ const userData: Prisma.UserCreateInput[] = [
     role: "USER_ADMIN",
     profile: {
       create: {
+        id: "id-godefroydemontmirail",
         pseudo: "GodefroyDeMontmirail",
         photoUrl: "url",
         gamePoint: 0,
-        ratings: {
-          create: [
-            {
-              spotId: "id1-de-dunedupilat",
-              rate: 5,
-            },
-            {
-              spotId: "id6-de-foretdeslandes",
-              rate: 1,
-            },
-            {
-              spotId: "id10-de-foretdebroceliande",
-              rate: 4,
-            },
-            {
-              spotId: "id16-de-guethary",
-              rate: 3,
-            },
-            {
-              spotId: "id30-de-etangdetremelin",
-              rate: 5,
-            },
-          ]
-        },
         spots: {
           create: [
             {
@@ -670,25 +572,10 @@ const userData: Prisma.UserCreateInput[] = [
     role: "USER_ADMIN",
     profile: {
       create: {
+        id: "id-merlinenchanteur",
         pseudo: "MerlinEnchanteur",
         photoUrl: "url",
         gamePoint: 0,
-        ratings: {
-          create: [
-            {
-              spotId: "id1-de-dunedupilat",
-              rate: 4,
-            },
-            {
-              spotId: "id10-de-foretdebroceliande",
-              rate: 3,
-            },
-            {
-              spotId: "id16-de-guethary",
-              rate: 4,
-            },
-          ]
-        },
         spots: {
           create: [
             {
@@ -789,10 +676,147 @@ const userData: Prisma.UserCreateInput[] = [
   },
 ];
 
+const updateSpotData: Prisma.SpotUpdateInput[] = [
+  {
+    id: "id1-de-dunedupilat",
+    ratings: {
+      create: [
+        {
+          profileId: "id-jeromedeladrome",
+          rate: 3,
+        },
+        {
+          profileId: "id-bricedenice",
+          rate: 5,
+        },
+        {
+          profileId: "id-ludoviccruchot",
+          rate: 3,
+        },
+        {
+          profileId: "id-godefroydemontmirail",
+          rate: 5,
+        },
+        {
+          profileId: "id-merlinenchanteur",
+          rate: 4,
+        },
+      ]
+    }
+  },
+  {
+    id: "id6-de-foretdeslandes",
+    ratings: {
+      create: [
+        {
+          profileId: "id-alicemerveille",
+          rate: 4,
+        },
+        {
+          profileId: "id-ludoviccruchot",
+          rate: 3,
+        },
+        {
+          profileId: "id-godefroydemontmirail",
+          rate: 1,
+        },
+      ]
+    }
+  },
+  {
+    id: "id10-de-foretdebroceliande",
+    ratings: {
+      create: [
+        {
+          profileId: "id-bricedenice",
+          rate: 5,
+        },
+        {
+          profileId: "id-ludoviccruchot",
+          rate: 5,
+        },
+        {
+          profileId: "id-godefroydemontmirail",
+          rate: 4,
+        },
+        {
+          profileId: "id-merlinenchanteur",
+          rate: 3,
+        },
+      ]
+    }
+  },
+  {
+    id: "id16-de-guethary",
+    ratings: {
+      create: [
+        {
+          profileId: "id-alicemerveille",
+          rate: 5,
+        },
+        {
+          profileId: "id-ludoviccruchot",
+          rate: 2,
+        },
+        {
+          profileId: "id-godefroydemontmirail",
+          rate: 3,
+        },
+        {
+          profileId: "id-merlinenchanteur",
+          rate: 4,
+        },
+      ]
+    }
+  },
+  {
+    id: "id24-de-montblanc",
+    ratings: {
+      create: [
+        {
+          profileId: "id-alicemerveille",
+          rate: 3,
+        },
+        {
+          profileId: "id-pierrepresent",
+          rate: 5,
+        },
+        {
+          profileId: "id-bricedenice",
+          rate: 2,
+        },
+      ]
+    }
+  },
+  {
+    id: "id30-de-etangdetremelin",
+    ratings: {
+      create: [
+        {
+          profileId: "id-pierrepresent",
+          rate: 2,
+        },
+        {
+          profileId: "id-jeromedeladrome",
+          rate: 3,
+        },
+        {
+          profileId: "id-bricedenice",
+          rate: 4,
+        },
+        {
+          profileId: "id-godefroydemontmirail",
+          rate: 5,
+        },
+      ]
+    }
+  } 
+]
+
 async function main() {
   console.log(`Start seeding ...`);
   for (const u of userData) {
-    prisma.user
+    await prisma.user
       .create({
         data: u,
       })
@@ -800,6 +824,20 @@ async function main() {
         console.log(_user);
         console.log(`Created user with id: ${_user.id}`);
       });
+  }
+
+  for (const p of updateSpotData) {
+    await prisma.spot
+      .update({
+        where: {
+          id: p.id as string,
+        },
+        data: p,
+      })
+      .then((_spot) => {
+        console.log(_spot);
+        console.log(`Created spot with id: ${_spot.id}`);
+      })
   }
   console.log(`Seeding finished.`);
 }
