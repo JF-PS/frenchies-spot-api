@@ -5,24 +5,6 @@ CREATE TYPE "Level" AS ENUM ('Warning', 'Info', 'Error');
 CREATE TYPE "Role" AS ENUM ('SIMPLE_USER', 'USER_ADMIN');
 
 -- CreateTable
-CREATE TABLE "Log" (
-    "id" TEXT NOT NULL,
-    "message" TEXT NOT NULL,
-    "level" "Level" NOT NULL,
-    "meta" JSONB NOT NULL,
-
-    CONSTRAINT "Log_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Test" (
-    "id" TEXT NOT NULL,
-    "text" TEXT NOT NULL,
-
-    CONSTRAINT "Test_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -121,9 +103,6 @@ CREATE TABLE "_ItinaryToSpot" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "Test_text_key" ON "Test"("text");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
