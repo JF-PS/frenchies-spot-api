@@ -16,8 +16,7 @@ const userData: Prisma.UserCreateInput[] = [
           create: [
             {
               name: "La dune du Pilat",
-              description: `La dune du Pilat gardienne du bassin d’Arcachon, mérite son titre de plus haute dune d’Europe. Unique par ses dimensions : 117 m de hauteur, 2,7 km de longueur, 500 m de largeur, son ascension est largement récompensée par la vue que nous réserve le site, il est d’une beauté exceptionnelle.
-              Aux couleurs marines, vert des pins, doré du sable s’ajoute le parfum d’iode et d’odeurs balsamiques.`,
+              description: `La dune du Pilat gardienne du bassin d’Arcachon, mérite son titre de plus haute dune d’Europe. Unique par ses dimensions : 117 m de hauteur, 2,7 km de longueur, 500 m de largeur, son ascension est largement récompensée par la vue que nous réserve le site, il est d’une beauté exceptionnelle. Aux couleurs marines, vert des pins, doré du sable s’ajoute le parfum d’iode et d’odeurs balsamiques.`,
               isCanPark: false,
               isCanVisit: true,
               isTouristic: true,
@@ -34,8 +33,7 @@ const userData: Prisma.UserCreateInput[] = [
             },
             {
               name: "Le pic de la Rhune",
-              description: `Au Pays Basque, La Rhune protège jalousement la côte. Ce site est un lieu enchanteur parcouru de pistes pastorales, d’où s’y dégage une ambiance mystérieuse et secrète. On y découvre des cromlechs, ces blocs dressés en cercle orientés vers le soleil, on y entend de nombreuses légendes, on y rencontre des pottoks petits chevaux autochtones à demi sauvages.
-              Et puis n’hésitez pas à emprunter le Petit Train de la Rhune, train à crémaillère : un trajet de 30 minutes à 8 km/h.`,
+              description: `Au Pays Basque, La Rhune protège jalousement la côte. Ce site est un lieu enchanteur parcouru de pistes pastorales, d’où s’y dégage une ambiance mystérieuse et secrète. On y découvre des cromlechs, ces blocs dressés en cercle orientés vers le soleil, on y entend de nombreuses légendes, on y rencontre des pottoks petits chevaux autochtones à demi sauvages. Et puis n’hésitez pas à emprunter le Petit Train de la Rhune, train à crémaillère : un trajet de 30 minutes à 8 km/h.`,
               isCanPark: false,
               isCanVisit: true,
               isTouristic: true,
@@ -52,8 +50,7 @@ const userData: Prisma.UserCreateInput[] = [
             },
             {
               name: "Parc National Pyrénées",
-              description: `Un panorama inouï vous attend en Béarn. Vous êtes en haute montagne, dans le Parc National des Pyrénées. En arrivant à Artouste on assiste à une extraordinaire variété de paysages où alternent une kyrielle d’aiguilles, de vastes pâturages, ou de grandes étendues de forêts de hêtres ou de sapins, de lacs... Une superbe occasion pour voir voler au-dessus de vos têtes : aigles royaux, faucons pèlerins ou vautours fauves veillant sur cette vallée de rêve.
-              Impressionnant, le petit train d’Artouste (à 2000 m d’altitude) qui se déplace le long de la ligne ferroviaire la plus haute d’Europe. Visite à faire absolument.`,
+              description: `Un panorama inouï vous attend en Béarn. Vous êtes en haute montagne, dans le Parc National des Pyrénées. En arrivant à Artouste on assiste à une extraordinaire variété de paysages où alternent une kyrielle d’aiguilles, de vastes pâturages, ou de grandes étendues de forêts de hêtres ou de sapins, de lacs... Une superbe occasion pour voir voler au-dessus de vos têtes : aigles royaux, faucons pèlerins ou vautours fauves veillant sur cette vallée de rêve. Impressionnant, le petit train d’Artouste (à 2000 m d’altitude) qui se déplace le long de la ligne ferroviaire la plus haute d’Europe. Visite à faire absolument.`,
               isCanPark: true,
               isCanVisit: false,
               isTouristic: true,
@@ -104,8 +101,7 @@ const userData: Prisma.UserCreateInput[] = [
             },
             {
               name: "Bort en Limousin",
-              description: `Au cœur du Massif Central, nous sommes dans la vallée de la Haute Dordogne. A 437 m d’altitude les orgues de Bort sommeillent. C’est une merveille naturelle surgie des entrailles de la Terre.
-              Monument naturel composé d’une succession de colonnes verticales qui évoquent l’instrument de musique. `,
+              description: `Au cœur du Massif Central, nous sommes dans la vallée de la Haute Dordogne. A 437 m d’altitude les orgues de Bort sommeillent. C’est une merveille naturelle surgie des entrailles de la Terre. Monument naturel composé d’une succession de colonnes verticales qui évoquent l’instrument de musique. `,
               isCanPark: true,
               isCanVisit: true,
               isTouristic: false,
@@ -247,7 +243,7 @@ const userData: Prisma.UserCreateInput[] = [
   {
     email: "`brice`@prisma.io",
     password: "Brice",
-    token: "token",
+    token: "token4",
     role: "USER_ADMIN",
     profile: {
       create: {
@@ -337,6 +333,91 @@ const userData: Prisma.UserCreateInput[] = [
                 create: [
                   {
                     url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675336918/travelerSpot/guethary.jpg",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
+  {
+    email: "Ludovic@prisma.io",
+    password: "Ludovic",
+    token: "token5",
+    role: "USER_ADMIN",
+    profile: {
+      create: {
+        pseudo: "LudovicCruchot",
+        photoUrl: "url",
+        gamePoint: 0,
+        spots: {
+          create: [
+            {
+              name: "Les Gorges du Verdon",
+              description: `Creusé par la rivière Verdon, au cœur des Alpes de Haute-Provence, le plus grand canyon d’Europe se dévoile avec ses falaises de calcaire majestueuses, son eau couleur émeraude et ses paysages alentours à couper le souffle.`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 43.7496562,
+              lng: 6.3285616,
+              region: "PACA, Alpes-de-Haute-Provence et le Var",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675337241/travelerSpot/gorges_du_verdon.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Pays de Sault",
+              description: `Une mosaïque de champs de lavandes, de petit épeautre et de blé, avec, au centre, le village de Sault, blanc et minéral, posé sur un roc.`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 47.8006543,
+              lng: 0.3771322,
+              region: "Occitanie, Aude",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675338025/travelerSpot/pays_de_sault.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Saint-Tropez",
+              description: `Appréciée depuis longtemps par les artistes, la ville attirait la "jet set" internationale dans les années 1960, et séduit toujours pour ses plages et sa vie nocturne. Le quartier pavé de La Ponche témoigne de son passé de village de pêcheurs, même si les yachts sont désormais plus nombreux que les bateaux de pêche dans le Vieux Port.`,
+              isCanPark: true,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 43.2727191,
+              lng: 6.6405225,
+              region: "Provence-Alpes-Côte d'Azur , Var",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675338220/travelerSpot/saint-tropez.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Bormes-les-Mimosas",
+              description: `Bormes-les-Mimosas est un superbe village médiéval du XIIᵉ siècle aux allures de crèche provençale. Il séduit les amoureux de vieilles pierres et de patrimoine, tout comme les amateurs de farniente, désireux de se trouver un petit coin de paradis au soleil.`,
+              isCanPark: true,
+              isCanVisit: false,
+              isTouristic: true,
+              lat: 43.1506968,
+              lng: 6.3419285,
+              region: "Provence-Alpes-Côte d'Azur , Var",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675338575/travelerSpot/bormes-les-mimosas.jpg",
                   },
                 ],
               },
