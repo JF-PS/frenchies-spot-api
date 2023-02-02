@@ -12,6 +12,16 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "AliceMerveille",
         photoUrl: "url",
         gamePoint: 0,
+        favorites: {
+          create: [
+            {
+              spotId: "id4-de-falaisesmeschers",
+            },
+            {
+              spotId: "id26-de-lavalleedesmerveilles",
+            },
+          ] 
+        },
         ratings: {
           create: [
             {
@@ -100,6 +110,19 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "PierrePrésent",
         photoUrl: "url",
         gamePoint: 0,
+        favorites: {
+          create: [
+            {
+              spotId: "id8-de-dentellesdemontmirail",
+            },
+            {
+              spotId: "id28-de-lacotedegranitrose",
+            },
+            {
+              spotId: "id29-de-menhirsdecrnac",
+            },
+          ]
+        },
         ratings: {
           create: [
             {
@@ -304,6 +327,16 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "BriceDeNice",
         photoUrl: "url",
         gamePoint: 0,
+        favorites: {
+          create: [
+            {
+              spotId: "id1-de-dunedupilat",
+            },
+            {
+              spotId: "id17-de-gorgesduverdon",
+            },
+          ]
+        },
         ratings: {
           create: [
             {
@@ -432,6 +465,16 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "LudovicCruchot",
         photoUrl: "url",
         gamePoint: 0,
+        favorites: {
+          create: [
+            {
+              spotId: "id15-de-lafiteria",
+            },
+            {
+              spotId: "id16-de-guethary",
+            },
+          ]
+        },
         ratings: {
           create: [
             {
@@ -541,6 +584,22 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "GodefroyDeMontmirail",
         photoUrl: "url",
         gamePoint: 0,
+        favorites: {
+          create: [
+            {
+              spotId: "id8-de-dentellesdemontmirail",
+            },
+            {
+              spotId: "id3-de-parcnationalpyrenees",
+            },
+            {
+              spotId: "id29-de-menhirsdecrnac",
+            },
+            {
+              spotId: "id11-de-picducanigou",
+            },
+          ]
+        },
         ratings: {
           create: [
             {
@@ -673,6 +732,13 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "MerlinEnchanteur",
         photoUrl: "url",
         gamePoint: 0,
+        favorites: {
+          create: [
+            {
+              spotId: "id10-de-foretdebroceliande",
+            },
+          ]
+        },
         ratings: {
           create: [
             {
@@ -780,6 +846,7 @@ const userData: Prisma.UserCreateInput[] = [
                   },
                 ],
               },
+              averageRating: 3.5,
             },
           ],
         },
