@@ -24,7 +24,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 44.5889775,
               lng: -1.2142045,
-              region: "Nouvelle-Aquitaine, Gironde",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -43,7 +43,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 43.30888,
               lng: -1.63507,
-              region: "Nouvelle-Aquitaine, Pays-Basque",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -61,7 +61,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 42.8962287902832,
               lng: -0.12042045593261719,
-              region: "Nouvelle-Aquitaine et Occitanie",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -97,7 +97,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 45.557484,
               lng: -0.956417,
-              region: "Nouvelle-Aquitaine, Charente-Maritime",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -115,7 +115,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 45.76667,
               lng: 1.7,
-              region: "Nouvelle-Aquitaine, Corrèze",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -133,7 +133,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 43.9359823,
               lng: -0.9236623,
-              region: "Nouvelle-Aquitaine, Les Landes",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -170,7 +170,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 47.562968,
               lng: -2.769661,
-              region: "Bretagne, Morbihan",
+              region: "53",
               spotPicture: {
                 create: [
                   {
@@ -188,7 +188,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 44.179423,
               lng: 5.060538,
-              region: "Povence-Alpes-Côte d'Azur, Vaucluse",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -206,7 +206,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 44.202515,
               lng: 5.291937,
-              region: "AUvergne-Rhône-Alpes, Drôme",
+              region: "84",
               spotPicture: {
                 create: [
                   {
@@ -224,7 +224,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 48.030483,
               lng: -2.132837,
-              region: "Bretagne",
+              region: "53",
               spotPicture: {
                 create: [
                   {
@@ -243,7 +243,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 42.518597,
               lng: 2.455712,
-              region: "76",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -279,7 +279,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 43.9195564,
               lng: 5.5005963,
-              region: "Provence-Alpes-Côte d'Azur, Vaucluse",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -297,7 +297,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 43.228732,
               lng: 5.40348,
-              region: "Provence-Alpes-Côte d'Azur, Bouches-du-Rhône",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -315,7 +315,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 44.5000426,
               lng: 6.3163021,
-              region: "Provence-Alpes-Côte d'Azur, Hautes-Alpes",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -333,7 +333,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 43.38871,
               lng: -1.66267,
-              region: "Nouvelle-Aquitaine, Pays-Basque",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -351,7 +351,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 43.423001,
               lng: -1.6062693,
-              region: "Nouvelle-Aquitaine, Pays-Basque",
+              region: "75",
               spotPicture: {
                 create: [
                   {
@@ -388,7 +388,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 43.7496562,
               lng: 6.3285616,
-              region: "PACA, Alpes-de-Haute-Provence et le Var",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -406,7 +406,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 47.8006543,
               lng: 0.3771322,
-              region: "Occitanie, Aude",
+              region: "76",
               spotPicture: {
                 create: [
                   {
@@ -424,7 +424,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 43.2727191,
               lng: 6.6405225,
-              region: "Provence-Alpes-Côte d'Azur , Var",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -442,7 +442,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 43.1506968,
               lng: 6.3419285,
-              region: "Provence-Alpes-Côte d'Azur , Var",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -478,7 +478,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 48.6359541,
               lng: -1.51146,
-              region: "Normandie, la Manche",
+              region: "28",
               spotPicture: {
                 create: [
                   {
@@ -496,7 +496,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 43.74425,
               lng: 4.79607,
-              region: "Provence-Alpes-Côte d'Azur, Bouches-du-Rhône",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -514,7 +514,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 46.5781239,
               lng: -1.8419225,
-              region: "Provence-Alpes-Côte d'Azur, Alpes-Maritimes",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -532,7 +532,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 45.9250255,
               lng: 6.8727437,
-              region: "Auvergne-Rhône-Alpes, Haute-Savoie",
+              region: "84",
               spotPicture: {
                 create: [
                   {
@@ -551,7 +551,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 49.36,
               lng: 0.0752778,
-              region: "Normandie, Calvados",
+              region: "28",
               spotPicture: {
                 create: [
                   {
@@ -587,7 +587,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 44.09109115600586,
               lng: 7.465714931488037,
-              region: "Provence-Alpes-Côte d'Azur, Alpes-Maritimes",
+              region: "93",
               spotPicture: {
                 create: [
                   {
@@ -605,7 +605,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 49.7074621,
               lng: 0.2031905,
-              region: "Normandie, Seine-Maritime",
+              region: "28",
               spotPicture: {
                 create: [
                   {
@@ -623,7 +623,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 48.8317817,
               lng: -3.4844446,
-              region: "Bretagne, Côtes-d'Armor",
+              region: "53",
               spotPicture: {
                 create: [
                   {
@@ -641,7 +641,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 47.5836629,
               lng: -3.0794428,
-              region: "Bretagne, Morbihan",
+              region: "53",
               spotPicture: {
                 create: [
                   {
@@ -659,7 +659,7 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 48.0964125,
               lng: -2.0281004,
-              region: "Bretagne, Ille-et-Vilaine",
+              region: "53",
               spotPicture: {
                 create: [
                   {
