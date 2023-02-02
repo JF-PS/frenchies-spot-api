@@ -20,9 +20,9 @@ const favoritesBusiness = {
     }
 
     if (favoriteId !== undefined) {
-      const rating = await favoritesRepository.getById(favoriteId);
+      const favorite = await favoritesRepository.getById(favoriteId);
 
-      if (profileId === rating?.profileId) {
+      if (profileId === favorite?.profileId) {
         return favoritesRepository.update(favoriteId, spotId, profileId);
       }
     }

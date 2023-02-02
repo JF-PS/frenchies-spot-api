@@ -1,18 +1,18 @@
-import { Spot, Spot_Picture } from "@prisma/client";
+import { Spot, SpotPicture } from "@prisma/client";
 
 export interface ProfileSpotDto
   extends Pick<Spot, "name" | "description" | "lat" | "lng"> {
   profileId: string;
 }
 
-export type SpotPicturesDto = Pick<Spot_Picture, "url">[];
-export type UpdateSpotPicturesDto = Omit<Spot_Picture, "spotId">[];
+export type SpotPicturesDto = Pick<SpotPicture, "url">[];
+export type UpdateSpotPicturesDto = Omit<SpotPicture, "spotId">[];
 
 export type SpotDto = Omit<Spot, "profileId" | "id">;
 
 export type UpdateSpotDto = Omit<Spot, "profileId">;
 
-export type SpotFilterDto = Omit<Spot, "id" | "name" | "description">
+export type SpotFilterDto = Omit<Spot, "id" | "name" | "description">;
 
 export type SpotPaginationDto = { take: number; skip: number };
 

@@ -1,5 +1,5 @@
 import prisma from "../prisma";
 
-const SpotPicture = prisma.spot_Picture;
+const SpotPicture = prisma.spotPicture;
 
 export default SpotPicture;

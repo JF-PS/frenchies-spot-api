@@ -73,12 +73,12 @@ CREATE TABLE "Spot" (
 );
 
 -- CreateTable
-CREATE TABLE "Spot_Picture" (
+CREATE TABLE "SpotPicture" (
     "id" TEXT NOT NULL,
     "url" TEXT NOT NULL,
     "spotId" TEXT NOT NULL,
 
-    CONSTRAINT "Spot_Picture_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "SpotPicture_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -156,7 +156,7 @@ ALTER TABLE "Profile" ADD CONSTRAINT "Profile_userId_fkey" FOREIGN KEY ("userId"
 ALTER TABLE "Spot" ADD CONSTRAINT "Spot_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Spot_Picture" ADD CONSTRAINT "Spot_Picture_spotId_fkey" FOREIGN KEY ("spotId") REFERENCES "Spot"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "SpotPicture" ADD CONSTRAINT "SpotPicture_spotId_fkey" FOREIGN KEY ("spotId") REFERENCES "Spot"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Rating" ADD CONSTRAINT "Rating_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
