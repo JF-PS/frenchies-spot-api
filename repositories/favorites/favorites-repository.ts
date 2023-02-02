@@ -14,11 +14,6 @@ const favoritesRepository = {
   },
 
   create: (spotId: string, profileId: string) => {
-
-    console.log("*****************")
-    console.log("repo create spotId", spotId)
-    console.log("repo create profileId", profileId)
-
     return Spot.update({
       where: {
         id: spotId,
@@ -35,11 +30,6 @@ const favoritesRepository = {
   },
 
   delete: (spotId: string, favoriteId: string) => {
-
-    console.log("*****************")
-    console.log("repo spotId", spotId)
-    console.log("repo favoriteId", favoriteId)
-
     return Spot.update({
       where: {
         id: spotId,
