@@ -8,13 +8,19 @@ const favoritesBusiness = {
     return favoritesRepository.getAll();
   },
 
-  createOrUpdate: async (spotId: string, favoriteId: string | undefined = undefined, profileId: string) => {
+  createOrUpdate: async (
+    spotId: string,
+    favoriteId: string | undefined = undefined,
+    profileId: string
+  ) => {
     const spot = await spotsRepository.getById(spotId);
     if (!spot) {
       throw new GenericError(SPOT_NOT_FOUND, spotId);
     }
-    if (profileId === spot.profileId) throw new GenericError(SPOT_ID_MATCH_PROFILE_ID);
-    
+
+    if (profileId === spot.profileId)
+      throw new GenericError(SPOT_ID_MATCH_PROFILE_ID);
+
     if (favoriteId === undefined) {
       return favoritesRepository.create(spotId, profileId);
     }

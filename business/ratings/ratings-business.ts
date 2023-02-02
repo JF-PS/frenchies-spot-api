@@ -1,7 +1,8 @@
 import { spotsRepository, ratingsRepository } from "../../repositories";
 import { codeErrors, GenericError } from "../../utils";
 
-const { SPOT_NOT_FOUND, SPOT_ID_MATCH_PROFILE_ID, RATING_OUT_OF_RANGE } = codeErrors;
+const { SPOT_NOT_FOUND, SPOT_ID_MATCH_PROFILE_ID, RATING_OUT_OF_RANGE } =
+  codeErrors;
 
 const ratingsBusiness = {
   getAll: () => {
@@ -18,7 +19,7 @@ const ratingsBusiness = {
     spotId: string,
     profileId: string
   ) => {
-    if(rate < 1 || rate > 5) throw new GenericError(RATING_OUT_OF_RANGE)
+    if (rate < 1 || rate > 5) throw new GenericError(RATING_OUT_OF_RANGE);
 
     const spot = await spotsRepository.getById(spotId);
 
@@ -34,8 +35,10 @@ const ratingsBusiness = {
     );
 
     const average = await ratingsRepository.getSpotAverageRating(spotId);
+
     const newAverage = average._avg.rate;
     const maxVote = average._count.rate;
+
     await spotsRepository.updateAverageRatingBySpotId(spotId, newAverage);
 
     return { currentRating: userRating, avg: newAverage, maxVote };
