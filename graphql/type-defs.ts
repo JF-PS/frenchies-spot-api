@@ -222,7 +222,10 @@ const typeDefs = gql`
       rate: Int
     ): AverageRating
 
-    createOrUpdateFavorite(FavoriteId: String, spotId: String): Spot
+    toggleFavorite(
+      spotId: String
+      id: String
+    ): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 

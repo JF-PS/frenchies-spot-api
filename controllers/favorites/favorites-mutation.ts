@@ -5,7 +5,7 @@ import { codeErrors, GenericError } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
 
 export const favoritesMutation = {
-    createOrUpdateFavorite: (
+    toggleFavorite: (
       _: undefined,
       data: UpdateFavoriteDto,
       context: TContext
@@ -14,8 +14,8 @@ export const favoritesMutation = {
       const profileId = user?.profile.id;
       if (!profileId) throw new GenericError(UNAUTHENTICATED);
 
-      const { spotId , id} = data;
+      const { spotId, id: favoriteId } = data;
 
-      return favoritesBusiness.createOrUpdate(id, spotId, profileId);
-    }      
+      return favoritesBusiness.toggleFavorite(spotId, favoriteId, profileId);
+    },
 };

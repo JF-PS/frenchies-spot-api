@@ -29,27 +29,20 @@ const favoritesRepository = {
     });
   },
 
-  update: (favoriteId: string, spotId: string, profileId: string ) => {
+  delete: (favoriteId: string, spotId: string) => {
     return Spot.update({
       where: {
         id: spotId,
       },
       data: {
         favorites: {
-          update: {
-            where: {
-              id: favoriteId,
-            },
-            data: {
-              profileId,
-            }
+          delete: {
+            id: favoriteId,
           },
         },
       },
-      include: { favorites: true },
     });
-  },
-
+  }
 };
 
 export default favoritesRepository;
