@@ -9,7 +9,7 @@ const userData: Prisma.UserCreateInput[] = [
     role: "USER_ADMIN",
     profile: {
       create: {
-        pseudo: "Alice231",
+        pseudo: "AliceMerveille",
         photoUrl: "url",
         gamePoint: 0,
         spots: {
@@ -21,13 +21,13 @@ const userData: Prisma.UserCreateInput[] = [
               isCanPark: false,
               isCanVisit: true,
               isTouristic: true,
-              lat: 44.61163,
-              lng: -0.94126,
-              region: "75",
+              lat: 44.5889775,
+              lng: -1.2142045,
+              region: "Nouvelle-Aquitaine, Gironde",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674996522/travelerSpot/dpcntkm0w5xuapqnzf95.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674996522/travelerSpot/dune_du_pilat.png",
                   },
                 ],
               },
@@ -39,13 +39,13 @@ const userData: Prisma.UserCreateInput[] = [
               isCanPark: false,
               isCanVisit: true,
               isTouristic: true,
-              lat: 45.963421,
-              lng: 6.01924,
-              region: "75",
+              lat: 43.30888,
+              lng: -1.63507,
+              region: "Nouvelle-Aquitaine, Pays-Basque",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674996742/travelerSpot/d4piatvfj3zdqltucltl.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674996742/travelerSpot/pic_de_la_rhune.png",
                   },
                 ],
               },
@@ -57,13 +57,13 @@ const userData: Prisma.UserCreateInput[] = [
               isCanPark: true,
               isCanVisit: false,
               isTouristic: true,
-              lat: 43.1008,
-              lng: -0.43344,
-              region: "75",
+              lat: 42.8962287902832,
+              lng: -0.12042045593261719,
+              region: "Nouvelle-Aquitaine et Occitanie",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674997283/travelerSpot/in1p26ldykdri49xkrvd.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674997283/travelerSpot/parc_national_des_pyrenees.png",
                   },
                 ],
               },
@@ -80,7 +80,7 @@ const userData: Prisma.UserCreateInput[] = [
     role: "SIMPLE_USER",
     profile: {
       create: {
-        pseudo: "Pierre231",
+        pseudo: "PierrePrésent",
         photoUrl: "url",
         gamePoint: 0,
         spots: {
@@ -93,11 +93,11 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 45.557484,
               lng: -0.956417,
-              region: "75",
+              region: "Nouvelle-Aquitaine, Charente-Maritime",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674997660/travelerSpot/wzrzkl46zvwetk5tk3in.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674997660/travelerSpot/falaises_meschers.png",
                   },
                 ],
               },
@@ -109,13 +109,13 @@ const userData: Prisma.UserCreateInput[] = [
               isCanPark: true,
               isCanVisit: true,
               isTouristic: false,
-              lat: 45.420868,
-              lng: 2.498905,
-              region: "75",
+              lat: 45.76667,
+              lng: 1.7,
+              region: "Nouvelle-Aquitaine, Corrèze",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674998074/travelerSpot/yehrauxjlzr6ijnkp8o4.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674998074/travelerSpot/bort_en_limousin.png",
                   },
                 ],
               },
@@ -126,13 +126,13 @@ const userData: Prisma.UserCreateInput[] = [
               isCanPark: true,
               isCanVisit: true,
               isTouristic: false,
-              lat: 44.226328,
-              lng: -0.668214,
-              region: "75",
+              lat: 43.9359823,
+              lng: -0.9236623,
+              region: "Nouvelle-Aquitaine, Les Landes",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674998414/travelerSpot/olnfzfd6j2i358pzpafq.jpg",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674998414/travelerSpot/foret_des_landes.jpg",
                   },
                 ],
               },
@@ -149,7 +149,7 @@ const userData: Prisma.UserCreateInput[] = [
     role: "SIMPLE_USER",
     profile: {
       create: {
-        pseudo: "Jerome231",
+        pseudo: "JeromeDeLaDrome",
         photoUrl: "url",
         gamePoint: 0,
         spots: {
@@ -162,11 +162,11 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: true,
               lat: 47.562968,
               lng: -2.769661,
-              region: "53",
+              region: "Bretagne, Morbihan",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674999175/travelerSpot/hocwnrdiknjrbjmhfbbi.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674999175/travelerSpot/golfe_du_morbihan.png",
                   },
                 ],
               },
@@ -179,11 +179,11 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 44.179423,
               lng: 5.060538,
-              region: "93",
+              region: "Povence-Alpes-Côte d'Azur, Vaucluse",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674999260/travelerSpot/i9akmlbswqad7ajavrsd.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674999260/travelerSpot/dentelles_de_montmirail.png",
                   },
                 ],
               },
@@ -196,11 +196,11 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 44.202515,
               lng: 5.291937,
-              region: "84",
+              region: "AUvergne-Rhône-Alpes, Drôme",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674999639/travelerSpot/jkjw77xp79igqwde23vd.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674999639/travelerSpot/gorges_du_toulourenc.png",
                   },
                 ],
               },
@@ -213,11 +213,11 @@ const userData: Prisma.UserCreateInput[] = [
               isTouristic: false,
               lat: 48.030483,
               lng: -2.132837,
-              region: "53",
+              region: "Bretagne",
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674999852/travelerSpot/cgal5vqlzzichjhkpnij.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1674999852/travelerSpot/foret_de_broceliande.png",
                   },
                 ],
               },
@@ -234,7 +234,7 @@ const userData: Prisma.UserCreateInput[] = [
               spotPicture: {
                 create: [
                   {
-                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675000410/travelerSpot/idvrw9cs3tuajlfcqpmm.png",
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675000410/travelerSpot/pic_du_canigou.png",
                   },
                 ],
               },
