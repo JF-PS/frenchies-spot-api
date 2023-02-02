@@ -427,6 +427,108 @@ const userData: Prisma.UserCreateInput[] = [
       },
     },
   },
+  {
+    email: "godefroy@prisma.io",
+    password: "Godefroy",
+    token: "token6",
+    role: "USER_ADMIN",
+    profile: {
+      create: {
+        pseudo: "GodefroyDeMontmirail",
+        photoUrl: "url",
+        gamePoint: 0,
+        spots: {
+          create: [
+            {
+              name: "Le Mont Saint-Michel",
+              description: `Classé au patrimoin de l'UNESCO, le Mont-Saint-Michel est un ensemble sans équivalent tant par la coexistence de l’abbaye et de son village fortifié sur l’espace resserré d’un îlot, que par l’agencement original des bâtiments qui lui confère une silhouette inoubliable. C'est un des hauts lieux de la civilisation chrétienne médiévale.`,
+              isCanPark: true,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 48.6359541,
+              lng: -1.51146,
+              region: "Normandie, la Manche",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675339060/travelerSpot/mont_saint-michel.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "La citadelle des Baux-de-Provence",
+              description: `Erigée au XIe siècle sur un éperon rocheux au cœur des Alpilles, la citadelle des Baux-de-Provence comprend le Château des Baux-de-Provence et son village. Ancienne place forte médiévale, le majestueux château fort semi-troglodytique figure parmi les plus anciens édifices féodaux d'Europe.`,
+              isCanPark: false,
+              isCanVisit: false,
+              isTouristic: false,
+              lat: 43.74425,
+              lng: 4.79607,
+              region: "Provence-Alpes-Côte d'Azur, Bouches-du-Rhône",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675339378/travelerSpot/la_citadelle_des_baux-de-provence.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Belvédère de la tête de chien",
+              description: `Petite balade dans les calanches de Piana, principalement en sous-bois, de la Tête de Chien jusqu'à un belvédère avec vue sur le château-fort.`,
+              isCanPark: false,
+              isCanVisit: false,
+              isTouristic: false,
+              lat: 46.5781239,
+              lng: -1.8419225,
+              region: "Provence-Alpes-Côte d'Azur, Alpes-Maritimes",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675339696/travelerSpot/belvedere_de_la_tete_de_chien.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Le Mont Blanc",
+              description: `Le mont Blanc, dans le massif du Mont-Blanc, est le point culminant de la chaîne des Alpes. Avec une altitude de 4 808 mètres, il est le plus haut sommet d'Europe occidentale et le sixième sur le plan continental.`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: false,
+              lat: 45.9250255,
+              lng: 6.8727437,
+              region: "Auvergne-Rhône-Alpes, Haute-Savoie",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675340008/travelerSpot/mont-blanc.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Deauville",
+              description: `La belle Deauville est connue des afficionados en tout genre : ceux des courses hippiques, les golfeurs, les amateurs de cinéma, ou encore de casino. Une destination de prestige donc, ou vous trouverez des gens avec des cheveux gominés, qui promènent des petits chiens en manteau.`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 49.36,
+              lng: 0.0752778,
+              region: "Normandie, Calvados",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675340189/travelerSpot/deauville.jpg",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
 ];
 
 async function main() {
