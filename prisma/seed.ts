@@ -244,6 +244,108 @@ const userData: Prisma.UserCreateInput[] = [
       },
     },
   },
+  {
+    email: "`brice`@prisma.io",
+    password: "Brice",
+    token: "token",
+    role: "USER_ADMIN",
+    profile: {
+      create: {
+        pseudo: "BriceDeNice",
+        photoUrl: "url",
+        gamePoint: 0,
+        spots: {
+          create: [
+            {
+              name: "Colorado Provençal",
+              description: `Le Colorado provençal est un ancien site industriel, exploité de la fin du XVIIᵉ siècle jusqu'en 1992, quand le dernier ocrier prit sa retraite.`,
+              isCanPark: true,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 43.9195564,
+              lng: 5.5005963,
+              region: "Provence-Alpes-Côte d'Azur, Vaucluse",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675335702/travelerSpot/colorado_provencal.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Calanques de Marseille",
+              description: `Les Calanques, connues aussi sous l'appellation calanques de Marseille ou calanques de Cassis ou encore massif des Calanques, sont constituées d'une succession d'anses et de criques s'étendant sur plus de vingt kilomètres de côtes sur la mer Méditerranée`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 43.228732,
+              lng: 5.40348,
+              region: "Provence-Alpes-Côte d'Azur, Bouches-du-Rhône",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675336002/travelerSpot/calanques_de_marseille.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Lac de Serre-Ponçon",
+              description: `Au cœur des Alpes du sud, le lac de Serre-Ponçon est une destination de rêve pour les amateurs de loisirs nautiques, de baignade et de bronzage !`,
+              isCanPark: true,
+              isCanVisit: true,
+              isTouristic: false,
+              lat: 44.5000426,
+              lng: 6.3163021,
+              region: "Provence-Alpes-Côte d'Azur, Hautes-Alpes",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675336306/travelerSpot/lac_de%20_serre-poncon.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Lafiteria - Saint-Jean de Luz",
+              description: `Plage de sable et galets, elle se situe prés des campings du quartier d’Acotz. Cette plage est le coin préféré des surfeurs confirmés qui affronteront la vague gauche de rochers située un peu au large.`,
+              isCanPark: true,
+              isCanVisit: false,
+              isTouristic: false,
+              lat: 43.38871,
+              lng: -1.66267,
+              region: "Nouvelle-Aquitaine, Pays-Basque",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675336550/travelerSpot/lafiteria_saint-jean_de_luz.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Guéthary",
+              description: `Guéthary est un village typiquement basque, ancien port de pêche à la baleine`,
+              isCanPark: true,
+              isCanVisit: false,
+              isTouristic: false,
+              lat: 43.423001,
+              lng: -1.6062693,
+              region: "Nouvelle-Aquitaine, Pays-Basque",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675336918/travelerSpot/guethary.jpg",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
 ];
 
 async function main() {
