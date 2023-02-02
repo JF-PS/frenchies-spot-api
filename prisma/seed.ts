@@ -529,6 +529,108 @@ const userData: Prisma.UserCreateInput[] = [
       },
     },
   },
+  {
+    email: "merlin@prisma.io",
+    password: "Merlin",
+    token: "token7",
+    role: "USER_ADMIN",
+    profile: {
+      create: {
+        pseudo: "MerlinEnchanteur",
+        photoUrl: "url",
+        gamePoint: 0,
+        spots: {
+          create: [
+            {
+              name: "La vallée des merveilles",
+              description: `Observatoire cosmique pour certains, voyage initiatique pour d'autres, la Vallée des Merveilles interpelle avec ses 40 000 gravures rupestres pleines. Elle est également connue en italien sous le nom de Valle delle Meraviglie et fait partie du Parc National du Mercantour.`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 44.09109115600586,
+              lng: 7.465714931488037,
+              region: "Provence-Alpes-Côte d'Azur, Alpes-Maritimes",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675340496/travelerSpot/la_vallee_des_merveilles.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Falaises d'Etretat",
+              description: `Entourée des impressionnantes falaises d'amont et d'aval, la plage d'Etretat fait incontestablement partie des plus belles plages de Normandie.`,
+              isCanPark: true,
+              isCanVisit: false,
+              isTouristic: true,
+              lat: 49.7074621,
+              lng: 0.2031905,
+              region: "Normandie, Seine-Maritime",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675340731/travelerSpot/falaises_etretat.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "La Côte de Granit Rose",
+              description: `Sur ce littoral breton, on voit la vie en rose ! Véritable paysage de cartes postales, la côte de Granit Rose dévoile ses courbes de Trebeurden à Ploumanac'h aux détours de criques et de chaos gigantesques.`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: false,
+              lat: 48.8317817,
+              lng: -3.4844446,
+              region: "Bretagne, Côtes-d'Armor",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675341001/travelerSpot/cote_de_granit_rose.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Menhirs de Carnac",
+              description: `Parcourez le plus grand ensemble mégalithique de ce type au monde, haut-lieu de la préhistoire européenne.`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 47.5836629,
+              lng: -3.0794428,
+              region: "Bretagne, Morbihan",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675341145/travelerSpot/menhir_de_carnac.jpg",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Etang de Trémelin",
+              description: `Le « lac de Trémelin » est un superbe étang de près de 45 ha. Le plan d’eau et le domaine forestier forment un site naturel de 220 ha à la richesse écologique exceptionnelle. Le site, labellisé Station Verte, accueille de nombreuses activités de loisirs.`,
+              isCanPark: false,
+              isCanVisit: true,
+              isTouristic: true,
+              lat: 48.0964125,
+              lng: -2.0281004,
+              region: "Bretagne, Ille-et-Vilaine",
+              spotPicture: {
+                create: [
+                  {
+                    url: "https://res.cloudinary.com/db00tntyg/image/upload/v1675341477/travelerSpot/etang_de_tremelin.jpg",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
 ];
 
 async function main() {
