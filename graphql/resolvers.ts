@@ -4,10 +4,9 @@ import {
   spotsController,
   spotPicturesController,
   productsController,
+  ratingsController,
   favoritesController,
 } from "../controllers";
-import { ratingsController } from "../controllers/ratings";
-import prisma from "../prisma";
 
 const Query = {
   ...usersController.query,
@@ -26,10 +25,6 @@ const Mutation = {
   ...productsController.mutation,
   ...ratingsController.mutation,
   ...favoritesController.mutation,
-
-  createTest: (parent: any, args: any, ctx: any) => {
-    return prisma.test.create({ data: { text: args.text } });
-  },
 };
 
 const resolvers = { Query, Mutation };
