@@ -15,9 +15,17 @@ const userData: Prisma.UserCreateInput[] = [
         ratings: {
           create: [
             {
-              spotId: "",
+              spotId: "id4-de-falaisesmeschers",
               rate: 4,
-            }
+            },
+            {
+              spotId: "id24-de-montblanc",
+              rate: 3,
+            },
+            {
+              spotId: "id16-de-guethary",
+              rate: 5,
+            },
           ]
         },
         spots: {
@@ -39,6 +47,7 @@ const userData: Prisma.UserCreateInput[] = [
                   },
                 ],
               },
+              averageRating: 4,
             },
             {
               id: "id2-de-picdelarhune",
@@ -91,6 +100,18 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "PierrePrésent",
         photoUrl: "url",
         gamePoint: 0,
+        ratings: {
+          create: [
+            {
+              spotId: "id24-de-montblanc",
+              rate: 5,
+            },
+            {
+              spotId: "id30-de-etangdetremelin",
+              rate: 2,
+            },
+          ]
+        },
         spots: {
           create: [
             {
@@ -146,6 +167,7 @@ const userData: Prisma.UserCreateInput[] = [
                   },
                 ],
               },
+              averageRating: 2.66,
             },
           ],
         },
@@ -162,6 +184,18 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "JeromeDeLaDrome",
         photoUrl: "url",
         gamePoint: 0,
+        ratings: {
+          create: [
+            {
+              spotId: "id30-de-etangdetremelin",
+              rate: 3,
+            },
+            {
+              spotId: "id1-de-dunedupilat",
+              rate: 3,
+            },
+          ]
+        },
         spots: {
           create: [
             {
@@ -235,6 +269,7 @@ const userData: Prisma.UserCreateInput[] = [
                   },
                 ],
               },
+              averageRating: 4.25,
             },
             {
               id: "id11-de-picducanigou",
@@ -269,6 +304,26 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "BriceDeNice",
         photoUrl: "url",
         gamePoint: 0,
+        ratings: {
+          create: [
+            {
+              spotId: "id10-de-foretdebroceliande",
+              rate: 5,
+            },
+            {
+              spotId: "id24-de-montblanc",
+              rate: 2,
+            },
+            {
+              spotId: "id30-de-etangdetremelin",
+              rate: 4,
+            },
+            {
+              spotId: "id1-de-dunedupilat",
+              rate: 5,
+            },
+          ]
+        },
         spots: {
           create: [
             {
@@ -360,6 +415,7 @@ const userData: Prisma.UserCreateInput[] = [
                   },
                 ],
               },
+              averageRating: 3.5,
             },
           ],
         },
@@ -376,6 +432,26 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "LudovicCruchot",
         photoUrl: "url",
         gamePoint: 0,
+        ratings: {
+          create: [
+            {
+              spotId: "id1-de-dunedupilat",
+              rate: 3,
+            },
+            {
+              spotId: "id6-de-foretdeslandes",
+              rate: 3,
+            },
+            {
+              spotId: "id10-de-foretdebroceliande",
+              rate: 5,
+            },
+            {
+              spotId: "id16-de-guethary",
+              rate: 2,
+            },
+          ]
+        },
         spots: {
           create: [
             {
@@ -465,6 +541,30 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "GodefroyDeMontmirail",
         photoUrl: "url",
         gamePoint: 0,
+        ratings: {
+          create: [
+            {
+              spotId: "id1-de-dunedupilat",
+              rate: 5,
+            },
+            {
+              spotId: "id6-de-foretdeslandes",
+              rate: 1,
+            },
+            {
+              spotId: "id10-de-foretdebroceliande",
+              rate: 4,
+            },
+            {
+              spotId: "id16-de-guethary",
+              rate: 3,
+            },
+            {
+              spotId: "id30-de-etangdetremelin",
+              rate: 5,
+            },
+          ]
+        },
         spots: {
           create: [
             {
@@ -538,6 +638,7 @@ const userData: Prisma.UserCreateInput[] = [
                   },
                 ],
               },
+              averageRating: 3.33,
             },
             {
               id: "id25-de-deauville",
@@ -572,6 +673,22 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "MerlinEnchanteur",
         photoUrl: "url",
         gamePoint: 0,
+        ratings: {
+          create: [
+            {
+              spotId: "id1-de-dunedupilat",
+              rate: 4,
+            },
+            {
+              spotId: "id10-de-foretdebroceliande",
+              rate: 3,
+            },
+            {
+              spotId: "id16-de-guethary",
+              rate: 4,
+            },
+          ]
+        },
         spots: {
           create: [
             {
