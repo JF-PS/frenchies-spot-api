@@ -12,10 +12,18 @@ const userData: Prisma.UserCreateInput[] = [
         pseudo: "AliceMerveille",
         photoUrl: "url",
         gamePoint: 0,
+        ratings: {
+          create: [
+            {
+              spotId: "",
+              rate: 4,
+            }
+          ]
+        },
         spots: {
           create: [
             {
-              id: "id-de-dunedupilat",
+              id: "id1-de-dunedupilat",
               name: "La dune du Pilat",
               description: `La dune du Pilat gardienne du bassin d’Arcachon, mérite son titre de plus haute dune d’Europe. Unique par ses dimensions : 117 m de hauteur, 2,7 km de longueur, 500 m de largeur, son ascension est largement récompensée par la vue que nous réserve le site, il est d’une beauté exceptionnelle. Aux couleurs marines, vert des pins, doré du sable s’ajoute le parfum d’iode et d’odeurs balsamiques.`,
               isCanPark: false,
@@ -33,7 +41,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-picdelarhune",
+              id: "id2-de-picdelarhune",
               name: "Le pic de la Rhune",
               description: `Au Pays Basque, La Rhune protège jalousement la côte. Ce site est un lieu enchanteur parcouru de pistes pastorales, d’où s’y dégage une ambiance mystérieuse et secrète. On y découvre des cromlechs, ces blocs dressés en cercle orientés vers le soleil, on y entend de nombreuses légendes, on y rencontre des pottoks petits chevaux autochtones à demi sauvages. Et puis n’hésitez pas à emprunter le Petit Train de la Rhune, train à crémaillère : un trajet de 30 minutes à 8 km/h.`,
               isCanPark: false,
@@ -51,7 +59,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-parcnationalpyrenees",
+              id: "id3-de-parcnationalpyrenees",
               name: "Parc National Pyrénées",
               description: `Un panorama inouï vous attend en Béarn. Vous êtes en haute montagne, dans le Parc National des Pyrénées. En arrivant à Artouste on assiste à une extraordinaire variété de paysages où alternent une kyrielle d’aiguilles, de vastes pâturages, ou de grandes étendues de forêts de hêtres ou de sapins, de lacs... Une superbe occasion pour voir voler au-dessus de vos têtes : aigles royaux, faucons pèlerins ou vautours fauves veillant sur cette vallée de rêve. Impressionnant, le petit train d’Artouste (à 2000 m d’altitude) qui se déplace le long de la ligne ferroviaire la plus haute d’Europe. Visite à faire absolument.`,
               isCanPark: true,
@@ -86,7 +94,7 @@ const userData: Prisma.UserCreateInput[] = [
         spots: {
           create: [
             {
-              id: "id-de-falaisesmeschers",
+              id: "id4-de-falaisesmeschers",
               name: "Falaises Meschers",
               description: `Au sud de Royan, les falaises de Meschers-sur-Gironde longeant la « Côte de beauté » et faisant face au Médoc, surplombent le plus grand estuaire d’Europe à plus de 30 mètres de haut. Un patrimoine inestimable parcouru de grottes et d’habitations troglodytiques sur une distance de 1500 m. Les grottes du Régulus et de Matata sont aménagées et ouvertes au public. Le plus bel endroit, pour observer les falaises blanches de Meschers, se situe dans le magnifique village de Talmont-sur-Gironde.`,
               isCanPark: true,
@@ -104,7 +112,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-bortenlimousin",
+              id: "id5-de-bortenlimousin",
               name: "Bort en Limousin",
               description: `Au cœur du Massif Central, nous sommes dans la vallée de la Haute Dordogne. A 437 m d’altitude les orgues de Bort sommeillent. C’est une merveille naturelle surgie des entrailles de la Terre. Monument naturel composé d’une succession de colonnes verticales qui évoquent l’instrument de musique. `,
               isCanPark: true,
@@ -122,7 +130,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-foretdeslandes",
+              id: "id6-de-foretdeslandes",
               name: "Forêt des Landes",
               description: `La forêt des Landes de Gascogne est un massif forestier du sud-ouest de la France situé en Nouvelle-Aquitaine. D'une superficie de près d'un million d'hectares, elle est la plus grande forêt artificielle d'Europe occidentale conduite intensivement et majoritairement en une monoculture de pins maritimes. `,
               isCanPark: true,
@@ -157,7 +165,7 @@ const userData: Prisma.UserCreateInput[] = [
         spots: {
           create: [
             {
-              id: "id-de-golfedumorbihan",
+              id: "id7-de-golfedumorbihan",
               name: "Golfe du Morbihan",
               description: `Le golfe du Morbihan est une mer intérieure d'une longueur est-ouest de 20 kilomètres environ parsemée de nombreuses îles et îlots. C'est une destination prisée pour la beauté de ses paysages couvrant une centaine de kilomètres carrés, située en Bretagne, dans le département du Morbihan auquel il a donné son nom.`,
               isCanPark: false,
@@ -175,7 +183,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-dentellesdemontmirail",
+              id: "id8-de-dentellesdemontmirail",
               name: "Dentelles de Montmirail",
               description: `Les Dentelles de Montmirail, situées dans le département français de Vaucluse, sont une chaîne de montagne qui marque la limite occidentale des monts de Vaucluse. Elles sont situées au nord de Carpentras, au sud de Vaison-la-Romaine et à l'ouest du mont`,
               isCanPark: true,
@@ -193,7 +201,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-gorgesdutoulourenc",
+              id: "id9-de-gorgesdutoulourenc",
               name: "Gorges du Toulourenc",
               description: `Gorges boisées où randonner et patauger avec petites plages et bassins naturels au pied du mont Ventoux.`,
               isCanPark: false,
@@ -211,7 +219,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-foretdebroceliande",
+              id: "id10-de-foretdebroceliande",
               name: "Forêt de Broceliande",
               description: `La forêt de Paimpont, appelée forêt de Brécilien jusqu'au XVᵉ siècle, souvent identifiée à Brocéliande, forêt mythique et enchantée de la légende arthurienne, est située autour de Paimpont dans le département d'Ille-et-Vilaine en Bretagne, à environ 30 km au sud-ouest de Rennes.`,
               isCanPark: false,
@@ -229,7 +237,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-picducanigou",
+              id: "id11-de-picducanigou",
               name: "Pic du Canigou",
               description: `Le pic du Canigou est le haut sommet oriental de la chaîne des Pyrénées, sur le massif du Canigou. Il est situé dans le Conflent, département des Pyrénées-Orientales, et culmine à 2 784 mètres d'altitude.`,
               isCanPark: true,
@@ -264,7 +272,7 @@ const userData: Prisma.UserCreateInput[] = [
         spots: {
           create: [
             {
-              id: "id-de-coloradoprovencal",
+              id: "id12-de-coloradoprovencal",
               name: "Colorado Provençal",
               description: `Le Colorado provençal est un ancien site industriel, exploité de la fin du XVIIᵉ siècle jusqu'en 1992, quand le dernier ocrier prit sa retraite.`,
               isCanPark: true,
@@ -282,7 +290,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-calanquesdemarseille",
+              id: "id13-de-calanquesdemarseille",
               name: "Calanques de Marseille",
               description: `Les Calanques, connues aussi sous l'appellation calanques de Marseille ou calanques de Cassis ou encore massif des Calanques, sont constituées d'une succession d'anses et de criques s'étendant sur plus de vingt kilomètres de côtes sur la mer Méditerranée`,
               isCanPark: false,
@@ -300,7 +308,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-lacdeserreponcon",
+              id: "id14-de-lacdeserreponcon",
               name: "Lac de Serre-Ponçon",
               description: `Au cœur des Alpes du sud, le lac de Serre-Ponçon est une destination de rêve pour les amateurs de loisirs nautiques, de baignade et de bronzage !`,
               isCanPark: true,
@@ -318,7 +326,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-lafiteria",
+              id: "id15-de-lafiteria",
               name: "Lafiteria - Saint-Jean de Luz",
               description: `Plage de sable et galets, elle se situe prés des campings du quartier d’Acotz. Cette plage est le coin préféré des surfeurs confirmés qui affronteront la vague gauche de rochers située un peu au large.`,
               isCanPark: true,
@@ -336,7 +344,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-guethary",
+              id: "id16-de-guethary",
               name: "Guéthary",
               description: `Guéthary est un village typiquement basque, ancien port de pêche à la baleine`,
               isCanPark: true,
@@ -371,7 +379,7 @@ const userData: Prisma.UserCreateInput[] = [
         spots: {
           create: [
             {
-              id: "id-de-gorgesduverdon",
+              id: "id17-de-gorgesduverdon",
               name: "Les Gorges du Verdon",
               description: `Creusé par la rivière Verdon, au cœur des Alpes de Haute-Provence, le plus grand canyon d’Europe se dévoile avec ses falaises de calcaire majestueuses, son eau couleur émeraude et ses paysages alentours à couper le souffle.`,
               isCanPark: false,
@@ -389,7 +397,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-paysdesault",
+              id: "id18-de-paysdesault",
               name: "Pays de Sault",
               description: `Une mosaïque de champs de lavandes, de petit épeautre et de blé, avec, au centre, le village de Sault, blanc et minéral, posé sur un roc.`,
               isCanPark: false,
@@ -407,7 +415,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-sainttropez",
+              id: "id19-de-sainttropez",
               name: "Saint-Tropez",
               description: `Appréciée depuis longtemps par les artistes, la ville attirait la "jet set" internationale dans les années 1960, et séduit toujours pour ses plages et sa vie nocturne. Le quartier pavé de La Ponche témoigne de son passé de village de pêcheurs, même si les yachts sont désormais plus nombreux que les bateaux de pêche dans le Vieux Port.`,
               isCanPark: true,
@@ -425,7 +433,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-bormeslesmimosas",
+              id: "id20-de-bormeslesmimosas",
               name: "Bormes-les-Mimosas",
               description: `Bormes-les-Mimosas est un superbe village médiéval du XIIᵉ siècle aux allures de crèche provençale. Il séduit les amoureux de vieilles pierres et de patrimoine, tout comme les amateurs de farniente, désireux de se trouver un petit coin de paradis au soleil.`,
               isCanPark: true,
@@ -460,7 +468,7 @@ const userData: Prisma.UserCreateInput[] = [
         spots: {
           create: [
             {
-              id: "id-de-montsaintmichel",
+              id: "id21-de-montsaintmichel",
               name: "Le Mont Saint-Michel",
               description: `Classé au patrimoin de l'UNESCO, le Mont-Saint-Michel est un ensemble sans équivalent tant par la coexistence de l’abbaye et de son village fortifié sur l’espace resserré d’un îlot, que par l’agencement original des bâtiments qui lui confère une silhouette inoubliable. C'est un des hauts lieux de la civilisation chrétienne médiévale.`,
               isCanPark: true,
@@ -478,7 +486,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-citadelledesbauxdeprovence",
+              id: "id22-de-citadelledesbauxdeprovence",
               name: "La citadelle des Baux-de-Provence",
               description: `Erigée au XIe siècle sur un éperon rocheux au cœur des Alpilles, la citadelle des Baux-de-Provence comprend le Château des Baux-de-Provence et son village. Ancienne place forte médiévale, le majestueux château fort semi-troglodytique figure parmi les plus anciens édifices féodaux d'Europe.`,
               isCanPark: false,
@@ -496,7 +504,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-latetedechien",
+              id: "id23-de-latetedechien",
               name: "Belvédère de la tête de chien",
               description: `Petite balade dans les calanches de Piana, principalement en sous-bois, de la Tête de Chien jusqu'à un belvédère avec vue sur le château-fort.`,
               isCanPark: false,
@@ -514,7 +522,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-montblanc",
+              id: "id24-de-montblanc",
               name: "Le Mont Blanc",
               description: `Le mont Blanc, dans le massif du Mont-Blanc, est le point culminant de la chaîne des Alpes. Avec une altitude de 4 808 mètres, il est le plus haut sommet d'Europe occidentale et le sixième sur le plan continental.`,
               isCanPark: false,
@@ -532,7 +540,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-deauville",
+              id: "id25-de-deauville",
               name: "Deauville",
               description: `La belle Deauville est connue des afficionados en tout genre : ceux des courses hippiques, les golfeurs, les amateurs de cinéma, ou encore de casino. Une destination de prestige donc, ou vous trouverez des gens avec des cheveux gominés, qui promènent des petits chiens en manteau.`,
               isCanPark: false,
@@ -567,7 +575,7 @@ const userData: Prisma.UserCreateInput[] = [
         spots: {
           create: [
             {
-              id: "id-de-lavalleedesmerveilles",
+              id: "id26-de-lavalleedesmerveilles",
               name: "La vallée des merveilles",
               description: `Observatoire cosmique pour certains, voyage initiatique pour d'autres, la Vallée des Merveilles interpelle avec ses 40 000 gravures rupestres pleines. Elle est également connue en italien sous le nom de Valle delle Meraviglie et fait partie du Parc National du Mercantour.`,
               isCanPark: false,
@@ -585,7 +593,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-falaisesdetretat",
+              id: "id27-de-falaisesdetretat",
               name: "Falaises d'Etretat",
               description: `Entourée des impressionnantes falaises d'amont et d'aval, la plage d'Etretat fait incontestablement partie des plus belles plages de Normandie.`,
               isCanPark: true,
@@ -603,7 +611,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-lacotedegranitrose",
+              id: "id28-de-lacotedegranitrose",
               name: "La Côte de Granit Rose",
               description: `Sur ce littoral breton, on voit la vie en rose ! Véritable paysage de cartes postales, la côte de Granit Rose dévoile ses courbes de Trebeurden à Ploumanac'h aux détours de criques et de chaos gigantesques.`,
               isCanPark: false,
@@ -621,7 +629,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-menhirsdecarnac",
+              id: "id29-de-menhirsdecarnac",
               name: "Menhirs de Carnac",
               description: `Parcourez le plus grand ensemble mégalithique de ce type au monde, haut-lieu de la préhistoire européenne.`,
               isCanPark: false,
@@ -639,7 +647,7 @@ const userData: Prisma.UserCreateInput[] = [
               },
             },
             {
-              id: "id-de-etangdetremelin",
+              id: "id30-de-etangdetremelin",
               name: "Etang de Trémelin",
               description: `Le « lac de Trémelin » est un superbe étang de près de 45 ha. Le plan d’eau et le domaine forestier forment un site naturel de 220 ha à la richesse écologique exceptionnelle. Le site, labellisé Station Verte, accueille de nombreuses activités de loisirs.`,
               isCanPark: false,
