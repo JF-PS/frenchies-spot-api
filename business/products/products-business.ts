@@ -4,16 +4,10 @@ import { GenericError, codeErrors } from "../../utils";
 const { INTERNAL_SERVER_ERROR } = codeErrors;
 
 const productsBusiness = {
-  /**
-   * Get all products
-   */
   getAll: () => {
     return productsRepository.getAll();
   },
 
-  /**
-   * Create a product
-   */
   create: (data: ProductDto) => {
     return productsRepository.create(data);
   },
@@ -29,9 +23,6 @@ const productsBusiness = {
     token: string,
     amount: number
   ) => {
-    console.log("-----------------------------------------");
-    console.log({ productGamePoint, profileId, userGamePoint, token, amount });
-    console.log("-----------------------------------------");
     return stripeRepository
       .payment(token, amount)
       .then(() => {

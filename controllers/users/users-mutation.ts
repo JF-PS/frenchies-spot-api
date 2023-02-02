@@ -10,9 +10,6 @@ export const usersMutation = {
    * @param {SignInDto} data
    */
   signUp: (_: undefined, data: SignInDto) => {
-    console.log("==================================");
-    console.log("SIGNUP");
-    console.log("==================================");
     return usersBusiness.signUp(data);
   },
 
@@ -45,9 +42,6 @@ export const usersMutation = {
     const { user } = context;
     const userId = user?.id;
     const profileId = user?.profile.id;
-
-    console.log("******USERID ****");
-    console.log({ userId, profileId });
 
     if (!userId || !profileId) throw new GenericError(UNAUTHENTICATED);
     return usersBusiness.delete(userId, profileId);

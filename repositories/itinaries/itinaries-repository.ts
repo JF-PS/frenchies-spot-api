@@ -3,9 +3,6 @@ import { Itinary, Profile } from "../../models";
 import { CreateItinariesRepositoryDto } from "../../dto";
 
 const itinariesRepository = {
-  /**
-   * Find all Itinary
-   */
   getAll: () => {
     return Itinary.findMany({
       include: { spots: true },

@@ -32,15 +32,3 @@ const Mutation = {
 const resolvers = { Query, Mutation };
 
 export default resolvers;
-
-//   Mutation: {
-//     addBlogPost: (_parent, { text }, _context) => {
-//       return prisma.blogPost.create({ data: { text } });
-//     },
-//     editBlogPost: (_parent, { id, text }, _context) => {
-//       return prisma.blogPost.update({ where: { id }, data: { text } });
-//     },
-//     deleteBlogPost: (_parent, { id }, _context) => {
-//       return prisma.blogPost.delete({ where: { id } });
-//     },
-//   },

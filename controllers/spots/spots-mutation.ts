@@ -10,9 +10,6 @@ import { GenericError, codeErrors } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
 
 export const spotsMutation = {
-  /**
-   * @param {SpotDto} data
-   */
   createSpot: (
     _: undefined,
     data: SpotDto & { pictures: SpotPicturesDto },

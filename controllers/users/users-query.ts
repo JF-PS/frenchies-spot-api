@@ -4,9 +4,6 @@ import { GenericError, codeErrors } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
 
 export const usersQuery = {
-  /**
-   * get all users
-   */
   users: () => {
     return usersBusiness.getAll();
   },

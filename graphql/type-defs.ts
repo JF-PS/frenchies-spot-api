@@ -103,11 +103,6 @@ const typeDefs = gql`
     maxVote: Int
   }
 
-  input CoordinateInput {
-    lat: Int
-    lng: Int
-  }
-
   input SpotInput {
     name: String
     description: String

@@ -4,6 +4,10 @@ import { codeErrors, GenericError } from "../../utils";
 const { SPOT_NOT_FOUND, SPOT_ID_MATCH_PROFILE_ID } = codeErrors;
 
 const favoritesBusiness = {
+  getAll: () => {
+    return favoritesRepository.getAll();
+  },
+
   createOrUpdate: async (spotId: string, favoriteId: string | undefined = undefined, profileId: string) => {
     const spot = await spotsRepository.getById(spotId);
     if (!spot) {

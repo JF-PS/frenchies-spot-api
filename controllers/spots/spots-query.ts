@@ -2,9 +2,6 @@ import { spotsBusiness } from "../../business";
 import { ReadSpotDto } from "../../dto";
 
 export const spotsQuery = {
-  /**
-   * Get All Spots
-   */
   spots: (_: undefined, data: ReadSpotDto) => {
     return spotsBusiness.getAll(data);
   },

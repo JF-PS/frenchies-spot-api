@@ -5,9 +5,6 @@ import { codeErrors, GenericError } from "../../utils";
 const { UNAUTHENTICATED } = codeErrors;
 
 export const favoritesMutation = {
-    /**
-     * @param {UpdateFavoriteDto} data
-     */
     createOrUpdateFavorite: (
       _: undefined,
       data: UpdateFavoriteDto,

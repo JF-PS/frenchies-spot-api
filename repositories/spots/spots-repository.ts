@@ -23,9 +23,6 @@ const spotsRepository = {
     });
   },
 
-  /**
-   * Find all Spot
-   */
   getAll: (
     filterData: SpotFilterDto,
     paginationData: SpotPaginationDto,
