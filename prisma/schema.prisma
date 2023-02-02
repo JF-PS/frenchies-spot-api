@@ -88,7 +88,7 @@ model Spot {
   isCanVisit    Boolean        @default(false)
   isTouristic   Boolean        @default(false)
   // Relations one to many with profile
-  profile       Profile        @relation(fields: [profileId], references: [id])
+  profile       Profile        @relation(fields: [profileId], references: [id], onDelete: Cascade)
   profileId     String
   // Implicit relations many to many with itinary
   itinaries     Itinary[]
@@ -121,16 +121,16 @@ model Product {
 model Rating {
   id        String  @id @default(uuid())
   rate      Int
-  profile   Profile @relation(fields: [profileId], references: [id])
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
   profileId String
-  spot      Spot    @relation(fields: [spotId], references: [id])
+  spot      Spot    @relation(fields: [spotId], references: [id], onDelete: Cascade)
   spotId    String
 }
 
 model Favorite {
   id        String  @id @default(uuid())
-  profile   Profile @relation(fields: [profileId], references: [id])
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
   profileId String
-  spot      Spot   @relation(fields: [spotId], references: [id])
+  spot      Spot   @relation(fields: [spotId], references: [id], onDelete: Cascade)
   spotId    String
 }
