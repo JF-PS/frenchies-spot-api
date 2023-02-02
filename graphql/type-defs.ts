@@ -224,7 +224,7 @@ const typeDefs = gql`
 
     toggleFavorite(
       spotId: String
-      id: String
+      favoriteId: String
     ): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile

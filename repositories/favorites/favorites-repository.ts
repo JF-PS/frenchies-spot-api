@@ -29,7 +29,8 @@ const favoritesRepository = {
     });
   },
 
-  delete: (favoriteId: string, spotId: string) => {
+  delete: (spotId: string, favoriteId: string) => {
+    console.log("delete favoriteId:", favoriteId, "spotId:", spotId)
     return Spot.update({
       where: {
         id: spotId,
