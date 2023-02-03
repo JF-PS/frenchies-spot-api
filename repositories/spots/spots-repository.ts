@@ -52,7 +52,7 @@ const spotsRepository = {
       where: {
         id,
       },
-      include: { spotPicture: true, ratings: true },
+      include: { spotPicture: true, ratings: true, favorites: true },
     });
   },
 

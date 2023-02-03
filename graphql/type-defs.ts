@@ -25,6 +25,7 @@ const typeDefs = gql`
     itinaries: [Itinary]
     spots: [Spot]
     ratings: [Rating]
+    favorites: [Favorite]
   }
 
   type Itinary {
@@ -91,10 +92,9 @@ const typeDefs = gql`
 
   type Favorite {
     id: String
-    profile: Profile
     profileId: String
-    spot: Spot
     spotId: String
+    spot: Spot
   }
 
   type AverageRating {
@@ -144,8 +144,8 @@ const typeDefs = gql`
     products: [Product]
     authByToken: User
     getBuyProductRequest(amount: Int): String
-    favorites: [Favorite]
-    favorite(id: String): Favorite
+
+    favorites(profileId: String): Profile
     ratings: [Rating]
     rating(id: String): Rating
     ratingsAverage: Rating
@@ -222,10 +222,7 @@ const typeDefs = gql`
       rate: Int
     ): AverageRating
 
-    toggleFavorite(
-      spotId: String
-      id: String
-    ): Spot
+    toggleFavorite(spotId: String, id: String): Spot
 
     buysItinary(profileId: String, itinaryId: String): Profile
 

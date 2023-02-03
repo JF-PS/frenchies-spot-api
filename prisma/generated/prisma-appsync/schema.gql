@@ -43,7 +43,7 @@ type Spot {
     lat: Float!
     lng: Float!
     region: String!
-    averageRating: Float
+    averageRating: Float!
     spotPicture: [SpotPicture]
     ratings: [Rating]
     favorites: [Favorite]
@@ -699,7 +699,7 @@ input SpotCreateInput {
     lat: Float!
     lng: Float!
     region: String!
-    averageRating: Float
+    averageRating: Float!
     spotPicture: SpotSpotPictureCreateRelationInput
     ratings: SpotRatingsCreateRelationInput
     favorites: SpotFavoritesCreateRelationInput
@@ -715,7 +715,7 @@ input SpotCreateManyInput {
     lat: Float!
     lng: Float!
     region: String!
-    averageRating: Float
+    averageRating: Float!
 }
 
 input SpotUpdateInput {

@@ -1,8 +1,15 @@
-import { Favorite, Spot } from "../../models";
+import { Favorite, Spot, Profile } from "../../models";
 
 const favoritesRepository = {
-  getAll: () => {
-    return Favorite.findMany();
+  getProfileFavorites: (profileId: string) => {
+    return Profile.findUnique({
+      where: {
+        id: profileId,
+      },
+      include: {
+        favorites: { include: { spot: { include: { spotPicture: true } } } },
+      },
+    });
   },
 
   getById: (id: string) => {
@@ -43,7 +50,7 @@ const favoritesRepository = {
       },
       include: { favorites: true },
     });
-  }
+  },
 };
 
 export default favoritesRepository;

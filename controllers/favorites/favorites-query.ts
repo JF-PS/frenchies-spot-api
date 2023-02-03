@@ -1,7 +1,8 @@
 import { favoritesBusiness } from "../../business/favorites";
 
 export const favoritesQuery = {
-  favorites: () => {
-    return favoritesBusiness.getAll();
+  favorites: (_, data: { profileId: string }) => {
+    const { profileId } = data;
+    return favoritesBusiness.getProfileFavorites(profileId);
   },
 };
